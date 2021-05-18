@@ -6,9 +6,9 @@ The first action a client should take when trying to access entitled/restricted 
 
 This can be achieve using one of the following methods.
 
-- [Generate Session using Email & Password](../reference/openapi.yml/paths/~1api~1v1~1session~1start/get)
-- [Generate Session using Payload](../reference/openapi.yml/paths/~1api~1v1~1session~1start/post)
-- [Generate a SSO Session](../reference/openapi.yml/paths/~1sso~1start~1%7Bredirect%7D/get)
+- [Generate Session using Email & Password](../reference/CloudPay-API-Specification.yaml/paths/~1api~1v1~1session~1start/get)
+- [Generate Session using Payload](../reference/CloudPay-API-Specification.yaml/paths/~1api~1v1~1session~1start/post)
+- [Generate a SSO Session](../reference/CloudPay-API-Specification.yaml/paths/~1sso~1start~1%7Bredirect%7D/get)
 
 Once you have successfully logged in and a session is created you should store this locally so you can pass your CloudPay token into the API for future requests.
 
@@ -20,7 +20,7 @@ Once you have successfully logged in and a session is created you should store t
 
 The next step is to create a kSession for the entry you would like to view, this will validate that you have a active session and are also entitled to access the entry you have requested.
 
-- [Generate a kSession Token](../reference/openapi.yml/paths/~1api~1v1~1session~1ksession/get)
+- [Generate a kSession Token](../reference/CloudPay-API-Specification.yaml/paths/~1api~1v1~1session~1ksession/get)
 
 ```json
 {
