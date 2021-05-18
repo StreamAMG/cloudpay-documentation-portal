@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/Introduction.md"
+    },
+    {
+      "type": "item",
+      "title": "Getting Started",
+      "uri": "docs/Getting-Started.md"
+    },
+    {
+      "type": "item",
+      "title": "FAQ",
+      "uri": "docs/FAQ.md"
+    },
+    {
+      "type": "item",
+      "title": "CloudPay API Specification",
+      "uri": "reference/openapi.yml"
+    }
+  ]
+}
