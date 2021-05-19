@@ -61,9 +61,11 @@ paths:
                   value:
                     ErrorMessage: Invalid Login Request
       description: |-
-        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password. 
+        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done for SSO users by generating a SSO Session. 
 
-        Once a user has initialised their session by successfully logging in, the **AuthenticationToken** in the response or Cookie should used as a query parameter across the other API endpoints.
+        Once a client has successfull setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
+
+        *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
       tags:
         - Session
       operationId: generate-sso-session
