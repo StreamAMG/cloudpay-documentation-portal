@@ -659,6 +659,7 @@ paths:
           schema:
             type: string
           required: true
+          description: The CloudPay Session ID taken from the Login Endpoint
         - schema:
             type: string
           in: query
