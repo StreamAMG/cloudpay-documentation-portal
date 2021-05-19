@@ -31,7 +31,7 @@ paths:
           name: redirect
           schema:
             type: string
-            example: h4YnEwkle12d9xs`
+            example: h4YnEwkle12d9xs
           required: true
           description: Redirect URL for SSO Start
       responses:
