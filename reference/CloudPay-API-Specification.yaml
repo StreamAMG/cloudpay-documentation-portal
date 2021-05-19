@@ -25,15 +25,15 @@ paths:
           name: token
           schema:
             type: string
-            example: h4YnEwkle12d9xs
           required: true
           description: The Third-Party SSO token
         - in: path
           name: redirect
           schema:
             type: string
+            example: h4YnEwkle12d9xs`
           required: true
-          description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
+          description: Redirect URL for SSO Start
       responses:
         '302':
           description: Successful Redirection Response containing the Set-Cookie header containing the CloudPay Session ID. This will be stored within the browsers Cookie store for **2 hours**
