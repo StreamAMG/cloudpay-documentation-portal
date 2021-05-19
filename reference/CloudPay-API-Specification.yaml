@@ -41,7 +41,7 @@ paths:
               schema:
                 type: string
                 example: payments.website.com/sso/verify/h4YnEwkle12d9xs
-              description: The redirect URL used to relocate the browser on response. \n\n Please note this address is taken from the Host caller and appends **/sso/verify** followed by the path redirect parameter
+              description: The redirect URL used to relocate the browser on response. Please note this address is taken from the Host caller and appends **/sso/verify** followed by the path redirect parameter
             Set-Cookie:
               schema:
                 type: string
