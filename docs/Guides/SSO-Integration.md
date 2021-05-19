@@ -32,3 +32,5 @@ Once a user has a valid token this should be passed to the [Generate a SSO Sessi
 > Currently this implementation makes use of the Set-Cookies response header along with HTTP Redirection header to store the CloudPay Authorisation Token within the browsers Cookie store. 
 
 Once a CloudPay Session has been established the Cookie or Session token can be used throughout the API to provide trust when requesting access to other API functionality. 
+
+> **Note:** *The CloudPay Session has the same signature as the Third-Party JWT Token.*
