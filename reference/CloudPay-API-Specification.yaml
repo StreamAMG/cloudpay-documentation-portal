@@ -659,6 +659,11 @@ paths:
           schema:
             type: string
           required: true
+        - schema:
+            type: string
+          in: query
+          name: callbackurl
+          description: Redirect Location
       responses:
         '302':
           description: Successful set cookie response
@@ -675,6 +680,11 @@ paths:
               schema:
                 type: string
               description: Redirect URL
+            Set-Cookie:
+              schema:
+                type: string
+                example: '.auth=eh2j182jjj2abnwj8m228djj2nJd221d219kdd231s3dlj2c211dds; Path=/; expires=${tomorrow}; SameSite=None; Secure; HttpOnly'
+              description: Cookie information that will be persisted
         '500':
           description: Unsuccessful set cookie response
           content:
@@ -686,7 +696,10 @@ paths:
                 Failed Cookie Response:
                   value:
                     ErrorMessage: SetCookieFailed
-      description: Create a cookie with redirection based on the user session Id created on Login.
+      description: |-
+        Create a cookie with redirection based on the user session Id created on Login.
+
+        This endpoint will respond with the Set-Cookie header which your browser should automatically store in its Cookie store. If you would like to perfrom a redirection alongside the request set the callbackurl query parameters and this URL will be honoured within the Location Response header.
       tags:
         - Session
       operationId: set-authentication-cookie
