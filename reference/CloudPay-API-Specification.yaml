@@ -26,7 +26,7 @@ paths:
           schema:
             type: string
           required: true
-          description: The SSO token
+          description: The Third-Party SSO token
         - in: path
           name: redirect
           schema:
@@ -36,6 +36,7 @@ paths:
       responses:
         '204':
           description: SSO login request processed successfully but there is no response content
+          headers: {}
         '302':
           description: Successful SSO login response
           headers:
@@ -43,6 +44,11 @@ paths:
               schema:
                 type: string
               description: Redirect URL
+            Set-Cookie:
+              schema:
+                type: string
+                example: 'ThirdPartyAuthentication=eh2j182jjj2abnwj8m228djj2nJd221d219kdd231s3dlj2c211dds; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly'
+              description: The cookie which will be stored in the cookie store
         '500':
           description: Unsuccessful SSO login response
           content:
@@ -57,7 +63,7 @@ paths:
       description: |-
         In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password. 
 
-        Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
+        Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response or Cookie should used as a query parameter across the other API endpoints.
       tags:
         - Session
       operationId: generate-sso-session
