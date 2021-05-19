@@ -11,6 +11,11 @@
       "uri": "docs/Getting-Started.md"
     },
     {
+      "type": "item",
+      "title": "FAQ",
+      "uri": "docs/FAQ.md"
+    },
+    {
       "type": "divider",
       "title": "Guides"
     },
@@ -18,11 +23,6 @@
       "type": "item",
       "title": "SSO-Integration",
       "uri": "docs/Guides/SSO-Integration.md"
-    },
-    {
-      "type": "item",
-      "title": "FAQ",
-      "uri": "docs/FAQ.md"
     },
     {
       "type": "item",
