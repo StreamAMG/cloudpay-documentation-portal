@@ -35,7 +35,7 @@ paths:
           description: The redirect URL
       responses:
         '302':
-          description: Successful SSO login response
+          description: Successful Redirection Response containing the Set-Cookie header containing the CloudPay Session ID. This will be stored within the browsers Cookie store for **2 hours**
           headers:
             Location:
               schema:
