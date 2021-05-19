@@ -33,4 +33,4 @@ Once a user has a valid token this should be passed to the [Generate a SSO Sessi
 
 Once a CloudPay Session has been established the Cookie or Session token can be used throughout the API to provide trust when requesting access to other API functionality. 
 
-> **Note:** *The CloudPay Session has the same signature as the Third-Party JWT Token.*
+> **Note:** *The CloudPay Session has the same signature as the Third-Party JWT Token*
