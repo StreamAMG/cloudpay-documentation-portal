@@ -65,7 +65,7 @@ paths:
 
         Once a client has successfull setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
 
-        *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
+        **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
       tags:
         - Session
       operationId: generate-sso-session
