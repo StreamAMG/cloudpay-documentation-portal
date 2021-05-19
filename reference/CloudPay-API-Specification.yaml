@@ -34,9 +34,6 @@ paths:
           required: true
           description: The redirect URL
       responses:
-        '204':
-          description: SSO login request processed successfully but there is no response content
-          headers: {}
         '302':
           description: Successful SSO login response
           headers:
