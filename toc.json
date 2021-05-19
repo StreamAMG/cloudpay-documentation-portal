@@ -4,11 +4,20 @@
       "type": "item",
       "title": "Introduction",
       "uri": "docs/Introduction.md"
-    },
+    },  
     {
       "type": "item",
       "title": "Getting Started",
       "uri": "docs/Getting-Started.md"
+    },
+    {
+      "type": "divider",
+      "title": "Guides"
+    },
+    {
+      "type": "item",
+      "title": "SSO-Integration",
+      "uri": "docs/Guides/SSO-Integration.md"
     },
     {
       "type": "item",
