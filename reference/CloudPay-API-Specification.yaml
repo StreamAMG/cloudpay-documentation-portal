@@ -63,7 +63,7 @@ paths:
       description: |-
         In order to perform queries against the CloudPay API a user must first initialise a session. This can be done for SSO users by generating a SSO Session. 
 
-        Once a client has successfull setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
+        Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
 
         **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
       tags:
