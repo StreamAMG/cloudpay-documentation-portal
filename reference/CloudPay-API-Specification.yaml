@@ -25,7 +25,7 @@ paths:
           name: token
           schema:
             type: string
-            example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
           required: true
           description: The Third-Party SSO token
         - in: path
@@ -37,7 +37,7 @@ paths:
           description: Redirect URL for SSO Start
       responses:
         '302':
-          description: Successful Redirection Response containing the Set-Cookie header containing the CloudPay Session ID. This will be stored within the browsers Cookie store for **2 hours**
+          description: Successful Redirection Response containing the Set-Cookie header containing the token. This will be stored within the browsers Cookie store for **2 hours**
           headers:
             Location:
               schema:
@@ -47,7 +47,7 @@ paths:
             Set-Cookie:
               schema:
                 type: string
-                example: 'ThirdPartyAuthentication=eh2j182jjj2abnwj8m228djj2nJd221d219kdd231s3dlj2c211dds; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly'
+                example: 'ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly'
               description: The cookie which will be stored in the cookie store
         '500':
           description: Unsuccessful SSO login response
