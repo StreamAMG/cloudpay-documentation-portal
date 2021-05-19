@@ -40,6 +40,7 @@ paths:
             Location:
               schema:
                 type: string
+                example: payments.website.com/sso/verify/h4YnEwkle12d9xs
               description: Redirect URL
             Set-Cookie:
               schema:
@@ -67,6 +68,7 @@ paths:
     parameters:
       - schema:
           type: string
+          example: h4YnEwkle12d9xs
         name: redirect
         in: path
         required: true
