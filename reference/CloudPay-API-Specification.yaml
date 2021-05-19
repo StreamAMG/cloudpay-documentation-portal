@@ -41,7 +41,7 @@ paths:
               schema:
                 type: string
                 example: payments.website.com/sso/verify/h4YnEwkle12d9xs
-              description: Redirect URL
+              description: 'Redirect URL, please note this address is taken from the Host caller and appends */sso/verify* followed by the path redirect parameter'
             Set-Cookie:
               schema:
                 type: string
@@ -72,7 +72,7 @@ paths:
         name: redirect
         in: path
         required: true
-        description: Redirect URL for SSO Start
+        description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
   /api/v1/session/start:
     get:
       summary: Generate Session using Email & Password
