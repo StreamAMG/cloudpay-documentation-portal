@@ -23,7 +23,7 @@ The following details are required;
 The following diagram demonstrates a simple integration flow between a third-party application and the CloudPay API.
 <img src="https://lucid.app/publicSegments/view/0792a3d5-6df4-4785-8588-75be776fa559/image.png" alt="Sequence Diagram" width="900" style="align:center"/>
 
-### Step-by-step
+### Guide
 
 The first part of the integration relies on the client to authorise the user and generate the users JWT Token on their hosted applications and authentication servers.
 
