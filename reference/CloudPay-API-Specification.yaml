@@ -14,9 +14,11 @@ tags:
   - name: Account
     description: Account Management Resouces
   - name: Scripts
-    description: Javascript Modules for CloudPay  
+    description: Javascript Modules for CloudPay
   - name: Models
     description: Common Domain Models
+  - name: IAP
+    description: In App Purchase Management
 paths:
   '/sso/start/{redirect}':
     get:
@@ -1179,6 +1181,36 @@ paths:
                   sendEmail: true
                   immediate: true
         description: Given a client has access to the customer subscription Id the cancellation request can be generated.
+  /iap/verifyReceipt:
+    post:
+      summary: Verify In-App-Purchase Receipt
+      tags:
+        - IAP
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                  isVerified:
+                    type: boolean
+      operationId: post-iap-verifyReceipt
+      description: Verify In-App-Purchase Receipt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                receipt:
+                  type: string
+                  format: base64
+                '':
+                  type: string
 components:
   parameters:
     languageParam:
