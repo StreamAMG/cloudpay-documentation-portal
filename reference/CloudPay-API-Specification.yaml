@@ -1119,7 +1119,8 @@ paths:
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
         - $ref: '#/components/parameters/authCookie'
-      tags: []
+      tags:
+        - Account
       responses:
         '202':
           description: Accepted
@@ -1146,7 +1147,8 @@ paths:
               properties:
                 type:
                   type: string
-                  enum: [customer-subscription]
+                  enum:
+                    - customer-subscription
                 customerSubscriptionId:
                   type: string
                   minLength: 1
