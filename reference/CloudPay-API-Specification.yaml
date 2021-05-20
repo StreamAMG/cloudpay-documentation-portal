@@ -1145,10 +1145,8 @@ paths:
                   immediate: true
               properties:
                 type:
-                  oneOf:
-                    - properties: {}
-                      example: customer-subscription
                   type: string
+                  enum: [customer-subscription]
                 customerSubscriptionId:
                   type: string
                   minLength: 1
