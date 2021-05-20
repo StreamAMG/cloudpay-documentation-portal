@@ -1111,6 +1111,67 @@ paths:
       tags:
         - Scripts
       operationId: stream-payments-v-script
+  /api/v1/account/cancellation:
+    post:
+      summary: Cancel Subscription
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+      tags: []
+      responses:
+        '202':
+          description: Accepted
+      operationId: post-api-v1-account-cancellation
+      description: |-
+        The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
+
+        This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  type: customer-subscription
+                  customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
+                  reason: Invalid Account Balance
+                  sendEmail: true
+                  immediate: true
+              properties:
+                type:
+                  type: string
+                  example: customer-subscription
+                customerSubscriptionId:
+                  type: string
+                  minLength: 1
+                reason:
+                  type: string
+                  minLength: 1
+                  description: Description of why the cancellation is happening
+                sendEmail:
+                  type: boolean
+                  description: This will send a client a email once the cancellation process has complete
+                immediate:
+                  type: boolean
+                  description: Should the cancellation happen instantly or at the end of the next payment
+              required:
+                - customerSubscriptionId
+                - reason
+                - sendEmail
+                - immediate
+            examples:
+              Cancellation Request:
+                value:
+                  type: customer-subscription
+                  customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
+                  reason: Invalid Account Balance
+                  sendEmail: true
+                  immediate: true
+        description: Given a client has access to the customer subscription Id the cancellation request can be generated.
 components:
   parameters:
     languageParam:
