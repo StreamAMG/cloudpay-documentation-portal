@@ -1123,6 +1123,8 @@ paths:
       responses:
         '202':
           description: Accepted
+        '500':
+          description: Error Response
       operationId: post-api-v1-account-cancellation
       description: |-
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
@@ -1143,8 +1145,10 @@ paths:
                   immediate: true
               properties:
                 type:
+                  oneOf:
+                    - properties: {}
+                      example: customer-subscription
                   type: string
-                  example: customer-subscription
                 customerSubscriptionId:
                   type: string
                   minLength: 1
@@ -1159,6 +1163,7 @@ paths:
                   type: boolean
                   description: Should the cancellation happen instantly or at the end of the next payment
               required:
+                - type
                 - customerSubscriptionId
                 - reason
                 - sendEmail
