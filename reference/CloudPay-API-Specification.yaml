@@ -1299,8 +1299,10 @@ paths:
                     - roku
                 packageName:
                   type: string
+                  description: Android platform specific parameter
                 productId:
                   type: string
+                  description: Android platform specific parameter
               required:
                 - purchaseIdentifier
                 - platform
