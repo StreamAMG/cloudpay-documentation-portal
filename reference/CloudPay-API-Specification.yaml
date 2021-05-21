@@ -1181,7 +1181,7 @@ paths:
                   sendEmail: true
                   immediate: true
         description: Given a client has access to the customer subscription Id the cancellation request can be generated.
-  /iap/verifyPurchase:
+  /iap/verify:
     post:
       summary: Verify In-App-Purchase
       tags:
@@ -1202,7 +1202,7 @@ paths:
                   - status
                   - isVerified
               examples:
-                example-1:
+                sucess-example:
                   value:
                     status: 200
                     isVerified: true
@@ -1237,7 +1237,7 @@ paths:
                   - status
                   - body
               examples:
-                example-1:
+                error-from-provider-example:
                   value:
                     status: 400
                     body:
@@ -1267,56 +1267,61 @@ paths:
                   - status
                   - body
               examples:
-                example-1:
+                error-example:
                   value:
                     status: 500
                     body:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
       description: |-
-        The verifyReceipt endpoint verifies an in-app purchase by validating the purchase token with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
+        The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
 
-        Note Only one of the four authorisation parameters are required
+        **Note:** Only one of the four authorisation parameters are required
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                purchaseIdentifier:
-                  type: string
-                  format: base64
-                  description: |-
-                    The unique identifier for a purchase.
-                    iOS: the purchase recipt,
-                    Android: the purchase token,
-                    Roku: transactionId
+                receipt:
+                  type: object
+                  properties:
+                    purchaseIdentifier:
+                      type: string
+                    packageName:
+                      type: string
+                    productId:
+                      type: string
+                    raw:
+                      type: string
+                      format: base64
                 platform:
                   type: string
                   enum:
                     - ios
                     - android
                     - roku
-                packageName:
-                  type: string
-                  description: Android platform specific parameter
-                productId:
-                  type: string
-                  description: Android platform specific parameter
               required:
-                - purchaseIdentifier
+                - receipt
                 - platform
             examples:
               ios-example:
                 value:
-                  purchaseIdentifier: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
+                  receipt:
+                    raw: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
                   platform: ios
               android-example:
                 value:
-                  purchaseIdentifier: a-purchase-token-123
+                  receipt:
+                    purchaseIdentifier: a-purchase-token-123
+                    packageName: a-package-name
+                    productId: a-product-id-456
                   platform: android
-                  packageName: a-package-name
-                  productId: a-product-id-456
+              roku-example:
+                value:
+                  receipt:
+                    purchaseIdentifier: shdbfhgdsvfdv1234
+                  platform: roku
         description: ''
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
