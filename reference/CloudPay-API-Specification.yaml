@@ -1183,7 +1183,7 @@ paths:
         description: Given a client has access to the customer subscription Id the cancellation request can be generated.
   /iap/verifyPurchase:
     post:
-      summary: Verify In-App-Purchase Receipt
+      summary: Verify In-App-Purchase
       tags:
         - IAP
       responses:
@@ -1288,8 +1288,8 @@ paths:
                   format: base64
                   description: |-
                     The unique identifier for a purchase.
-                    iOS: the purchase recipt
-                    Android: the purchase token
+                    iOS: the purchase recipt,
+                    Android: the purchase token,
                     Roku: transactionId
                 platform:
                   type: string
@@ -1305,10 +1305,16 @@ paths:
                 - purchaseIdentifier
                 - platform
             examples:
-              example-1:
+              ios-example:
                 value:
-                  receipt: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
+                  purchaseIdentifier: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
                   platform: ios
+              android-example:
+                value:
+                  purchaseIdentifier: a-purchase-token-123
+                  platform: android
+                  packageName: a-package-name
+                  productId: a-product-id-456
         description: ''
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
