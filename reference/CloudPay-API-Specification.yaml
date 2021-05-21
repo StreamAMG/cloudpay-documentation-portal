@@ -1163,9 +1163,11 @@ paths:
                 sendEmail:
                   type: boolean
                   description: This will send a client a email once the cancellation process has complete
+                  default: false
                 immediate:
                   type: boolean
                   description: Should the cancellation happen instantly or at the end of the next payment
+                  default: false
               required:
                 - type
                 - customerSubscriptionId
@@ -1178,8 +1180,8 @@ paths:
                   type: customer-subscription
                   customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
                   reason: Invalid Account Balance
-                  sendEmail: true
-                  immediate: true
+                  sendEmail: false
+                  immediate: false
         description: Given a client has access to the customer subscription Id the cancellation request can be generated.
 components:
   parameters:
