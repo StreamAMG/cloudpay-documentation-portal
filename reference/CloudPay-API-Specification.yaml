@@ -1134,7 +1134,7 @@ paths:
 
         This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
 
-        **Note** *Only one of the 4 authorisation parameters are required*
+        **Note** *Only one of the four authorisation parameters are required*
       requestBody:
         content:
           application/json:
