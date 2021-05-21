@@ -1181,7 +1181,7 @@ paths:
                   sendEmail: true
                   immediate: true
         description: Given a client has access to the customer subscription Id the cancellation request can be generated.
-  /iap/verifyReceipt:
+  /iap/verifyPurchase:
     post:
       summary: Verify In-App-Purchase Receipt
       tags:
@@ -1273,24 +1273,36 @@ paths:
                     body:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
-      description: 'The verifyReceipt endpoint verifies an in-app purchase by validating the purchase token with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.'
+      description: |-
+        The verifyReceipt endpoint verifies an in-app purchase by validating the purchase token with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
+
+        Note Only one of the four authorisation parameters are required
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                receipt:
+                purchaseIdentifier:
                   type: string
                   format: base64
+                  description: |-
+                    The unique identifier for a purchase.
+                    iOS: the purchase recipt
+                    Android: the purchase token
+                    Roku: transactionId
                 platform:
                   type: string
+                  enum:
+                    - ios
+                    - android
+                    - roku
                 packageName:
                   type: string
                 productId:
                   type: string
               required:
-                - receipt
+                - purchaseIdentifier
                 - platform
             examples:
               example-1:
@@ -1298,6 +1310,12 @@ paths:
                   receipt: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
                   platform: ios
         description: ''
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/authCookie'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+    parameters: []
 components:
   parameters:
     languageParam:
