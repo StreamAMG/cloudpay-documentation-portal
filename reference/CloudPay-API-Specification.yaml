@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: API Specification
+  title: CloudPay API Specification
   description: |
     The following API Specification outlines the external API access points for the CloudPay application.
 
