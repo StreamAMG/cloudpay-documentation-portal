@@ -14,7 +14,7 @@ tags:
   - name: Account
     description: Account Management Resouces
   - name: Scripts
-    description: Javascript Modules for CloudPay  
+    description: Javascript Modules for CloudPay
   - name: Models
     description: Common Domain Models
 paths:
@@ -1133,6 +1133,8 @@ paths:
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
         This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
+
+        **Note** *Only one of the 4 authorisation parameters are required*
       requestBody:
         content:
           application/json:
