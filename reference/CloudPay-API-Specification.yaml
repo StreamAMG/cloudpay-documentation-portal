@@ -1194,12 +1194,86 @@ paths:
               schema:
                 type: object
                 properties:
-                  statusCode:
+                  status:
                     type: number
                   isVerified:
                     type: boolean
+                required:
+                  - status
+                  - isVerified
+              examples:
+                example-1:
+                  value:
+                    status: 200
+                    isVerified: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    status: 400
+                    error:
+                      sourceErrorCode: 21005
+                      message: The receipt server is not currently available.
+                properties:
+                  status:
+                    type: number
+                  body:
+                    type: object
+                    required:
+                      - sourceErrorCode
+                      - errorMessage
+                    properties:
+                      sourceErrorCode:
+                        type: number
+                      errorMessage:
+                        type: string
+                        minLength: 1
+                required:
+                  - status
+                  - body
+              examples:
+                example-1:
+                  value:
+                    status: 400
+                    body:
+                      sourceErrorCode: 21005
+                      errorMessage: The receipt server is not currently available.
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                  body:
+                    type: object
+                    required:
+                      - errorMessage
+                    properties:
+                      errorMessage:
+                        type: string
+                required:
+                  - status
+                  - body
+              examples:
+                example-1:
+                  value:
+                    status: 500
+                    body:
+                      errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
-      description: Verify In-App-Purchase Receipt
+      description: 'The verifyReceipt endpoint verifies an in-app purchase by validating the purchase token with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.'
       requestBody:
         content:
           application/json:
@@ -1209,8 +1283,21 @@ paths:
                 receipt:
                   type: string
                   format: base64
-                '':
+                platform:
                   type: string
+                packageName:
+                  type: string
+                productId:
+                  type: string
+              required:
+                - receipt
+                - platform
+            examples:
+              example-1:
+                value:
+                  receipt: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
+                  platform: ios
+        description: ''
 components:
   parameters:
     languageParam:
