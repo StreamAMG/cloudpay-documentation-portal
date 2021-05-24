@@ -1182,7 +1182,7 @@ paths:
                   reason: Invalid Account Balance
                   sendEmail: false
                   immediate: false
-        description: Given a client has access to the customer subscription Id the cancellation request can be generated.
+        description: Given a client has access to the customer subscription ID the cancellation request can be generated.
     parameters: []
 components:
   parameters:
