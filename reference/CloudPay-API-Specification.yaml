@@ -1,7 +1,6 @@
 x-stoplight:
-    docs: 
-      showModels: false
-    
+  docs:
+    showModels: false
 openapi: 3.0.3
 info:
   title: CloudPay API Specification
@@ -21,6 +20,8 @@ tags:
     description: Javascript Modules for CloudPay
   - name: Models
     description: Common Domain Models
+  - name: IAP
+    description: In App Purchase Management
 paths:
   '/sso/start/{redirect}':
     get:
@@ -1130,6 +1131,10 @@ paths:
       responses:
         '202':
           description: Accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
         '500':
           description: Error Response
       operationId: post-api-v1-account-cancellation
@@ -1187,6 +1192,153 @@ paths:
                   sendEmail: false
                   immediate: false
         description: Given a client has access to the customer subscription ID the cancellation request can be generated.
+  /iap/verify:
+    post:
+      summary: Verify In-App-Purchase
+      tags:
+        - IAP
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                  isVerified:
+                    type: boolean
+                required:
+                  - status
+                  - isVerified
+              examples:
+                sucess-example:
+                  value:
+                    status: 200
+                    isVerified: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    status: 400
+                    error:
+                      sourceErrorCode: 21005
+                      message: The receipt server is not currently available.
+                properties:
+                  status:
+                    type: number
+                  body:
+                    type: object
+                    required:
+                      - sourceErrorCode
+                      - errorMessage
+                    properties:
+                      sourceErrorCode:
+                        type: number
+                      errorMessage:
+                        type: string
+                        minLength: 1
+                required:
+                  - status
+                  - body
+              examples:
+                error-from-provider-example:
+                  value:
+                    status: 400
+                    body:
+                      sourceErrorCode: 21005
+                      errorMessage: The receipt server is not currently available.
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                  body:
+                    type: object
+                    required:
+                      - errorMessage
+                    properties:
+                      errorMessage:
+                        type: string
+                required:
+                  - status
+                  - body
+              examples:
+                error-example:
+                  value:
+                    status: 500
+                    body:
+                      errorMessage: Internal server error
+      operationId: post-iap-verifyReceipt
+      description: |-
+        The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
+
+        **Note:** Only one of the four authorisation parameters are required
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                receipt:
+                  type: object
+                  properties:
+                    purchaseIdentifier:
+                      type: string
+                    packageName:
+                      type: string
+                    productId:
+                      type: string
+                    raw:
+                      type: string
+                      format: base64
+                platform:
+                  type: string
+                  enum:
+                    - ios
+                    - android
+                    - roku
+              required:
+                - receipt
+                - platform
+            examples:
+              ios-example:
+                value:
+                  receipt:
+                    raw: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
+                  platform: ios
+              android-example:
+                value:
+                  receipt:
+                    purchaseIdentifier: a-purchase-token-123
+                    packageName: a-package-name
+                    productId: a-product-id-456
+                  platform: android
+              roku-example:
+                value:
+                  receipt:
+                    purchaseIdentifier: shdbfhgdsvfdv1234
+                  platform: roku
+        description: ''
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/authCookie'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
     parameters: []
 components:
   parameters:
