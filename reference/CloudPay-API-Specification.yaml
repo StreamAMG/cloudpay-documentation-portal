@@ -1133,8 +1133,8 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
-        '401':
-          description: Unauthorized
+        '403':
+          description: Forbidden
         '500':
           description: Error Response
       operationId: post-api-v1-account-cancellation
@@ -1158,10 +1158,6 @@ paths:
                   sendEmail: true
                   immediate: true
               properties:
-                type:
-                  type: string
-                  enum:
-                    - customer-subscription
                 customerSubscriptionId:
                   type: string
                   minLength: 1
@@ -1178,15 +1174,11 @@ paths:
                   description: Should the cancellation happen instantly or at the end of the next payment
                   default: false
               required:
-                - type
                 - customerSubscriptionId
                 - reason
-                - sendEmail
-                - immediate
             examples:
               Cancellation Request:
                 value:
-                  type: customer-subscription
                   customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
                   reason: Invalid Account Balance
                   sendEmail: false
