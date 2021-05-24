@@ -1153,11 +1153,9 @@ paths:
               properties:
                 customerSubscriptionId:
                   type: string
-                  minLength: 1
                   format: uuid
                 reason:
                   type: string
-                  minLength: 1
                   description: Description of why the cancellation is happening
                 sendEmail:
                   type: boolean
