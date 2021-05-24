@@ -1128,7 +1128,7 @@ paths:
           description: Accepted
         '500':
           description: Error Response
-      operationId: post-api-v1-account-cancellation
+      operationId: post-api-v1-account-cancel
       description: |-
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
