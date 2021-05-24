@@ -1243,17 +1243,13 @@ components:
       required:
         - emailaddress
         - password
-      x-tags:
-        - Models
       title: Login Request
-      x-internal: false
+      x-internal: true
       description: Login Request using Payload Body
     StringLoginRequest:
       type: string
       example: 'emailaddress: foo@bar.com, password: somePass'
-      x-tags:
-        - Models
-      x-internal: false
+      x-internal: true
       x-examples:
         String Login Request:
           value: 'emailaddress: foo@bar.com, password: somePass'
