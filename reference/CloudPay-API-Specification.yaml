@@ -1113,7 +1113,7 @@ paths:
       tags:
         - Scripts
       operationId: stream-payments-v-script
-  /api/v1/account/cancellation:
+  /api/v1/account/cancel:
     post:
       summary: Cancel Subscription
       parameters:
@@ -1183,6 +1183,7 @@ paths:
                   sendEmail: false
                   immediate: false
         description: Given a client has access to the customer subscription Id the cancellation request can be generated.
+    parameters: []
 components:
   parameters:
     languageParam:
