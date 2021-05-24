@@ -1150,17 +1150,11 @@ paths:
             schema:
               description: ''
               type: object
-              x-examples:
-                example-1:
-                  type: customer-subscription
-                  customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
-                  reason: Invalid Account Balance
-                  sendEmail: true
-                  immediate: true
               properties:
                 customerSubscriptionId:
                   type: string
                   minLength: 1
+                  format: uuid
                 reason:
                   type: string
                   minLength: 1
