@@ -1113,7 +1113,7 @@ paths:
       tags:
         - Scripts
       operationId: stream-payments-v-script
-  /api/v1/account/cancel:
+  /api/v1/account/cancellation:
     post:
       summary: Cancel Subscription
       parameters:
@@ -1128,7 +1128,7 @@ paths:
           description: Accepted
         '500':
           description: Error Response
-      operationId: post-api-v1-account-cancel
+      operationId: post-api-v1-account-cancellation
       description: |-
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
