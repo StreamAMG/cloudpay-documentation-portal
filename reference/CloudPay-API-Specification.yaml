@@ -1,3 +1,7 @@
+x-stoplight:
+    docs: 
+      showModels: false
+    
 openapi: 3.0.3
 info:
   title: CloudPay API Specification
@@ -1135,6 +1139,8 @@ paths:
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
         This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
+
+        **Note** *Only one of the four authorisation parameters are required*
       requestBody:
         content:
           application/json:
@@ -1163,9 +1169,11 @@ paths:
                 sendEmail:
                   type: boolean
                   description: This will send a client a email once the cancellation process has complete
+                  default: false
                 immediate:
                   type: boolean
                   description: Should the cancellation happen instantly or at the end of the next payment
+                  default: false
               required:
                 - type
                 - customerSubscriptionId
@@ -1178,9 +1186,9 @@ paths:
                   type: customer-subscription
                   customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
                   reason: Invalid Account Balance
-                  sendEmail: true
-                  immediate: true
-        description: Given a client has access to the customer subscription Id the cancellation request can be generated.
+                  sendEmail: false
+                  immediate: false
+        description: Given a client has access to the customer subscription ID the cancellation request can be generated.
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
