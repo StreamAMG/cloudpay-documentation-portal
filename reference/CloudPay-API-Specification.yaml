@@ -1,6 +1,6 @@
 x-stoplight:
-    docs: 
-      showModels: false
+  docs: 
+    showModels: false
     
 openapi: 3.0.3
 info:
