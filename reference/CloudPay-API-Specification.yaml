@@ -978,6 +978,38 @@ paths:
                     Status: -1
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
                     ErrorMessage: null
+                Customer has No Subscriptions:
+                  value:
+                    UtcNow: 1621939672740
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzAzZWQ0N2QtOTQzYi00NzM5LTkwMTItZjY0Y2IzMzA2ZWMyMjAyMTA1MjUyMjQ3MTEwODBCMDNBQjI3NjYwOEUzREI1RjgyRURFQjYyRkFBRUE5RUI4Qzg4A436F5D0
+                      CustomerId: a312c595-66d5-40c0-9223-277916537936
+                      CustomerEmailAddress: lorem@ipson.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerBillingProfileCreatedAt: null
+                      CustomerBillingProfileExpiresAt: null
+                      CustomerBillingProfileLastFailedAt: null
+                      CustomerBillingProfileProvider: null
+                      CustomerBillingProfileReference: null
+                      CustomerDeleted: false
+                      CustomerEntitlements: ''
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 0
+                      RequiresCardAuthenticationCount: 0
+                      Expiry: null
+                    ModelErrors: {}
+                    Status: 1
+                    KSession: null
+                    ErrorMessage: Customer has no subscriptions
         '204':
           description: The KSession token generate request processed successfully but there is no response content
         '500':
@@ -1328,6 +1360,12 @@ paths:
         - $ref: '#/components/parameters/authCookie'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
     parameters: []
+  /api/v1/package:
+    get:
+      summary: Retrieve a List of Packages
+      tags: []
+      responses: {}
+      operationId: get-api-v1-package
 components:
   parameters:
     languageParam:
