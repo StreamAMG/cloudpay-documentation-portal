@@ -1139,8 +1139,7 @@ paths:
           description: Error Response
       operationId: post-api-v1-account-cancellation
       description: |-
-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green)
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
@@ -1272,6 +1271,8 @@ paths:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
       description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
         The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
 
         **Note:** Only one of the four authorisation parameters are required
