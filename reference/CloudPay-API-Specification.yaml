@@ -1139,6 +1139,8 @@ paths:
           description: Error Response
       operationId: post-api-v1-account-cancellation
       description: |-
+        <img href=https://img.shields.io/badge/Status-In%20Review-green">
+
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
         This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
