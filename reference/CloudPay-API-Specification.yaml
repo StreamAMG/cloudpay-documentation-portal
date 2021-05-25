@@ -1437,7 +1437,8 @@ paths:
   /api/v1/package:
     get:
       summary: Retrieve a List of Packages
-      tags: []
+      tags:
+        - Packages
       responses:
         '200':
           description: OK
