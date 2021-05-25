@@ -1578,6 +1578,8 @@ paths:
                         Duration: 1days
       operationId: get-api-v1-package
       description: |-
+        ![Legacy](https://img.shields.io/static/v1?label=Implementation&message=Legacy&color=orange&style=flat-square)
+
         The Package collection endpoint returns a list of Subscription Plans for a platform. 
 
         This list can be used to produce a custom package list webpage using predefined metadata for the package. 
