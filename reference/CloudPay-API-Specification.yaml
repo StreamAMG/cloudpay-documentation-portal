@@ -1028,6 +1028,60 @@ paths:
                     Status: 5
                     KSession: null
                     ErrorMessage: Unable to retrieve valid json entitlements
+                Too Many Failed Login Attempts:
+                  value:
+                    UtcNow: 1621941276614
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzAzZWQ0N2QtOTQzYi00NzM5LTkwMTItZjY0Y2IzMzA2ZWMyMjAyMTA1MjUyMjQ3MTEwODBCMDNBQjI3NjYwOEUzREI1RjgyRURFQjYyRkFBRUE5RUI4Qzg4A436F5D0
+                      CustomerId: a312c595-66d5-40c0-9223-277916537936
+                      CustomerEmailAddress: lorem@ipson.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerDeleted: true
+                      CustomerEntitlements: pldarts
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 1
+                      RequiresCardAuthenticationCount: 0
+                      Expiry: 1624619541
+                    ModelErrors: {}
+                    Status: 3
+                    KSession: null
+                    ErrorMessage: The customer account is blocked; too may failed login attempts
+                Blocked due to Concurrency Limit:
+                  value:
+                    UtcNow: 1621941276614
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzAzZWQ0N2QtOTQzYi00NzM5LTkwMTItZjY0Y2IzMzA2ZWMyMjAyMTA1MjUyMjQ3MTEwODBCMDNBQjI3NjYwOEUzREI1RjgyRURFQjYyRkFBRUE5RUI4Qzg4A436F5D0
+                      CustomerId: a312c595-66d5-40c0-9223-277916537936
+                      CustomerEmailAddress: lorem@ipson.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerDeleted: true
+                      CustomerEntitlements: pldarts
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 1
+                      RequiresCardAuthenticationCount: 0
+                      Expiry: 1624619541
+                    ModelErrors: {}
+                    Status: 5
+                    KSession: null
+                    ErrorMessage: The customer account is blocked due to concurrency limit
         '204':
           description: The KSession token generate request processed successfully but there is no response content
         '500':
