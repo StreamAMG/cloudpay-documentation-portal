@@ -1010,6 +1010,21 @@ paths:
                     Status: 1
                     KSession: null
                     ErrorMessage: Customer has no subscriptions
+                Unable to Retrieve Valid JSON Entitlements:
+                  value:
+                    UtcNow: 1621939956461
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: 0
+                    CurrentCustomerSession: null
+                    ModelErrors: {}
+                    Status: 5
+                    KSession: null
+                    ErrorMessage: Unable to retrieve valid json entitlements
         '204':
           description: The KSession token generate request processed successfully but there is no response content
         '500':
