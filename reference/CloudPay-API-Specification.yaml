@@ -1382,8 +1382,161 @@ paths:
     get:
       summary: Retrieve a List of Packages
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  SubscriptionPlanOptions:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - Id
+                        - Title
+                        - Body
+                        - Amount
+                        - Currency
+                        - AmountFormatted
+                        - HasFreeTrial
+                        - PurchaseUrl
+                        - Interval
+                        - Duration
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Title:
+                          type: string
+                          minLength: 1
+                        Body:
+                          type: string
+                          minLength: 1
+                        Style: {}
+                        Amount:
+                          type: number
+                        Currency:
+                          type: string
+                          minLength: 1
+                        AmountFormatted:
+                          type: string
+                          minLength: 1
+                        HasFreeTrial:
+                          type: boolean
+                        TrialDuration: {}
+                        PurchaseUrl:
+                          type: string
+                          minLength: 1
+                        Interval:
+                          type: string
+                          minLength: 1
+                        Duration:
+                          type: string
+                          minLength: 1
+                required:
+                  - SubscriptionPlanOptions
+                x-examples:
+                  example-1:
+                    SubscriptionPlanOptions:
+                      - Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
+                        Title: Expired plan
+                        Body: <p>Expired plan</p>
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+                      - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the Sky platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£5.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1months
+                        Duration: null
+                      - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the TV platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£1.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 1
+                        Currency: GBP
+                        AmountFormatted: £1.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+              examples:
+                List of Packages:
+                  value:
+                    SubscriptionPlanOptions:
+                      - Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
+                        Title: Expired plan
+                        Body: <p>Expired plan</p>
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+                      - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the Sky platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£5.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1months
+                        Duration: null
+                      - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the TV platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£1.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 1
+                        Currency: GBP
+                        AmountFormatted: £1.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
       operationId: get-api-v1-package
+      description: |-
+        The Package collection endpoint returns a list of Subscription Plans for a platform. 
+
+        This list can be used to produce a custom package list webpage using predefined metadata for the package. 
+
+        **Note:**. *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: apijwttoken
+          description: In the instance of a client using SSO the purchase URL will be pointed at the StartBasket endpoint
+        - schema:
+            type: string
+          in: query
+          name: apisessionid
+          description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
 components:
   parameters:
     languageParam:
