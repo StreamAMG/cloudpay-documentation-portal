@@ -14,14 +14,16 @@ info:
 tags:
   - name: Session
     description: User Authorisation Session Management
+  - name: Packages
+    description: Subscription Plans and Packages
   - name: Account
     description: Account Management Resouces
   - name: Scripts
     description: Javascript Modules for CloudPay
-  - name: Models
-    description: Common Domain Models
   - name: IAP
     description: In App Purchase Management
+  - name: Models
+    description: Common Domain Models
 paths:
   '/sso/start/{redirect}':
     get:
