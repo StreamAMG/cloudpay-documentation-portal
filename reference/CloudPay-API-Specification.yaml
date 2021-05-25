@@ -830,7 +830,10 @@ paths:
           description: The entry id
       responses:
         '200':
-          description: Successful create a KSession token response
+          description: |-
+            KSession request responses
+
+            **Note: ** *A successful 200 response does not always contain a valid KSession  
           content:
             application/json:
               schema:
