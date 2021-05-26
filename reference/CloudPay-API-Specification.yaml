@@ -1591,6 +1591,31 @@ paths:
           in: query
           name: apisessionid
           description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
+  '/sso/startbasket/{subscriptionPlanId}':
+    get:
+      summary: Navigate to Checkout Page
+      tags:
+        - SSO
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/authCookie'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+      responses:
+        '200':
+          description: OK
+      operationId: get-sso-startbasket
+      description: |-
+        Redirect the client to the CloudPay checkout page with prepopulated fields for the selected package.
+
+        **Note:** Only one of the four authorisation parameters are required
+    parameters:
+      - schema:
+          type: string
+        name: subscriptionPlanId
+        in: path
+        required: true
+        description: The Subscription Plan ID you would like to purchase
 components:
   parameters:
     languageParam:
