@@ -1603,7 +1603,7 @@ paths:
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
       responses:
         '200':
-          description: OK
+          description: '![Checkout Page](../../assets/images/cloudpay-sso-checkout-example.png)'
       operationId: get-sso-startbasket
       description: |-
         Redirect the client to the CloudPay checkout page with prepopulated fields for the selected package.
