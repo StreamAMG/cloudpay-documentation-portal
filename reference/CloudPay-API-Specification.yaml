@@ -1607,7 +1607,7 @@ paths:
       description: |-
         Redirect the client to the CloudPay checkout page with prepopulated fields for the selected package.
 
-        This endpoint should only be used for SSO Integrations, the package list endpoint will return back this route using the 'PurchaseUrl' in the response body. 
+        This endpoint should only be used for SSO Integrations, the package list endpoint will return back this route using the **PurchaseUrl** in the response body. 
 
         **Note:** Only one of the three authorisation parameters are required
     parameters:
