@@ -13,21 +13,16 @@ info:
     name: Jonathon Robins
 tags:
   - name: Session
-    description: User Authorisation Session Management
-  - name: Packages
-    description: Subscription Plans and Packages
+  - name: SSO
   - name: Account
-    description: Account Management Resouces
-  - name: Scripts
-    description: Javascript Modules for CloudPay
+  - name: Packages
   - name: IAP
-    description: In App Purchase Management
+  - name: Scripts
   - name: Models
-    description: Common Domain Models
 paths:
   '/sso/start/{redirect}':
     get:
-      summary: Generate a SSO Session
+      summary: Start a SSO Session
       parameters:
         - $ref: '#/components/parameters/languageParam'
         - in: query
@@ -75,9 +70,9 @@ paths:
         Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
 
         **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
-      tags:
-        - Session
       operationId: generate-sso-session
+      tags:
+        - SSO
     parameters:
       - schema:
           type: string
