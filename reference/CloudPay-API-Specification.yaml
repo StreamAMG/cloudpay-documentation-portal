@@ -1,7 +1,6 @@
 x-stoplight:
-  docs: 
+  docs:
     showModels: false
-    
 openapi: 3.0.3
 info:
   title: CloudPay API Specification
@@ -1309,9 +1308,13 @@ paths:
                     - ios
                     - android
                     - roku
+                packageIdentifier:
+                  type: string
+                  description: The identifier used in Cloudpay (Subscription plan ID)
               required:
                 - receipt
                 - platform
+                - packageIdentifier
             examples:
               ios-example:
                 value:
