@@ -13,19 +13,16 @@ info:
     name: Jonathon Robins
 tags:
   - name: Session
-    description: User Authorisation Session Management
+  - name: SSO
   - name: Account
-    description: Account Management Resouces
-  - name: Scripts
-    description: Javascript Modules for CloudPay
-  - name: Models
-    description: Common Domain Models
+  - name: Packages
   - name: IAP
-    description: In App Purchase Management
+  - name: Scripts
+  - name: Models
 paths:
   '/sso/start/{redirect}':
     get:
-      summary: Generate a SSO Session
+      summary: Start a SSO Session
       parameters:
         - $ref: '#/components/parameters/languageParam'
         - in: query
@@ -73,9 +70,9 @@ paths:
         Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
 
         **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
-      tags:
-        - Session
       operationId: generate-sso-session
+      tags:
+        - SSO
     parameters:
       - schema:
           type: string
@@ -830,7 +827,10 @@ paths:
           description: The entry id
       responses:
         '200':
-          description: Successful create a KSession token response
+          description: |-
+            KSession request responses
+
+            **Note: ** *A successful 200 response does not always contain a valid KSession  
           content:
             application/json:
               schema:
@@ -978,6 +978,107 @@ paths:
                     Status: -1
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
                     ErrorMessage: null
+                Customer has No Subscriptions:
+                  value:
+                    UtcNow: 1621939672740
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzAzZWQ0N2QtOTQzYi00NzM5LTkwMTItZjY0Y2IzMzA2ZWMyMjAyMTA1MjUyMjQ3MTEwODBCMDNBQjI3NjYwOEUzREI1RjgyRURFQjYyRkFBRUE5RUI4Qzg4A436F5D0
+                      CustomerId: a312c595-66d5-40c0-9223-277916537936
+                      CustomerEmailAddress: lorem@ipson.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerBillingProfileCreatedAt: null
+                      CustomerBillingProfileExpiresAt: null
+                      CustomerBillingProfileLastFailedAt: null
+                      CustomerBillingProfileProvider: null
+                      CustomerBillingProfileReference: null
+                      CustomerDeleted: false
+                      CustomerEntitlements: ''
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 0
+                      RequiresCardAuthenticationCount: 0
+                      Expiry: null
+                    ModelErrors: {}
+                    Status: 1
+                    KSession: null
+                    ErrorMessage: Customer has no subscriptions
+                Unable to Retrieve Valid JSON Entitlements:
+                  value:
+                    UtcNow: 1621939956461
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: 0
+                    CurrentCustomerSession: null
+                    ModelErrors: {}
+                    Status: 5
+                    KSession: null
+                    ErrorMessage: Unable to retrieve valid json entitlements
+                Too Many Failed Login Attempts:
+                  value:
+                    UtcNow: 1621941276614
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzAzZWQ0N2QtOTQzYi00NzM5LTkwMTItZjY0Y2IzMzA2ZWMyMjAyMTA1MjUyMjQ3MTEwODBCMDNBQjI3NjYwOEUzREI1RjgyRURFQjYyRkFBRUE5RUI4Qzg4A436F5D0
+                      CustomerId: a312c595-66d5-40c0-9223-277916537936
+                      CustomerEmailAddress: lorem@ipson.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerDeleted: true
+                      CustomerEntitlements: pldarts
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 1
+                      RequiresCardAuthenticationCount: 0
+                      Expiry: 1624619541
+                    ModelErrors: {}
+                    Status: 3
+                    KSession: null
+                    ErrorMessage: The customer account is blocked; too may failed login attempts
+                Blocked due to Concurrency Limit:
+                  value:
+                    UtcNow: 1621941276614
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: GB
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzAzZWQ0N2QtOTQzYi00NzM5LTkwMTItZjY0Y2IzMzA2ZWMyMjAyMTA1MjUyMjQ3MTEwODBCMDNBQjI3NjYwOEUzREI1RjgyRURFQjYyRkFBRUE5RUI4Qzg4A436F5D0
+                      CustomerId: a312c595-66d5-40c0-9223-277916537936
+                      CustomerEmailAddress: lorem@ipson.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerDeleted: true
+                      CustomerEntitlements: pldarts
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 1
+                      RequiresCardAuthenticationCount: 0
+                      Expiry: 1624619541
+                    ModelErrors: {}
+                    Status: 5
+                    KSession: null
+                    ErrorMessage: The customer account is blocked due to concurrency limit
         '204':
           description: The KSession token generate request processed successfully but there is no response content
         '500':
@@ -1131,10 +1232,16 @@ paths:
       responses:
         '202':
           description: Accepted
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
         '500':
           description: Error Response
       operationId: post-api-v1-account-cancellation
       description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
         This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
@@ -1146,24 +1253,12 @@ paths:
             schema:
               description: ''
               type: object
-              x-examples:
-                example-1:
-                  type: customer-subscription
-                  customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
-                  reason: Invalid Account Balance
-                  sendEmail: true
-                  immediate: true
               properties:
-                type:
-                  type: string
-                  enum:
-                    - customer-subscription
                 customerSubscriptionId:
                   type: string
-                  minLength: 1
+                  format: uuid
                 reason:
                   type: string
-                  minLength: 1
                   description: Description of why the cancellation is happening
                 sendEmail:
                   type: boolean
@@ -1174,15 +1269,11 @@ paths:
                   description: Should the cancellation happen instantly or at the end of the next payment
                   default: false
               required:
-                - type
                 - customerSubscriptionId
                 - reason
-                - sendEmail
-                - immediate
             examples:
               Cancellation Request:
                 value:
-                  type: customer-subscription
                   customerSubscriptionId: f9237e26-8094-412b-923d-7e23070ec937
                   reason: Invalid Account Balance
                   sendEmail: false
@@ -1281,6 +1372,8 @@ paths:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
       description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
         The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
 
         **Note:** Only one of the four authorisation parameters are required
@@ -1340,6 +1433,194 @@ paths:
         - $ref: '#/components/parameters/authCookie'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
     parameters: []
+  /api/v1/package:
+    get:
+      summary: Retrieve a List of Packages
+      tags:
+        - Packages
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  SubscriptionPlanOptions:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - Id
+                        - Title
+                        - Body
+                        - Amount
+                        - Currency
+                        - AmountFormatted
+                        - HasFreeTrial
+                        - PurchaseUrl
+                        - Interval
+                        - Duration
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Title:
+                          type: string
+                          minLength: 1
+                        Body:
+                          type: string
+                          minLength: 1
+                        Style: {}
+                        Amount:
+                          type: number
+                        Currency:
+                          type: string
+                          minLength: 1
+                        AmountFormatted:
+                          type: string
+                          minLength: 1
+                        HasFreeTrial:
+                          type: boolean
+                        TrialDuration: {}
+                        PurchaseUrl:
+                          type: string
+                          minLength: 1
+                        Interval:
+                          type: string
+                          minLength: 1
+                        Duration:
+                          type: string
+                          minLength: 1
+                required:
+                  - SubscriptionPlanOptions
+                x-examples:
+                  example-1:
+                    SubscriptionPlanOptions:
+                      - Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
+                        Title: Expired plan
+                        Body: <p>Expired plan</p>
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+                      - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the Sky platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£5.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1months
+                        Duration: null
+                      - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the TV platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£1.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 1
+                        Currency: GBP
+                        AmountFormatted: £1.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+              examples:
+                List of Packages:
+                  value:
+                    SubscriptionPlanOptions:
+                      - Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
+                        Title: Expired plan
+                        Body: <p>Expired plan</p>
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+                      - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the Sky platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£5.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 5
+                        Currency: GBP
+                        AmountFormatted: £5.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1months
+                        Duration: null
+                      - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
+                        Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
+                        Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the TV platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£1.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
+                        Style: null
+                        Amount: 1
+                        Currency: GBP
+                        AmountFormatted: £1.00
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        Interval: 1days
+                        Duration: 1days
+      operationId: get-api-v1-package
+      description: |-
+        ![Legacy](https://img.shields.io/static/v1?label=Implementation&message=Legacy&color=orange&style=flat-square)
+
+        The Package collection endpoint returns a list of Subscription Plans for a platform. 
+
+        This list can be used to produce a custom package list webpage using predefined metadata for the package. 
+
+        **Note:**. *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: apijwttoken
+          description: In the instance of a client using SSO the purchase URL will be pointed at the StartBasket endpoint
+        - schema:
+            type: string
+          in: query
+          name: apisessionid
+          description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
+  '/sso/startbasket/{subscriptionPlanId}':
+    get:
+      summary: Navigate to Checkout Page
+      tags:
+        - SSO
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+      responses:
+        '200':
+          description: '![Checkout Page](../../../../assets/images/cloudpay-sso-checkout-example.png)'
+      operationId: get-sso-startbasket
+      description: |-
+        Redirect the client to the CloudPay checkout page with prepopulated fields for the selected package.
+
+        This endpoint should only be used for SSO Integrations, the package list endpoint will return back this route using the **PurchaseUrl** in the response body. 
+
+        **Note:** Only one of the three authorisation parameters are required
+    parameters:
+      - schema:
+          type: string
+        name: subscriptionPlanId
+        in: path
+        required: true
+        description: The Subscription Plan ID you would like to purchase
 components:
   parameters:
     languageParam:
@@ -1395,17 +1676,13 @@ components:
       required:
         - emailaddress
         - password
-      x-tags:
-        - Models
       title: Login Request
-      x-internal: false
+      x-internal: true
       description: Login Request using Payload Body
     StringLoginRequest:
       type: string
       example: 'emailaddress: foo@bar.com, password: somePass'
-      x-tags:
-        - Models
-      x-internal: false
+      x-internal: true
       x-examples:
         String Login Request:
           value: 'emailaddress: foo@bar.com, password: somePass'
