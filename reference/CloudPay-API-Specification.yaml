@@ -1401,13 +1401,9 @@ paths:
                     - ios
                     - android
                     - roku
-                packageIdentifier:
-                  type: string
-                  description: The identifier used in Cloudpay (Subscription plan ID)
               required:
                 - receipt
                 - platform
-                - packageIdentifier
             examples:
               ios-example:
                 value:
