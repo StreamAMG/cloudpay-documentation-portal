@@ -450,7 +450,7 @@ paths:
   '/api/v1/user/profile/{customerId}':
     get:
       operationId: get-api-v1-user-profile
-      summary: Get a user's profile
+      summary: Get a user's profile.
       tags:
         - User
       parameters:
