@@ -447,7 +447,7 @@ paths:
         Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
       tags:
         - Session
-  '/api/v1/user/profile/{customerId}':
+  /api/v1/user/profile:
     get:
       operationId: get-api-v1-user-profile
       summary: Get a user's profile.
@@ -457,19 +457,7 @@ paths:
         - $ref: '#/components/parameters/languageParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/apiJwtTokenParam'
-        - in: path
-          name: customerId
-          schema:
-            type: string
-          required: true
-          description: customer identifier uniquely defining the user
       responses:
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Error Response
         '200':
           description: successful query response
           content:
@@ -478,9 +466,6 @@ paths:
                 description: the profle for the user
                 type: object
                 properties:
-                  CustomerId:
-                    type: string
-                    minLength: 1
                   EmailAddress:
                     type: string
                     minLength: 1
@@ -490,6 +475,10 @@ paths:
                   LastName:
                     type: string
                     minLength: 1
+                  CustomFields:
+                    type: object
+                    additionalProperties:
+                      type: string
                 required:
                   - CustomerId
                   - EmailAddress
@@ -502,12 +491,21 @@ paths:
                     EmailAddress: customer@email.com
                     FirstName: Lorem
                     LastName: Ipsum
+                    CustomFields:
+                      Favourite Player: Kyle Edmund
+                      Favourite Competition: Wimbledon
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Error Response
       description: |
         To return a user's profile details so that users can see their profile details via a third party interface. 
 
         The response contains 'first name', 'last name' and email plus any additional custom attributes that have been created via the Cloud Pay admin panel.  Example would be 'favourite player'.
 
-        API is secured with a valid session token (sessionID or JWT token).
+        API is secured with a valid session token (sessionID or JWT token) which will contain the necessary information to identify the user.
     post:
       operationId: generate-session-payload
       summary: Generate Session using Payload
@@ -688,13 +686,7 @@ paths:
         Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
       tags:
         - Session
-    parameters:
-      - schema:
-          type: string
-        name: customerId
-        in: path
-        required: true
-        description: unique customer identifier
+    parameters: []
   /api/v1/session/prescence:
     get:
       summary: Validate Active Session
