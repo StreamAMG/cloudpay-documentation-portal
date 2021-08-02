@@ -19,6 +19,7 @@ tags:
   - name: IAP
   - name: Scripts
   - name: Models
+  - name: User
 paths:
   '/sso/start/{redirect}':
     get:
@@ -446,6 +447,254 @@ paths:
         Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
       tags:
         - Session
+  '/api/v1/user/profile/{customerId}':
+    get:
+      operationId: get-api-v1-user-profile
+      summary: Get a user's profile
+      tags:
+        - User
+      parameters:
+        - $ref: '#/components/parameters/languageParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - in: path
+          name: customerId
+          schema:
+            type: string
+          required: true
+          description: customer identifier uniquely defining the user
+      responses:
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Error Response
+        '200':
+          description: successful query response
+          content:
+            application/json:
+              schema:
+                description: the profle for the user
+                type: object
+                properties:
+                  CustomerId:
+                    type: string
+                    minLength: 1
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                required:
+                  - CustomerId
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+              examples:
+                Successful Query Response:
+                  value:
+                    CustomerId: c5d702fb-15f7-499b-90d5-cc36922e2ab2
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+      description: |
+        To return a user's profile details so that users can see their profile details via a third party interface. 
+
+        The response contains 'first name', 'last name' and email plus any additional custom attributes that have been created via the Cloud Pay admin panel.  Example would be 'favourite player'.
+
+        API is secured with a valid session token (sessionID or JWT token).
+    post:
+      operationId: generate-session-payload
+      summary: Generate Session using Payload
+      parameters:
+        - $ref: '#/components/parameters/languageParam'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/StringLoginRequest'
+                - $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: |-
+            Successful login response. 
+
+            At this point please make sure you store the "AuthenticationToken" so you can validate your session when making future API Calls.
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  UtcNow:
+                    type: number
+                  LocationFromIp:
+                    type: object
+                    properties:
+                      Name: {}
+                      Country: {}
+                      CountryCode:
+                        type: string
+                        minLength: 1
+                      State: {}
+                      City: {}
+                    required:
+                      - CountryCode
+                  CurrentCustomerSessionStatus:
+                    type: number
+                  CurrentCustomerSession:
+                    type: object
+                    properties:
+                      Id:
+                        type: string
+                        minLength: 1
+                      CustomerId:
+                        type: string
+                        minLength: 1
+                      CustomerEmailAddress:
+                        type: string
+                        minLength: 1
+                      CustomerFirstName:
+                        type: string
+                        minLength: 1
+                      CustomerLastName:
+                        type: string
+                        minLength: 1
+                      CustomerBillingProfileCreatedAt: {}
+                      CustomerBillingProfileExpiresAt: {}
+                      CustomerBillingProfileLastFailedAt: {}
+                      CustomerBillingProfileProvider: {}
+                      CustomerBillingProfileReference: {}
+                      CustomerDeleted:
+                        type: boolean
+                      CustomerEntitlements:
+                        type: string
+                      CustomerFullAccessUntil: {}
+                      CustomerNonExpiringSubscriptionCount:
+                        type: number
+                      CustomerSubscriptionCount:
+                        type: number
+                      RequiresCardAuthenticationCount:
+                        type: number
+                    required:
+                      - Id
+                      - CustomerId
+                      - CustomerEmailAddress
+                      - CustomerFirstName
+                      - CustomerLastName
+                      - CustomerDeleted
+                      - CustomerEntitlements
+                      - CustomerNonExpiringSubscriptionCount
+                      - CustomerSubscriptionCount
+                      - RequiresCardAuthenticationCount
+                  ModelErrors:
+                    type: object
+                    properties: {}
+                  AuthenticationToken:
+                    type: string
+                    minLength: 1
+                  PageUrl: {}
+                required:
+                  - UtcNow
+                  - LocationFromIp
+                  - CurrentCustomerSessionStatus
+                  - CurrentCustomerSession
+                  - ModelErrors
+                  - AuthenticationToken
+                x-examples:
+                  example-1:
+                    UtcNow: 1592915757873
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: MT
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQwMDM1NTdDRTVCRDg2ODREODhBMjMyMTExOEUxRTI1M0UyQzg3RDhCMDVBNEUz15B098C6
+                      CustomerId: c5d702fb-15f7-499b-90d5-cc36922e2ab2
+                      CustomerEmailAddress: customer@email.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerBillingProfileCreatedAt: null
+                      CustomerBillingProfileExpiresAt: null
+                      CustomerBillingProfileLastFailedAt: null
+                      CustomerBillingProfileProvider: null
+                      CustomerBillingProfileReference: null
+                      CustomerDeleted: false
+                      CustomerEntitlements: ''
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 0
+                      RequiresCardAuthenticationCount: 0
+                    ModelErrors: {}
+                    AuthenticationToken: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQwMDM1NTdDRTVCRDg2ODREODhBMjMyMTExOEUxRTI1M0UyQzg3RDhCMDVBNEUz15B098C6
+                    PageUrl: null
+              examples:
+                Successful Login Response:
+                  value:
+                    UtcNow: 1592915757873
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: MT
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQwMDM1NTdDRTVCRDg2ODREODhBMjMyMTExOEUxRTI1M0UyQzg3RDhCMDVBNEUz15B098C6
+                      CustomerId: c5d702fb-15f7-499b-90d5-cc36922e2ab2
+                      CustomerEmailAddress: customer@email.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerBillingProfileCreatedAt: null
+                      CustomerBillingProfileExpiresAt: null
+                      CustomerBillingProfileLastFailedAt: null
+                      CustomerBillingProfileProvider: null
+                      CustomerBillingProfileReference: null
+                      CustomerDeleted: false
+                      CustomerEntitlements: ''
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 0
+                      RequiresCardAuthenticationCount: 0
+                    ModelErrors: {}
+                    AuthenticationToken: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQwMDM1NTdDRTVCRDg2ODREODhBMjMyMTExOEUxRTI1M0UyQzg3RDhCMDVBNEUz15B098C6
+                    PageUrl: null
+        '204':
+          description: The login request processed successfully but there is no response content
+        '500':
+          description: Unsuccessful login response
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+              examples:
+                Failed Cookie Response:
+                  value:
+                    ErrorMessage: Invalid Login Request
+      description: |-
+        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password. 
+
+        Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
+      tags:
+        - Session
+    parameters:
+      - schema:
+          type: string
+        name: customerId
+        in: path
+        required: true
+        description: unique customer identifier
   /api/v1/session/prescence:
     get:
       summary: Validate Active Session
