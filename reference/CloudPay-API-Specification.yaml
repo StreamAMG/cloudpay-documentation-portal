@@ -1325,6 +1325,13 @@ paths:
                     EmailAddress: customer@email.com
                     FirstName: Lorem
                     LastName: Ipsum
+                    CustomFields:
+                      property1:
+                        value: string
+                        comment: string
+                      property2:
+                        value: string
+                        comment: string
         '400':
           description: Bad Request
         '403':
@@ -1720,17 +1727,14 @@ components:
       required: false
       description: The authentication cookie header
   schemas:
-    CustomField: 
+    CustomField:
       type: object
       properties:
-        key:
-          type: string
         value:
           type: string
         comment:
           type: string
       required:
-        - key
         - value
       title: Custom Field
       x-internal: true
