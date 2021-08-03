@@ -1312,9 +1312,9 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
+                    type: object
                     additionalProperties:
                       $ref: '#/components/schemas/CustomField'
-                    $ref: ''
                 required:
                   - EmailAddress
                   - FirstName
@@ -1325,9 +1325,6 @@ paths:
                     EmailAddress: customer@email.com
                     FirstName: Lorem
                     LastName: Ipsum
-                    CustomFields:
-                      FavouritePlayer: Kyle Edmund
-                      FavouriteCompetition: Wimbledon
         '400':
           description: Bad Request
         '403':
