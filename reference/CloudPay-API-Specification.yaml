@@ -1730,11 +1730,14 @@ components:
           type: string
         value:
           type: string
-        description:
-    	    type: string
-       title: Custom Field
-       x-internal: true
-       description: Custom Field
+        comment:
+          type: string
+      required:
+        - key
+        - value
+      title: Custom Field
+      x-internal: true
+      description: Custom Field
     LoginRequest:
       type: object
       properties:
