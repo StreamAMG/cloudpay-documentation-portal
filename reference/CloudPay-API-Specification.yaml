@@ -1283,7 +1283,7 @@ paths:
   /api/v1/account/profile:
     get:
       operationId: get-api-v1-account-profile
-      summary: Get an account user's profile returning mandatory and custom user profile fields.
+      summary: Get an account user's profile
       tags:
         - User
         - Account
@@ -1292,6 +1292,20 @@ paths:
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
         - $ref: '#/components/parameters/authCookie'
+      components:
+        schemas:
+          CustomField: 
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+              description:
+    	          type: string
+            title: Custom Field
+            x-internal: true
+            description: Custom Field
       responses:
         '200':
           description: successful query response
@@ -1310,10 +1324,10 @@ paths:
                   LastName:
                     type: string
                     minLength: 1
-                  CustomFields:
+                  CustomFields: # <---- dictionary
                     type: object
                     additionalProperties:
-                      type: string
+                      $ref: '#/components/schemas/CustomField'
                 required:
                   - EmailAddress
                   - FirstName
@@ -1721,7 +1735,6 @@ components:
         type: string
       required: false
       description: The authentication cookie header
-  schemas:
     LoginRequest:
       type: object
       properties:
@@ -1744,6 +1757,21 @@ components:
           value: 'emailaddress: foo@bar.com, password: somePass'
       title: String Login Request
       description: Login using a string based request
+    CustomField: 
+      type: object
+      properties:
+        field:
+          type: string
+        value:
+          type: string
+        description:
+          type: string
+      required:
+        - field
+        - value
+      title: Custom Field
+      x-internal: true
+      description: Custom Field
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
