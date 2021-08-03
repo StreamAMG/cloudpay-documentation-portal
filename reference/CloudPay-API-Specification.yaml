@@ -447,65 +447,6 @@ paths:
         Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
       tags:
         - Session
-  /api/v1/account/profile:
-    get:
-      operationId: get-api-v1-account-profile
-      summary: Get an account user's profile.
-      tags:
-        - User
-        - Account
-      parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
-      responses:
-        '200':
-          description: successful query response
-          content:
-            application/json:
-              schema:
-                description: the profle for the user
-                type: object
-                properties:
-                  EmailAddress:
-                    type: string
-                    minLength: 1
-                  FirstName:
-                    type: string
-                    minLength: 1
-                  LastName:
-                    type: string
-                    minLength: 1
-                  CustomFields:
-                    type: object
-                    additionalProperties:
-                      type: string
-                required:
-                  - EmailAddress
-                  - FirstName
-                  - LastName
-              examples:
-                Successful Query Response:
-                  value:
-                    EmailAddress: customer@email.com
-                    FirstName: Lorem
-                    LastName: Ipsum
-                    CustomFields:
-                      FavouritePlayer: Kyle Edmund
-                      FavouriteCompetition: Wimbledon
-        '400':
-          description: Bad Request
-        '403':
-          description: Forbidden
-        '500':
-          description: Error Response
-      description: |
-        To return an account user's profile details so that users can see their profile details via a third party interface. 
-
-        The response contains 'first name', 'last name' and email plus any additional custom attributes that have been created via the Cloud Pay admin panel.  Example would be 'favourite player'.
-
-        API is secured with a valid session token (sessionID or JWT token) which will contain the necessary information to identify the user.
   /api/v1/session/prescence:
     get:
       summary: Validate Active Session
@@ -1339,6 +1280,65 @@ paths:
                   sendEmail: false
                   immediate: false
         description: Given a client has access to the customer subscription ID the cancellation request can be generated.
+  /api/v1/account/profile:
+    get:
+      operationId: get-api-v1-account-profile
+      summary: Get an account user's profile returning mandatory and custom user profile fields.
+      tags:
+        - User
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+      responses:
+        '200':
+          description: successful query response
+          content:
+            application/json:
+              schema:
+                description: the profle for the user
+                type: object
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+              examples:
+                Successful Query Response:
+                  value:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      FavouritePlayer: Kyle Edmund
+                      FavouriteCompetition: Wimbledon
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Error Response
+      description: |
+        To return an account user's profile details so that users can see their profile details via a third party interface. 
+
+        The response contains 'first name', 'last name' and email plus any additional custom attributes that have been created via the Cloud Pay admin panel.  Example would be 'favourite player'.
+
+        API is secured with a valid session token (sessionID or JWT token) which will contain the necessary information to identify the user.
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
