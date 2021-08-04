@@ -1280,9 +1280,9 @@ paths:
                   sendEmail: false
                   immediate: false
         description: Given a client has access to the customer subscription ID the cancellation request can be generated.
-  /api/v1/account/profile:
+  /api/v1/account:
     get:
-      operationId: get-api-v1-account-profile
+      operationId: get-api-v1-account
       summary: Get an account user's profile
       tags:
         - User
@@ -1299,7 +1299,7 @@ paths:
           content:
             application/json:
               schema:
-                description: the profle for the user
+                description: ''
                 type: object
                 properties:
                   EmailAddress:
@@ -1312,13 +1312,47 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
-                    type: object
-                    additionalProperties:
-                      $ref: '#/components/schemas/CustomField'
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - Id
+                        - Name
+                        - Label
+                        - Value
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Name:
+                          type: string
+                          minLength: 1
+                        Label:
+                          type: string
+                          minLength: 1
+                        Value:
+                          type: string
+                          minLength: 1
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
+                  - CustomFields
+                x-examples:
+                  example-1:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
+                        Name: Favourite Football Team
+                        Label: Favourite Football Team
+                        Value: Hull City
               examples:
                 Successful Query Response:
                   value:
@@ -1326,12 +1360,14 @@ paths:
                     FirstName: Lorem
                     LastName: Ipsum
                     CustomFields:
-                      property1:
-                        value: string
-                        comment: string
-                      property2:
-                        value: string
-                        comment: string
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
+                        Name: Favourite Football Team
+                        Label: Favourite Football Team
+                        Value: Hull City
         '400':
           description: Bad Request
         '403':
@@ -1344,6 +1380,7 @@ paths:
         The response contains 'first name', 'last name' and email plus any additional custom attributes that have been created via the Cloud Pay admin panel.  Example would be 'favourite player'.
 
         API is secured with a valid session token (sessionID or JWT token) which will contain the necessary information to identify the user.
+    parameters: []
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
