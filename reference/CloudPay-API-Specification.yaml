@@ -1285,7 +1285,7 @@ paths:
   /api/v1/account:
     get:
       operationId: get-api-v1-account
-      summary: Retrieve the Authenticated User's Summary
+      summary: Retrieve the User's Summary
       tags:
         - Account
       parameters:
@@ -1382,7 +1382,7 @@ paths:
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
     put:
-      summary: Update the Authenticated User's Summary
+      summary: Update the User's Summary
       operationId: put-api-v1-account
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1394,6 +1394,78 @@ paths:
       responses:
         '202':
           description: Accepted
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - Id
+                        - Name
+                        - Label
+                        - Value
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Name:
+                          type: string
+                          minLength: 1
+                        Label:
+                          type: string
+                          minLength: 1
+                        Value:
+                          type: string
+                          minLength: 1
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+                  - CustomFields
+                x-examples:
+                  example-1:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: db3fb17a-2b10-481e-b9fc-6fc4303ce280
+                        Name: Favourite Rugby Team
+                        Label: Favourite Rugby Team
+                        Value: Hull FC
+              examples:
+                Successful Update Response:
+                  value:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: db3fb17a-2b10-481e-b9fc-6fc4303ce280
+                        Name: Favourite Rugby Team
+                        Label: Favourite Rugby Team
+                        Value: Hull FC
         '400':
           description: Bad Request
         '403':
