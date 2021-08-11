@@ -1292,7 +1292,7 @@ paths:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'    
+        - $ref: '#/components/parameters/authCookie'
       responses:
         '200':
           description: OK
@@ -1381,6 +1381,18 @@ paths:
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
+    put:
+      summary: ''
+      operationId: put-api-v1-account
+      responses:
+        '200':
+          description: OK
+      description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
+        The update Account endpoint allows a user to update their user details.
+
+        **Note** *Only one of the four authorisation parameters are required*
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
