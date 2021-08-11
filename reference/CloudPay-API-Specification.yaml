@@ -1243,7 +1243,7 @@ paths:
           description: Error Response
       operationId: post-api-v1-account-cancellation
       description: |-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
@@ -1375,7 +1375,7 @@ paths:
         '500':
           description: Error Response
       description: |
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Endpoint returns an account summary of the Authenticated User.
 
