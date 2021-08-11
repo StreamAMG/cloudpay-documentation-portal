@@ -856,6 +856,7 @@ paths:
                     type: number
                   CurrentCustomerSession:
                     type: object
+                    nullable: true
                     properties:
                       Id:
                         type: string
@@ -907,6 +908,7 @@ paths:
                   KSession:
                     type: string
                     minLength: 1
+                    nullable: true
                   ErrorMessage: {}
                 required:
                   - UtcNow
@@ -1290,8 +1292,7 @@ paths:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
-      components: null
+        - $ref: '#/components/parameters/authCookie'    
       responses:
         '200':
           description: OK
@@ -1591,6 +1592,7 @@ paths:
                         Duration:
                           type: string
                           minLength: 1
+                          nullable: true
                 required:
                   - SubscriptionPlanOptions
                 x-examples:
@@ -1763,18 +1765,6 @@ components:
       required: false
       description: The authentication cookie header
   schemas:
-    CustomField:
-      type: object
-      properties:
-        value:
-          type: string
-        comment:
-          type: string
-      required:
-        - value
-      title: Custom Field
-      x-internal: true
-      description: Custom Field
     LoginRequest:
       type: object
       properties:
