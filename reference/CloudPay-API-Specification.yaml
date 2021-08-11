@@ -1283,7 +1283,7 @@ paths:
   /api/v1/account:
     get:
       operationId: get-api-v1-account
-      summary: Retrieve the Authorised User's Account Summary
+      summary: Get Authorised User's Account Summary
       tags:
         - Account
       parameters:
