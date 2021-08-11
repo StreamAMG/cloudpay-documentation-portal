@@ -1285,7 +1285,6 @@ paths:
       operationId: get-api-v1-account
       summary: Get an account user's profile
       tags:
-        - User
         - Account
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1375,11 +1374,11 @@ paths:
         '500':
           description: Error Response
       description: |
-        To return an account user's profile details so that users can see their profile details via a third party interface. 
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
-        The response contains 'first name', 'last name' and email plus any additional custom attributes that have been created via the Cloud Pay admin panel.  Example would be 'favourite player'.
+        The Account Endpoint returns an account summary of the logged in user.
 
-        API is secured with a valid session token (sessionID or JWT token) which will contain the necessary information to identify the user.
+        **Note** *Only one of the four authorisation parameters are required*
     parameters: []
   /iap/verify:
     post:
