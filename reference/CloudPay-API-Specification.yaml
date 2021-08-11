@@ -1285,7 +1285,7 @@ paths:
   /api/v1/account:
     get:
       operationId: get-api-v1-account
-      summary: Get Authorised User's Account Summary
+      summary: Retrieve the Authenticated User's Summary
       tags:
         - Account
       parameters:
@@ -1377,7 +1377,7 @@ paths:
       description: |
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
-        The Account Endpoint returns an account summary of the logged in user.
+        The Account Endpoint returns an account summary of the Authenticated User.
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
