@@ -1283,7 +1283,7 @@ paths:
   /api/v1/account:
     get:
       operationId: get-api-v1-account
-      summary: Get an account user's profile
+      summary: Retrieve the Authorised User's Account Summary
       tags:
         - Account
       parameters:
@@ -1294,7 +1294,7 @@ paths:
       components: null
       responses:
         '200':
-          description: successful query response
+          description: OK
           content:
             application/json:
               schema:
