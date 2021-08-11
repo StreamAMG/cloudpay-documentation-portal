@@ -19,6 +19,7 @@ tags:
   - name: IAP
   - name: Scripts
   - name: Models
+  - name: User
 paths:
   '/sso/start/{redirect}':
     get:
@@ -855,6 +856,7 @@ paths:
                     type: number
                   CurrentCustomerSession:
                     type: object
+                    nullable: true
                     properties:
                       Id:
                         type: string
@@ -906,6 +908,7 @@ paths:
                   KSession:
                     type: string
                     minLength: 1
+                    nullable: true
                   ErrorMessage: {}
                 required:
                   - UtcNow
@@ -1279,6 +1282,105 @@ paths:
                   sendEmail: false
                   immediate: false
         description: Given a client has access to the customer subscription ID the cancellation request can be generated.
+  /api/v1/account:
+    get:
+      operationId: get-api-v1-account
+      summary: Retrieve the Authenticated User's Summary
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'    
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - Id
+                        - Name
+                        - Label
+                        - Value
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Name:
+                          type: string
+                          minLength: 1
+                        Label:
+                          type: string
+                          minLength: 1
+                        Value:
+                          type: string
+                          minLength: 1
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+                  - CustomFields
+                x-examples:
+                  example-1:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
+                        Name: Favourite Football Team
+                        Label: Favourite Football Team
+                        Value: Hull City
+              examples:
+                Successful Query Response:
+                  value:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
+                        Name: Favourite Football Team
+                        Label: Favourite Football Team
+                        Value: Hull City
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Error Response
+      description: |
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
+        The Account Endpoint returns an account summary of the Authenticated User.
+
+        **Note** *Only one of the four authorisation parameters are required*
+    parameters: []
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
@@ -1490,6 +1592,7 @@ paths:
                         Duration:
                           type: string
                           minLength: 1
+                          nullable: true
                 required:
                   - SubscriptionPlanOptions
                 x-examples:
