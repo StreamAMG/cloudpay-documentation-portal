@@ -1382,7 +1382,7 @@ paths:
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
     put:
-      summary: ''
+      summary: Update the Authenticated User's Summary
       operationId: put-api-v1-account
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
