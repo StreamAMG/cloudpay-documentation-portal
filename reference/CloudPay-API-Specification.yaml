@@ -1520,6 +1520,7 @@ paths:
                     purchaseIdentifier: a-purchase-token-123
                     packageName: a-package-name
                     productId: a-product-id-456
+                    autoRenewing: true
                   platform: android
               roku-example:
                 value:
