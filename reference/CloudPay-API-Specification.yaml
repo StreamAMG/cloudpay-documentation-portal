@@ -1292,7 +1292,7 @@ paths:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'    
+        - $ref: '#/components/parameters/authCookie'
       responses:
         '200':
           description: OK
@@ -1494,6 +1494,8 @@ paths:
                       type: string
                     productId:
                       type: string
+                    autoRenewing:
+                      type: boolean
                     raw:
                       type: string
                       format: base64
@@ -1518,6 +1520,7 @@ paths:
                     purchaseIdentifier: a-purchase-token-123
                     packageName: a-package-name
                     productId: a-product-id-456
+                    autoRenewing: true
                   platform: android
               roku-example:
                 value:
