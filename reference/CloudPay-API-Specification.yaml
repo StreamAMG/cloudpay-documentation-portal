@@ -1381,6 +1381,112 @@ paths:
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
+  /api/v1/account/profile/billing:
+    get:
+      operationId: get-api-v1-account-profile-billing
+      summary: Retrieve the authenticated customer's billing profile
+      tags:
+        - Account
+        - Profile
+        - Billing details
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 'Customer address and billing card details'
+                type: object
+                properties:
+                  AddressCountry:
+                    type: string
+                  AddressCity:
+                    type: string
+                  AddressLine1:
+                    type: string
+                  AddressLine2:
+                    type: string
+                  AddressState:
+                    type: string
+                  AddressZip:
+                    type: string
+                  CardDetails:
+                    type: object
+                    items:
+                      properties:
+                        Provider:
+                          type: string
+                        Reference:
+                          type: string
+                        Country:
+                          type: string
+                        Expires:
+                          type: string
+                x-examples:
+                  example-1:
+                    AddressCountry: GB
+                    AddressCity: London
+                    AddressLine1: 61 Queen Street
+                    AddressLine2: ap.1
+                    AddressState: London
+                    AddressZip: EC4R 1AE
+                    CardDetails:
+                      - Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        Expires: '2024-10-31 23:59:59'
+                        Country: GB
+                      - Provider: PayPal
+                        Reference: customer@gmail.com
+                        Country: GB
+              examples:
+                Successful Query Response:
+                  value:
+                    AddressCountry: GB
+                    AddressCity: Manchester
+                    AddressLine1: Tomorrow Building
+                    AddressLine2: MediaCityUK
+                    AddressState: Salford
+                    AddressZip: M50 2AB
+                    CardDetails:
+                      - Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        Country: GB
+                        Expires: '2024-10-31 23:59:59'
+                      - Provider: PayPal
+                        Reference: customer@gmail.com
+                        Country: GB
+        '204':
+          description: The resource is not available. Customer doesn't habe billing profile.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: |
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
+        The account endpoint returns an profile billing details of the authenticated customer.
+
+        **Note** *Only one of the four authorisation parameters are required*
+    parameters: []
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
@@ -1790,6 +1896,20 @@ components:
           value: 'emailaddress: foo@bar.com, password: somePass'
       title: String Login Request
       description: Login using a string based request
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        body:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            message:
+              type: string
+              minLength: 1
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
