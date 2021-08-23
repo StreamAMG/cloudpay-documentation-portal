@@ -1381,6 +1381,115 @@ paths:
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
+  /api/v1/account/profile/billing:
+    put:
+      summary: Update the customer's Stripe billing profile
+      operationId: put-api-v1-account-profile-billing
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+      tags:
+        - Account
+        - Profile
+        - Billing details
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        The update customer billing profile endpoint allows a customer to update their billing details.
+        Please be aware that the customer billing profile depends on Provider - Stripe or Paypal.
+        **Note** *Only one of the four authorisation parameters are required*
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: 'Customer Stripe billing profile'
+              type: object
+              properties:
+                  AddressCountry:
+                    type: string
+                  AddressCity:
+                    type: string
+                  AddressLine1:
+                    type: string
+                  AddressLine2:
+                    type: string
+                  AddressState:
+                    type: string
+                  AddressZip:
+                    type: string
+                  CardDetails:
+                    type: object
+                    items:
+                      properties:
+                        Number:
+                          type: string
+                          pattern: '^\d+$'
+                        ExpMonth:
+                          type: number
+                          minimum: 1
+                          maximum: 12
+                        ExpYear:
+                          type: string
+                          pattern: '^\d{2}$'
+                        ThreeDSecure:
+                          type: string
+                          pattern: '^\d{3}$'
+              required:
+                - Number
+                - ExpMonth
+                - ExpYear
+                - ThreeDSecure
+              x-examples:
+                example-1:
+                  AddressCountry: GB
+                  AddressCity: London
+                  AddressLine1: 61 Queen Street
+                  AddressLine2: ap.1
+                  AddressState: London
+                  AddressZip: EC4R 1AE
+                  CardDetails:
+                    - Number: 4242 4242 4242 4424
+                      ExpMonth: 06
+                      ExpYear: 22
+                      ThreeDSecure: 123
+            examples:
+              Update Request:
+                value:
+                  AddressCountry: GB
+                  AddressCity: London
+                  AddressLine1: 61 Queen Street
+                  AddressLine2: ap.1
+                  AddressState: London
+                  AddressZip: EC4R 1AE
+                  CardDetails:
+                    - Number: 4242 4242 4242 4424
+                      ExpMonth: 06
+                      ExpYear: 22
+                      ThreeDSecure: 123
+        description: Adding or updating only Stripe billing details
+    parameters: []
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
@@ -1790,6 +1899,20 @@ components:
           value: 'emailaddress: foo@bar.com, password: somePass'
       title: String Login Request
       description: Login using a string based request
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        body:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            message:
+              type: string
+              minLength: 1
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
