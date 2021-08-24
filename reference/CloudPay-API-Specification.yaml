@@ -1381,19 +1381,17 @@ paths:
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
-  /api/v1/account/profile/billing:
+  /api/v1/account/billing:
     put:
-      summary: Update the customer's Stripe billing profile
-      operationId: put-api-v1-account-profile-billing
+      summary: Update the customer's Stripe billing details
+      operationId: put-api-v1-account-billing
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
         - $ref: '#/components/parameters/authCookie'
       tags:
-        - Account
-        - Profile
-        - Billing details
+        - billing
       responses:
         '202':
           description: Accepted
@@ -1441,21 +1439,20 @@ paths:
                     type: string
                   CardDetails:
                     type: object
-                    items:
-                      properties:
-                        Number:
-                          type: string
-                          pattern: '^\d+$'
-                        ExpMonth:
-                          type: number
-                          minimum: 1
-                          maximum: 12
-                        ExpYear:
-                          type: string
-                          pattern: '^\d{2}$'
-                        ThreeDSecure:
-                          type: string
-                          pattern: '^\d{3}$'
+                    properties:
+                      Number:
+                        type: string
+                        pattern: '^\d{8,20}$'
+                      ExpMonth:
+                        type: number
+                        minimum: 1
+                        maximum: 12
+                      ExpYear:
+                        type: string
+                        pattern: '^\d{2,4}$'
+                      ThreeDSecure:
+                        type: string
+                        pattern: '^\d{3,4}$'
               required:
                 - Number
                 - ExpMonth
@@ -1470,10 +1467,10 @@ paths:
                   AddressState: London
                   AddressZip: EC4R 1AE
                   CardDetails:
-                    - Number: 4242 4242 4242 4424
-                      ExpMonth: 06
-                      ExpYear: 22
-                      ThreeDSecure: 123
+                    Number: '4242 4242 4242 4424'
+                    ExpMonth: 6
+                    ExpYear: '2022'
+                    ThreeDSecure: '123'
             examples:
               Update Request:
                 value:
