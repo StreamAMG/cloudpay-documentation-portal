@@ -1401,44 +1401,6 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  EmailAddress:
-                    type: string
-                    minLength: 1
-                  FirstName:
-                    type: string
-                    minLength: 1
-                  LastName:
-                    type: string
-                    minLength: 1
-                  CustomFields:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - Id
-                        - Name
-                        - Label
-                        - Value
-                      properties:
-                        Id:
-                          type: string
-                          minLength: 1
-                        Name:
-                          type: string
-                          minLength: 1
-                        Label:
-                          type: string
-                          minLength: 1
-                        Value:
-                          type: string
-                          minLength: 1
-                required:
-                  - EmailAddress
-                  - FirstName
-                  - LastName
-                  - CustomFields
                 x-examples:
                   example-1:
                     EmailAddress: customer@email.com
@@ -1453,6 +1415,46 @@ paths:
                         Name: Favourite Rugby Team
                         Label: Favourite Rugby Team
                         Value: Hull FC
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Name:
+                          type: string
+                          minLength: 1
+                        Label:
+                          type: string
+                          minLength: 1
+                        Value:
+                          type: string
+                          minLength: 1
+                      required:
+                        - Id
+                        - Name
+                        - Label
+                        - Value
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+                  - CustomFields
               examples:
                 Successful Update Response:
                   value:
