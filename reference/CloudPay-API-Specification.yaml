@@ -1381,14 +1381,12 @@ paths:
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
-  /api/v1/account/profile/billing:
+  /api/v1/account/billing:
     get:
-      operationId: get-api-v1-account-profile-billing
+      operationId: get-api-v1-account-billing
       summary: Retrieve the authenticated customer's billing profile
       tags:
-        - Account
-        - Profile
-        - Billing details
+        - billing
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
@@ -1417,16 +1415,15 @@ paths:
                     type: string
                   CardDetails:
                     type: object
-                    items:
-                      properties:
-                        Provider:
-                          type: string
-                        Reference:
-                          type: string
-                        Country:
-                          type: string
-                        Expires:
-                          type: string
+                    properties:
+                      Provider:
+                        type: string
+                      Reference:
+                        type: string
+                      Country:
+                        type: string
+                      Expires:
+                        type: string
                 x-examples:
                   example-1:
                     AddressCountry: GB
@@ -1440,9 +1437,17 @@ paths:
                         Reference: visa XXXX-XXXX-XXXX-4242
                         Expires: '2024-10-31 23:59:59'
                         Country: GB
-                      - Provider: PayPal
-                        Reference: customer@gmail.com
-                        Country: GB
+                  example-2:
+                    AddressCountry: MT
+                    AddressCity: San Gwann
+                    AddressLine1: 38, Zahra crt. Naxxar road
+                    AddressLine2: ap.1
+                    AddressState: San Gwann
+                    AddressZip: SGN9020
+                    CardDetails:
+                      Provider: PayPal
+                      Reference: customer@gmail.com
+                      Country: GB
               examples:
                 Successful Query Response:
                   value:
@@ -1453,15 +1458,12 @@ paths:
                     AddressState: Salford
                     AddressZip: M50 2AB
                     CardDetails:
-                      - Provider: StripeCard
-                        Reference: visa XXXX-XXXX-XXXX-4242
-                        Country: GB
-                        Expires: '2024-10-31 23:59:59'
-                      - Provider: PayPal
-                        Reference: customer@gmail.com
-                        Country: GB
+                      Provider: StripeCard
+                      Reference: visa XXXX-XXXX-XXXX-4242
+                      Country: GB
+                      Expires: '2024-10-31 23:59:59'
         '204':
-          description: The resource is not available. Customer doesn't habe billing profile.
+          description: The resource is not available. Customer doesn't have billing profile.
         '400':
           description: Bad Request
           content:
@@ -1483,7 +1485,7 @@ paths:
       description: |
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
-        The account endpoint returns an profile billing details of the authenticated customer.
+        The account endpoint returns profile billing details of the authenticated customer.
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
