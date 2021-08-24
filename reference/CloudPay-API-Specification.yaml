@@ -1381,6 +1381,84 @@ paths:
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
+  /api/v1/account/subscriptions:
+    get:
+      operationId: get-api-v1-account-subscriptions
+      summary: Retrieve the authenticated customer's active subscriptions
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [active]
+          description: The status of the subscriptions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 'Customer transactions list ordered by createdat ASC'
+                type: array
+                items:
+                  type: object
+                  properties:
+                    SubscriptionName:
+                      type: string
+                      minLength: 1
+                    Description:
+                      type: string
+                      minLength: 1
+                    CancelUrl:
+                      type: string
+                      minLength: 1
+                  required: 
+                    - SubscriptionName
+                    - Description
+                x-examples:
+                  example-1:
+                      - SubscriptionName: 'Day pass'
+                        Description: Renewal of £2.00 due on 12 Jun 2021
+                        CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+                  example-2: []
+              examples:
+                Successful Query Response:
+                  value:
+                    page: 1
+                    size: 100
+                    collection:
+                      - SubscriptionName: 'Day pass'
+                        Description: 'Renewal of £2.00 due on 12 Jun 2021'
+                        CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+                      - SubscriptionName: 'Monthly subscription'
+                        Description: 'Renewal of £5.00 due on 2 Mar 2021'
+                        CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+                Empty Query Response:
+                  value: []
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
