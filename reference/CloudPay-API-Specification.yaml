@@ -1422,19 +1422,43 @@ paths:
                         Reference: visa XXXX-XXXX-XXXX-4242
                         Country: GB
                         Expires: '2024-07-21T17:32:28Z'
-                Successful but empty customfields and empty billing:
+                Successful Query Response 2:
                   value:
                     EmailAddress: customer@email.com
                     FirstName: Lorem
                     LastName: Ipsum
                     CustomFields: []
                     BillingDetails: {}
+                Successful Query Response 3:
+                  value:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields: []
+                    BillingDetails:
+                      CardDetails:
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        Country: GB
+                        Expires: '2024-07-21T17:32:28Z'
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       description: |
         ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
