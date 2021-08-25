@@ -1498,6 +1498,18 @@ paths:
                         Name: Favourite Rugby Team
                         Label: Favourite Rugby Team
                         Value: Hull FC
+                    BillingDetails:
+                      AddressCountry: GB
+                      AddressCity: London
+                      AddressLine1: 61 Queen Street
+                      AddressLine2: ap.1
+                      AddressState: London
+                      AddressZip: EC4R 1AE
+                      CardDetails:
+                        Number: '4242424242424424'
+                        ExpMonth: 6
+                        ExpYear: '2022'
+                        ThreeDSecure: '123'
                 properties:
                   EmailAddress:
                     type: string
@@ -1533,11 +1545,49 @@ paths:
                         - Name
                         - Label
                         - Value
+                  BillingDetails:
+                    description: 'Customer Stripe billing profile'
+                    type: object
+                    properties:
+                      AddressCountry:
+                        type: string
+                      AddressCity:
+                        type: string
+                      AddressLine1:
+                        type: string
+                      AddressLine2:
+                        type: string
+                      AddressState:
+                        type: string
+                      AddressZip:
+                        type: string
+                      CardDetails:
+                        type: object
+                        properties:
+                          Number:
+                            type: string
+                            pattern: '^\d{8,20}$'
+                          ExpMonth:
+                            type: number
+                            minimum: 1
+                            maximum: 12
+                          ExpYear:
+                            type: string
+                            pattern: '^\d{2,4}$'
+                          ThreeDSecure:
+                            type: string
+                            pattern: '^\d{3,4}$'
+                        required:
+                          - Number
+                          - ExpMonth
+                          - ExpYear
+                          - ThreeDSecure
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
                   - CustomFields
+                  - BillingDetails
               examples:
                 Successful Update Response:
                   value:
@@ -1553,12 +1603,36 @@ paths:
                         Name: Favourite Rugby Team
                         Label: Favourite Rugby Team
                         Value: Hull FC
+                    BillingDetails:
+                      AddressCountry: GB
+                      AddressCity: London
+                      AddressLine1: 61 Queen Street
+                      AddressLine2: ap.1
+                      AddressState: London
+                      AddressZip: EC4R 1AE
+                      CardDetails:
+                        Number: 4242 4242 4242 4424
+                        ExpMonth: 06
+                        ExpYear: 22
+                        ThreeDSecure: 123
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       description: |-
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
@@ -1568,6 +1642,134 @@ paths:
 
 
         **Note** *Only one of the four authorisation parameters are required*
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  FirstName: Lorem
+                  LastName: Ipsum
+                  CustomFields:
+                    - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                      Name: Date of Birth
+                      Label: Date of Birth
+                      Value: '1988-08-19'
+                    - Name: Favourite Rugby Team
+                      Label: Favourite Rugby Team
+                      Value: Hull FC
+                  BillingDetails:
+                      AddressCountry: GB
+                      AddressCity: London
+                      AddressLine1: 61 Queen Street
+                      AddressLine2: ap.1
+                      AddressState: London
+                      AddressZip: EC4R 1AE
+                      CardDetails:
+                        Number: '4242424242424424'
+                        ExpMonth: 6
+                        ExpYear: '2022'
+                        ThreeDSecure: '123'    
+              properties:
+                FirstName:
+                  type: string
+                  minLength: 1
+                LastName:
+                  type: string
+                  minLength: 1
+                CustomFields:
+                  type: array
+                  uniqueItems: true
+                  minItems: 0
+                  items:
+                    type: object
+                    additionalProperties: false
+                    properties:
+                      Id:
+                        type: string
+                        minLength: 1
+                      Name:
+                        type: string
+                        minLength: 1
+                      Label:
+                        type: string
+                        minLength: 1
+                      Value:
+                        type: string
+                        minLength: 1
+                    required:
+                      - Name
+                      - Label
+                      - Value
+                BillingDetails:
+                    description: 'Customer Stripe billing profile'
+                    type: object
+                    properties:
+                      AddressCountry:
+                        type: string
+                      AddressCity:
+                        type: string
+                      AddressLine1:
+                        type: string
+                      AddressLine2:
+                        type: string
+                      AddressState:
+                        type: string
+                      AddressZip:
+                        type: string
+                      CardDetails:
+                        type: object
+                        properties:
+                          Number:
+                            type: string
+                            pattern: '^\d{8,20}$'
+                          ExpMonth:
+                            type: number
+                            minimum: 1
+                            maximum: 12
+                          ExpYear:
+                            type: string
+                            pattern: '^\d{2,4}$'
+                          ThreeDSecure:
+                            type: string
+                            pattern: '^\d{3,4}$'
+                        required:
+                          - Number
+                          - ExpMonth
+                          - ExpYear
+                          - ThreeDSecure      
+              required:
+                - FirstName
+                - LastName
+                - CustomFields
+            examples:
+              Update Request:
+                value:
+                  FirstName: Lorem
+                  LastName: Ipsum
+                  CustomFields:
+                    - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                      Name: Date of Birth
+                      Label: Date of Birth
+                      Value: '1988-08-19'
+                    - Name: Favourite Rugby Team
+                      Label: Favourite Rugby Team
+                      Value: Hull FC
+                  BillingDetails:
+                      AddressCountry: GB
+                      AddressCity: London
+                      AddressLine1: 61 Queen Street
+                      AddressLine2: ap.1
+                      AddressState: London
+                      AddressZip: EC4R 1AE
+                      CardDetails:
+                        Number: 4242 4242 4242 4424
+                        ExpMonth: 06
+                        ExpYear: 22
+                        ThreeDSecure: 123    
+        description: When a custom field is passed to the API without an Id it will be created.  
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
