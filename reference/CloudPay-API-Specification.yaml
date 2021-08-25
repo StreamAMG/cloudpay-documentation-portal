@@ -1243,7 +1243,7 @@ paths:
           description: Error Response
       operationId: post-api-v1-account-cancellation
       description: |-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
@@ -1285,7 +1285,7 @@ paths:
   /api/v1/account:
     get:
       operationId: get-api-v1-account
-      summary: Retrieve the Authenticated User's Summary
+      summary: Retrieve the User's Summary
       tags:
         - Account
       parameters:
@@ -1301,44 +1301,6 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  EmailAddress:
-                    type: string
-                    minLength: 1
-                  FirstName:
-                    type: string
-                    minLength: 1
-                  LastName:
-                    type: string
-                    minLength: 1
-                  CustomFields:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - Id
-                        - Name
-                        - Label
-                        - Value
-                      properties:
-                        Id:
-                          type: string
-                          minLength: 1
-                        Name:
-                          type: string
-                          minLength: 1
-                        Label:
-                          type: string
-                          minLength: 1
-                        Value:
-                          type: string
-                          minLength: 1
-                required:
-                  - EmailAddress
-                  - FirstName
-                  - LastName
-                  - CustomFields
                 x-examples:
                   example-1:
                     EmailAddress: customer@email.com
@@ -1353,6 +1315,46 @@ paths:
                         Name: Favourite Football Team
                         Label: Favourite Football Team
                         Value: Hull City
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Name:
+                          type: string
+                          minLength: 1
+                        Label:
+                          type: string
+                          minLength: 1
+                        Value:
+                          type: string
+                          minLength: 1
+                      required:
+                        - Id
+                        - Name
+                        - Label
+                        - Value
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+                  - CustomFields
               examples:
                 Successful Query Response:
                   value:
@@ -1375,12 +1377,114 @@ paths:
         '500':
           description: Error Response
       description: |
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Endpoint returns an account summary of the Authenticated User.
 
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
+    put:
+      summary: Update the User's Summary
+      operationId: put-api-v1-account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+      tags:
+        - Account
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: db3fb17a-2b10-481e-b9fc-6fc4303ce280
+                        Name: Favourite Rugby Team
+                        Label: Favourite Rugby Team
+                        Value: Hull FC
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        Id:
+                          type: string
+                          minLength: 1
+                        Name:
+                          type: string
+                          minLength: 1
+                        Label:
+                          type: string
+                          minLength: 1
+                        Value:
+                          type: string
+                          minLength: 1
+                      required:
+                        - Id
+                        - Name
+                        - Label
+                        - Value
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
+                  - CustomFields
+              examples:
+                Successful Update Response:
+                  value:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields:
+                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+                        Name: Date of Birth
+                        Label: Date of Birth
+                        Value: '1988-08-19'
+                      - Id: db3fb17a-2b10-481e-b9fc-6fc4303ce280
+                        Name: Favourite Rugby Team
+                        Label: Favourite Rugby Team
+                        Value: Hull FC
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Error Response
+      description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
+        The update Account endpoint allows a user to update their user details.
+
+        Please be aware that the users email can not be updated via the API.
+
+
+        **Note** *Only one of the four authorisation parameters are required*
   /api/v1/account/billing:
     get:
       operationId: get-api-v1-account-billing
