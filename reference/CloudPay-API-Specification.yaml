@@ -1419,7 +1419,7 @@ paths:
           content:
             application/json:
               schema:
-                description: 'Customer transactions listed in descending order of creation timestamp'
+                description: 'Customer successful transactions listed in pages and ordered by creation timestamp'
                 type: object
                 properties:
                   page: 
@@ -1430,6 +1430,7 @@ paths:
                   size:
                     type: integer
                     minimum: 1
+                    maximum: 100
                     default: 100
                     description: The number of transactions per page
                   sort:
