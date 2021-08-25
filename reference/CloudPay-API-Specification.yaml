@@ -1311,10 +1311,22 @@ paths:
                         Name: Date of Birth
                         Label: Date of Birth
                         Value: '1988-08-19'
-                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
+                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9'
                         Name: Favourite Football Team
                         Label: Favourite Football Team
                         Value: Hull City
+                    BillingDetails:
+                      AddressCountry: GB
+                      AddressCity: London
+                      AddressLine1: 61 Queen Street
+                      AddressLine2: ap.1
+                      AddressState: London
+                      AddressZip: EC4R 1AE
+                      CardDetails:
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        Expires: '2024-07-21T17:32:28Z'
+                        Country: GB
                 properties:
                   EmailAddress:
                     type: string
@@ -1350,11 +1362,39 @@ paths:
                         - Name
                         - Label
                         - Value
+                  BillingDetails:
+                    type: object
+                    properties:
+                      AddressCountry:
+                        type: string
+                      AddressCity:
+                        type: string
+                      AddressLine1:
+                        type: string
+                      AddressLine2:
+                        type: string
+                      AddressState:
+                        type: string
+                      AddressZip:
+                        type: string
+                      CardDetails:
+                        type: object
+                        properties:
+                          Provider:
+                            type: string
+                          Reference:
+                            type: string
+                          Country:
+                            type: string
+                          Expires:
+                            type: string
+                            format: date-time
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
                   - CustomFields
+                  - BillingDetails
               examples:
                 Successful Query Response:
                   value:
@@ -1366,10 +1406,29 @@ paths:
                         Name: Date of Birth
                         Label: Date of Birth
                         Value: '1988-08-19'
-                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
+                      - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
                         Name: Favourite Football Team
                         Label: Favourite Football Team
                         Value: Hull City
+                    BillingDetails:    
+                      AddressCountry: GB
+                      AddressCity: Manchester
+                      AddressLine1: Tomorrow Building
+                      AddressLine2: MediaCityUK
+                      AddressState: Salford
+                      AddressZip: M50 2AB
+                      CardDetails:
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        Country: GB
+                        Expires: '2024-07-21T17:32:28Z'
+                Successful but empty customfields and empty billing:
+                  value:
+                    EmailAddress: customer@email.com
+                    FirstName: Lorem
+                    LastName: Ipsum
+                    CustomFields: []
+                    BillingDetails: {}
         '400':
           description: Bad Request
         '403':
@@ -1485,114 +1544,6 @@ paths:
 
 
         **Note** *Only one of the four authorisation parameters are required*
-  /api/v1/account/billing:
-    get:
-      operationId: get-api-v1-account-billing
-      summary: Retrieve the authenticated customer's billing profile
-      tags:
-        - billing
-      parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                description: 'Customer address and billing card details'
-                type: object
-                properties:
-                  AddressCountry:
-                    type: string
-                  AddressCity:
-                    type: string
-                  AddressLine1:
-                    type: string
-                  AddressLine2:
-                    type: string
-                  AddressState:
-                    type: string
-                  AddressZip:
-                    type: string
-                  CardDetails:
-                    type: object
-                    properties:
-                      Provider:
-                        type: string
-                      Reference:
-                        type: string
-                      Country:
-                        type: string
-                      Expires:
-                        type: string
-                x-examples:
-                  example-1:
-                    AddressCountry: GB
-                    AddressCity: London
-                    AddressLine1: 61 Queen Street
-                    AddressLine2: ap.1
-                    AddressState: London
-                    AddressZip: EC4R 1AE
-                    CardDetails:
-                      - Provider: StripeCard
-                        Reference: visa XXXX-XXXX-XXXX-4242
-                        Expires: '2024-10-31 23:59:59'
-                        Country: GB
-                  example-2:
-                    AddressCountry: MT
-                    AddressCity: San Gwann
-                    AddressLine1: 38, Zahra crt. Naxxar road
-                    AddressLine2: ap.1
-                    AddressState: San Gwann
-                    AddressZip: SGN9020
-                    CardDetails:
-                      Provider: PayPal
-                      Reference: customer@gmail.com
-                      Country: GB
-              examples:
-                Successful Query Response:
-                  value:
-                    AddressCountry: GB
-                    AddressCity: Manchester
-                    AddressLine1: Tomorrow Building
-                    AddressLine2: MediaCityUK
-                    AddressState: Salford
-                    AddressZip: M50 2AB
-                    CardDetails:
-                      Provider: StripeCard
-                      Reference: visa XXXX-XXXX-XXXX-4242
-                      Country: GB
-                      Expires: '2024-10-31 23:59:59'
-        '204':
-          description: The resource is not available. Customer doesn't have billing profile.
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
-          description: Error Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-      description: |
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
-
-        The account endpoint returns profile billing details of the authenticated customer.
-
-        **Note** *Only one of the four authorisation parameters are required*
-    parameters: []
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
