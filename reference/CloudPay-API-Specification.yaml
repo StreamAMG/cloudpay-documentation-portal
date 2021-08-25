@@ -1387,7 +1387,6 @@ paths:
       summary: Retrieve the authenticated customer's transactions
       tags:
         - Account
-        - Transactions
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
@@ -1406,21 +1405,39 @@ paths:
             type: integer
             minimum: 1
             default: 100
-          description: The page size per page
+          description: The number of transactions per page
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+          description: A sort order by created date
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                description: 'Customer transactions list ordered by createdat DESC'
+                description: 'Customer transactions listed in descending order of creation timestamp'
                 type: object
                 properties:
                   page: 
                     type: integer
+                    minimum: 1
+                    default: 1
+                    description: The current page
                   size:
                     type: integer
-                  collection:
+                    minimum: 1
+                    default: 100
+                    description: The number of transactions per page
+                  sort:
+                    type: string
+                    enum: [asc, desc]
+                    default: desc
+                    description: A sort order by created date
+                  transactions:
                     type: array
                     items:
                       type: object
@@ -1428,21 +1445,27 @@ paths:
                         CreatedAt:
                           type: string
                           format: date-time
+                          description: A transaction created date.
                         Description:
                           type: string
                           minLength: 1
+                          description: A subscription plan name.
                         Provider:
                           type: string
                           minLength: 1
+                          description: A payment provider lile Stripe or PayPal.
                         Reference:
                           type: string
                           minLength: 1
+                          description: A payment provider reference.
                         CurrencyCode:
                           type: string
                           pattern: '^[A-Z]{3}$'
+                          description: A three letter currency code.
                         Amount:
                           type: number
                           format: double
+                          description: A transaction amount. A positive for a payment and negative for a refund.
                       required: 
                         - CreatedAt
                         - Description
@@ -1450,11 +1473,13 @@ paths:
                         - Reference
                         - CurrencyCode
                         - Amount
+                    maxItems: 100    
                 x-examples:
                   example-1:
                     page: 1
                     size: 100
-                    collection:
+                    order: desc
+                    transactions:
                       - CreatedAt: '2020-03-24T17:32:28Z'
                         Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
                         Provider: PayPal
@@ -1470,13 +1495,15 @@ paths:
                   example-2:
                     page: 1
                     size: 100
-                    collection: []
+                    order: desc
+                    transactions: []
               examples:
                 Successful Query Response:
                   value:
                     page: 1
                     size: 100
-                    collection:
+                    order: desc
+                    transactions:
                       - CreatedAt: '2020-03-24T17:32:28Z'
                         Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
                         Provider: PayPal
@@ -1493,7 +1520,8 @@ paths:
                   value:
                     page: 1
                     size: 100
-                    collection: []
+                    order: desc
+                    transactions: []
         '400':
           description: Bad Request
           content:
