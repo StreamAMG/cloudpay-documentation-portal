@@ -1301,6 +1301,7 @@ paths:
       tags:
         - Account
       parameters:
+        - $ref: '#/components/parameters/languageParam'
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
@@ -1317,6 +1318,7 @@ paths:
                     EmailAddress:
                       type: string
                       minLength: 1
+                      readOnly: true
                     FirstName:
                       type: string
                       minLength: 1
@@ -1366,7 +1368,7 @@ paths:
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
     patch:
-      summary: Update the User's First Name, Last Name, custom fields and Stripe billing details
+      summary: Update the User's first name, last name, custom fields and Stripe billing details
       operationId: put-api-v1-account
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1390,6 +1392,7 @@ paths:
                   EmailAddress:
                     type: string
                     minLength: 1
+                    readOnly: true
                   FirstName:
                     type: string
                     minLength: 1
@@ -1467,7 +1470,6 @@ paths:
                 $ref: '#/components/examples/AccountPatchCustomFieldsExample'
               Update Stripe billing details:
                 $ref: '#/components/examples/AccountPatchBillingDetailsExample'
-        description: When a custom field is passed to the API without an Id it will be created.  
   /api/v1/account/transactions:
     get:
       operationId: get-api-v1-account-transactions
@@ -2067,19 +2069,25 @@ components:
         properties:
           Id:
             type: string
-            minLength: 1
-          Name:
-            type: string
-            minLength: 1
+            format: uuid
+            description: A unique identifier of custom field
           Label:
             type: string
             minLength: 1
+            description: Language depends custom field label
+          Required:
+            type: boolean
+            default: false
+            readOnly: true
+            description: A required custom field
           Value:
             type: string
             minLength: 1
+            description: Represends a user free text or unique identifier of selected custom field option
         required:
-          - Name
+          - Id
           - Label
+          - Required
           - Value
     AccountCustomFieldsModelUpdate:
       type: array
@@ -2091,19 +2099,25 @@ components:
         properties:
           Id:
             type: string
-            minLength: 1
-          Name:
-            type: string
-            minLength: 1
+            format: uuid
+            description: A unique identifier of custom field
           Label:
             type: string
             minLength: 1
+            description: Language depends custom field label
+          Required:
+            type: boolean
+            default: false
+            readOnly: true
+            description: A required custom field
           Value:
             type: string
             minLength: 1
+            description: Represends a user free text or unique identifier of selected custom field option
         required:
-          - Name
+          - Id
           - Label
+          - Required
           - Value      
     AccountBillingDetailsModelGet:
       description: 'User billing addreess and card details'
@@ -2112,59 +2126,94 @@ components:
       properties:
         AddressCountry:
           type: string
+          description: A user billing profile country code
         AddressCity:
           type: string
+          description: A user billing profile city
         AddressLine1:
           type: string
+          description: A user billing address line 1
         AddressLine2:
           type: string
+          description: A user billing address line 2
         AddressState:
           type: string
+          description: A user billing address region or state
         AddressZip:
           type: string
+          description: A user billing address zip code
         CardDetails:
           type: object
           properties:
             Provider:
               type: string
+              readOnly: true
+              description: A user billing provider - Stripe or Paypal
             Reference:
               type: string
+              readOnly: true
+              description: A card reference for Stripe or email address for Paypal users
             Country:
               type: string
+              readOnly: true
+              description: A user card country code
             Expires:
               type: string
               format: date-time
+              readOnly: true
+              description: A user card expires datetimestamp
+              nullable: true
     AccountBillingDetailsModelUpdate:
-      description: 'Authenticated user Stripe address and card details'
+      description: Authenticated user's Stripe provider address and card details
       type: object
       properties:
         AddressCountry:
           type: string
+          description: A user billing profile country code
+          nullable: true
         AddressCity:
           type: string
+          description: A user billing profile city
+          nullable: true
         AddressLine1:
           type: string
+          description: A user billing address line 1
+          nullable: true
         AddressLine2:
           type: string
+          description: A user billing address line 2
+          nullable: true
         AddressState:
           type: string
+          description: A user billing address region or state
+          nullable: true
         AddressZip:
           type: string
+          description: A user billing address zip code
+          nullable: true
         CardDetails:
           type: object
           properties:
             Number:
               type: string
               pattern: '^\d{8,20}$'
+              writeOnly: true
+              description: A user card number, required format from eight to twenty digits
             ExpMonth:
               type: string
               format: date-month
+              writeOnly: true
+              description: A user card number expire month from 01 to 12, required format two digits
             ExpYear:
               type: string
               format: date-fullyear
+              writeOnly: true
+              description: A user card number feature year, required format four digits
             ThreeDSecure:
               type: string
               pattern: '^\d{3,4}$'
+              writeOnly: true
+              description: A user card number cvv, required format three or four digits
           required:
             - Number
             - ExpMonth
@@ -2181,12 +2230,15 @@ components:
           SubscriptionName:
             type: string
             minLength: 1
+            readOnly: true
           Description:
             type: string
             minLength: 1
+            readOnly: true
           CancelUrl:
             type: string
             minLength: 1
+            readOnly: true
         required: 
           - SubscriptionName
           - Description                            
