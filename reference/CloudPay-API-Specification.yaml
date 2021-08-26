@@ -1312,9 +1312,11 @@ paths:
                       type: string
                       minLength: 1
                     CustomFields:
-                      $ref: '#/components/schemas/CustomFieldsModelGet'
+                      $ref: '#/components/schemas/AccountCustomFieldsModelGet'
                     BillingDetails:
-                      $ref: '#/components/schemas/BillingDetailsModelGet'
+                      $ref: '#/components/schemas/AccountBillingDetailsModelGet'
+                    Subscriptions:
+                      $ref: '#/components/schemas/AccountSubscriptionsModelGet'
                   required:
                     - EmailAddress
                     - FirstName
@@ -1367,7 +1369,7 @@ paths:
           content:
             application/json:
               schema:
-                description: 'Customer account put response'
+                description: 'User account put response'
                 type: object
                 x-examples:
                   example-1:
@@ -1383,9 +1385,9 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
-                    $ref: '#/components/schemas/CustomFieldsModelGet' 
+                    $ref: '#/components/schemas/AccountCustomFieldsModelGet' 
                   BillingDetails:
-                    $ref: '#/components/schemas/BillingDetailsModelGet'
+                    $ref: '#/components/schemas/AccountBillingDetailsModelGet'
                 required:
                   - EmailAddress
                   - FirstName
@@ -1428,7 +1430,7 @@ paths:
         content:
           application/json:
             schema:
-              description: 'Customer put request'
+              description: 'User put request'
               type: object
               x-examples:
                 example-1:
@@ -1441,9 +1443,9 @@ paths:
                   type: string
                   minLength: 1
                 CustomFields:
-                   $ref: '#/components/schemas/CustomFieldsModelUpdate' 
+                   $ref: '#/components/schemas/AccountCustomFieldsModelUpdate' 
                 BillingDetails:
-                   $ref: '#/components/schemas/BillingDetailsModelUpdate'    
+                   $ref: '#/components/schemas/AccountBillingDetailsModelUpdate'    
               required:
                 - FirstName
                 - LastName
@@ -1454,7 +1456,7 @@ paths:
   /api/v1/account/transactions:
     get:
       operationId: get-api-v1-account-transactions
-      summary: Retrieve the authenticated customer's transactions
+      summary: Retrieve the authenticated user's transactions
       tags:
         - Account
       parameters:
@@ -1489,7 +1491,7 @@ paths:
           content:
             application/json:
               schema:
-                description: 'Customer successful transactions listed in pages and ordered by creation timestamp'
+                description: 'An User successful transactions listed in pages and ordered by creation timestamp'
                 type: object
                 properties:
                   page: 
@@ -1614,7 +1616,7 @@ paths:
       description: |
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
-        The account endpoint returns transactions of the authenticated customer.
+        The account endpoint returns transactions of the authenticated user.
 
         **Note** *Only one of the four authorisation parameters are required*
   /iap/verify:
@@ -2040,7 +2042,7 @@ components:
             message:
               type: string
               minLength: 1
-    CustomFieldsModelGet:
+    AccountCustomFieldsModelGet:
       type: array
       uniqueItems: true
       minItems: 0
@@ -2064,7 +2066,7 @@ components:
           - Name
           - Label
           - Value
-    CustomFieldsModelUpdate:
+    AccountCustomFieldsModelUpdate:
       type: array
       uniqueItems: true
       minItems: 0
@@ -2088,8 +2090,8 @@ components:
           - Name
           - Label
           - Value      
-    BillingDetailsModelGet:
-      description: 'Customer billing profile'
+    AccountBillingDetailsModelGet:
+      description: 'User billing addreess and card details'
       type: object
       nullable: true
       properties:
@@ -2117,8 +2119,8 @@ components:
             Expires:
               type: string
               format: date-time
-    BillingDetailsModelUpdate:
-      description: 'Customer Stripe billing profile'
+    AccountBillingDetailsModelUpdate:
+      description: 'Authenticated user Stripe address and card details'
       type: object
       properties:
         AddressCountry:
@@ -2152,7 +2154,27 @@ components:
             - Number
             - ExpMonth
             - ExpYear
-            - ThreeDSecure                     
+            - ThreeDSecure
+    AccountSubscriptionsModelGet:
+      description: 'List of active subscriptions for an authenticated user'
+      type: array
+      uniqueItems: true
+      minItems: 0
+      items:
+        type: object
+        properties:
+          SubscriptionName:
+            type: string
+            minLength: 1
+          Description:
+            type: string
+            minLength: 1
+          CancelUrl:
+            type: string
+            minLength: 1
+        required: 
+          - SubscriptionName
+          - Description                            
   examples:
     AccountResponseGetFullExample:
       value:
@@ -2180,6 +2202,13 @@ components:
             Reference: visa XXXX-XXXX-XXXX-4242
             Country: GB
             Expires: '2024-07-21T17:32:28Z'
+        Subscriptions:
+          - SubscriptionName: 'Day pass'
+            Description: 'Renewal of £2.00 due on 12 Jun 2021'
+            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+          - SubscriptionName: 'Monthly subscription'
+            Description: 'Renewal of £5.00 due on 2 Mar 2021'
+            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'      
     AccountResponseGetExample:
       value:
         EmailAddress: customer@email.com
