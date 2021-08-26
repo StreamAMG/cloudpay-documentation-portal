@@ -1224,6 +1224,7 @@ paths:
       operationId: stream-payments-v-script
   /api/v1/account/cancellation:
     post:
+      operationId: post-api-v1-account-cancellation
       summary: Cancel Subscription
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1237,11 +1238,22 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Error Response
-      operationId: post-api-v1-account-cancellation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
       description: |-
         ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
