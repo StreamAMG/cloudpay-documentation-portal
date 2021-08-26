@@ -1451,6 +1451,172 @@ paths:
               Update Request:
                   $ref: '#/components/examples/AccountRequestPutExample'
         description: When a custom field is passed to the API without an Id it will be created.  
+  /api/v1/account/transactions:
+    get:
+      operationId: get-api-v1-account-transactions
+      summary: Retrieve the authenticated customer's transactions
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: The current page
+        - in: query
+          name: size
+          schema:
+            type: integer
+            minimum: 1
+            default: 100
+          description: The number of transactions per page
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+          description: A sort order by created date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 'Customer successful transactions listed in pages and ordered by creation timestamp'
+                type: object
+                properties:
+                  page: 
+                    type: integer
+                    minimum: 1
+                    default: 1
+                    description: The current page
+                  size:
+                    type: integer
+                    minimum: 1
+                    maximum: 100
+                    default: 100
+                    description: The number of transactions per page
+                  sort:
+                    type: string
+                    enum: [asc, desc]
+                    default: desc
+                    description: A sort order by created date
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        CreatedAt:
+                          type: string
+                          format: date-time
+                          description: A transaction created date.
+                        Description:
+                          type: string
+                          minLength: 1
+                          description: A subscription plan name.
+                        Provider:
+                          type: string
+                          minLength: 1
+                          description: A payment provider lile Stripe or PayPal.
+                        Reference:
+                          type: string
+                          minLength: 1
+                          description: A payment provider reference.
+                        CurrencyCode:
+                          type: string
+                          pattern: '^[A-Z]{3}$'
+                          description: A three letter currency code.
+                        Amount:
+                          type: number
+                          format: double
+                          description: A transaction amount. A positive for a payment and negative for a refund.
+                      required: 
+                        - CreatedAt
+                        - Description
+                        - Provider
+                        - Reference
+                        - CurrencyCode
+                        - Amount
+                    maxItems: 100    
+                x-examples:
+                  example-1:
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions:
+                      - CreatedAt: '2020-03-24T17:32:28Z'
+                        Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
+                        Provider: PayPal
+                        Reference: customer@gmail.com
+                        CurrencyCode: EUR
+                        Amount: -0.99
+                      - CreatedAt: '2020-03-17T17:32:28Z'
+                        Description: SCA Daily Pass 17 Mar 2020 to 18 Mar 2020
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        CurrencyCode: GBP
+                        Amount: 1.99 
+                  example-2:
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions: []
+              examples:
+                Successful Query Response:
+                  value:
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions:
+                      - CreatedAt: '2020-03-24T17:32:28Z'
+                        Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
+                        Provider: PayPal
+                        Reference: customer@gmail.com
+                        CurrencyCode: EUR
+                        Amount: -0.99
+                      - CreatedAt: '2020-03-17T17:32:28Z'
+                        Description: SCA Daily Pass 17 Mar 2020 to 18 Mar 2020
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        CurrencyCode: GBP
+                        Amount: 1.99
+                Empty Query Response:
+                  value:
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions: []
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: |
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
+        The account endpoint returns transactions of the authenticated customer.
+
+        **Note** *Only one of the four authorisation parameters are required*
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
