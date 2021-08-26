@@ -1299,102 +1299,7 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    EmailAddress: customer@email.com
-                    FirstName: Lorem
-                    LastName: Ipsum
-                    CustomFields:
-                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
-                        Name: Date of Birth
-                        Label: Date of Birth
-                        Value: '1988-08-19'
-                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9'
-                        Name: Favourite Football Team
-                        Label: Favourite Football Team
-                        Value: Hull City
-                    BillingDetails:
-                      AddressCountry: GB
-                      AddressCity: London
-                      AddressLine1: 61 Queen Street
-                      AddressLine2: ap.1
-                      AddressState: London
-                      AddressZip: EC4R 1AE
-                      CardDetails:
-                        Provider: StripeCard
-                        Reference: visa XXXX-XXXX-XXXX-4242
-                        Expires: '2024-07-21T17:32:28Z'
-                        Country: GB
-                properties:
-                  EmailAddress:
-                    type: string
-                    minLength: 1
-                  FirstName:
-                    type: string
-                    minLength: 1
-                  LastName:
-                    type: string
-                    minLength: 1
-                  CustomFields:
-                    type: array
-                    uniqueItems: true
-                    minItems: 0
-                    items:
-                      type: object
-                      additionalProperties: false
-                      properties:
-                        Id:
-                          type: string
-                          minLength: 1
-                        Name:
-                          type: string
-                          minLength: 1
-                        Label:
-                          type: string
-                          minLength: 1
-                        Value:
-                          type: string
-                          minLength: 1
-                      required:
-                        - Id
-                        - Name
-                        - Label
-                        - Value
-                  BillingDetails:
-                    type: object
-                    properties:
-                      AddressCountry:
-                        type: string
-                      AddressCity:
-                        type: string
-                      AddressLine1:
-                        type: string
-                      AddressLine2:
-                        type: string
-                      AddressState:
-                        type: string
-                      AddressZip:
-                        type: string
-                      CardDetails:
-                        type: object
-                        properties:
-                          Provider:
-                            type: string
-                          Reference:
-                            type: string
-                          Country:
-                            type: string
-                          Expires:
-                            type: string
-                            format: date-time
-                required:
-                  - EmailAddress
-                  - FirstName
-                  - LastName
-                  - CustomFields
-                  - BillingDetails
+                $ref: '#/components/schemas/Account'
               examples:
                 Successful Query Response:
                   value:
@@ -2193,6 +2098,103 @@ components:
             message:
               type: string
               minLength: 1
+    Account:
+      type: object
+      description: ''
+      x-examples:
+        example-1:
+          EmailAddress: customer@email.com
+          FirstName: Lorem
+          LastName: Ipsum
+          CustomFields:
+            - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+              Name: Date of Birth
+              Label: Date of Birth
+              Value: '1988-08-19'
+            - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9'
+              Name: Favourite Football Team
+              Label: Favourite Football Team
+              Value: Hull City
+          BillingDetails:
+            AddressCountry: GB
+            AddressCity: London
+            AddressLine1: 61 Queen Street
+            AddressLine2: ap.1
+            AddressState: London
+            AddressZip: EC4R 1AE
+            CardDetails:
+              Provider: StripeCard
+              Reference: visa XXXX-XXXX-XXXX-4242
+              Expires: '2024-07-21T17:32:28Z'
+              Country: GB
+      properties:
+        EmailAddress:
+          type: string
+          minLength: 1
+        FirstName:
+          type: string
+          minLength: 1
+        LastName:
+          type: string
+          minLength: 1
+        CustomFields:
+          type: array
+          uniqueItems: true
+          minItems: 0
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              Id:
+                type: string
+                minLength: 1
+              Name:
+                type: string
+                minLength: 1
+              Label:
+                type: string
+                minLength: 1
+              Value:
+                type: string
+                minLength: 1
+            required:
+              - Id
+              - Name
+              - Label
+              - Value
+        BillingDetails:
+          type: object
+          properties:
+            AddressCountry:
+              type: string
+            AddressCity:
+              type: string
+            AddressLine1:
+              type: string
+            AddressLine2:
+              type: string
+            AddressState:
+              type: string
+            AddressZip:
+              type: string
+            CardDetails:
+              type: object
+              properties:
+                Provider:
+                  type: string
+                Reference:
+                  type: string
+                Country:
+                  type: string
+                Expires:
+                  type: string
+                  format: date-time
+      required:
+        - EmailAddress
+        - FirstName
+        - LastName
+        - CustomFields
+        - BillingDetails          
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
