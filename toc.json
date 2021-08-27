@@ -26,6 +26,11 @@
     },
     {
       "type": "item",
+      "title": "IAP Integration",
+      "uri": "docs/Guides/IAP-Integration.md"
+    },
+    {
+      "type": "item",
       "title": "API Reference",
       "uri": "reference/CloudPay-API-Specification.yaml"
     }
