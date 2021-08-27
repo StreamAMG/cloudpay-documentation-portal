@@ -1224,6 +1224,7 @@ paths:
       operationId: stream-payments-v-script
   /api/v1/account/cancellation:
     post:
+      operationId: post-api-v1-account-cancellation
       summary: Cancel Subscription
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1237,13 +1238,24 @@ paths:
           description: Accepted
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Error Response
-      operationId: post-api-v1-account-cancellation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
       description: |-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
 
@@ -1285,10 +1297,11 @@ paths:
   /api/v1/account:
     get:
       operationId: get-api-v1-account
-      summary: Retrieve the Authenticated User's Summary
+      summary: Retrieve the User's Summary
       tags:
         - Account
       parameters:
+        - $ref: '#/components/parameters/languageParam'
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
@@ -1299,12 +1312,89 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
+                  type: object
+                  description: 'Customer account details'    
+                  properties:
+                    EmailAddress:
+                      type: string
+                      minLength: 1
+                      readOnly: true
+                    FirstName:
+                      type: string
+                      minLength: 1
+                    LastName:
+                      type: string
+                      minLength: 1
+                    CustomFields:
+                      $ref: '#/components/schemas/AccountCustomFieldsModelGet'
+                    BillingDetails:
+                      $ref: '#/components/schemas/AccountBillingDetailsModelGet'
+                    Subscriptions:
+                      $ref: '#/components/schemas/AccountSubscriptionsModelGet'
+                  required:
+                    - EmailAddress
+                    - FirstName
+                    - LastName
+              examples:
+                Response with all user details:
+                  $ref: '#/components/examples/AccountResponseGetFullExample'
+                Response with custom fields but without billing profile:
+                  $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
+                Response only with card details:  
+                  $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
+                Response with basic details:
+                  $ref: '#/components/examples/AccountResponseGetBasicExample'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: |
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
+
+        The Account Endpoint returns an account summary of the Authenticated User.
+
+        **Note** *Only one of the four authorisation parameters are required*
+    parameters: []
+    patch:
+      summary: Update the User's first name, last name, custom fields and Stripe billing details
+      operationId: put-api-v1-account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+      tags:
+        - Account
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                description: 'User account put response'
                 type: object
+                x-examples:
+                  example-1:
+                     $ref: '#/components/examples/AccountResponseGetFullExample'
                 properties:
                   EmailAddress:
                     type: string
                     minLength: 1
+                    readOnly: true
                   FirstName:
                     type: string
                     minLength: 1
@@ -1312,75 +1402,244 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - Id
-                        - Name
-                        - Label
-                        - Value
-                      properties:
-                        Id:
-                          type: string
-                          minLength: 1
-                        Name:
-                          type: string
-                          minLength: 1
-                        Label:
-                          type: string
-                          minLength: 1
-                        Value:
-                          type: string
-                          minLength: 1
+                    $ref: '#/components/schemas/AccountCustomFieldsModelGet' 
+                  BillingDetails:
+                    $ref: '#/components/schemas/AccountBillingDetailsModelGet'
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
-                  - CustomFields
+              examples:
+                Response with all user details:
+                  $ref: '#/components/examples/AccountResponseGetFullExample'
+                Response with custom fields but without billing profile:
+                  $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
+                Response only with card details:  
+                  $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
+                Response with basic details:
+                  $ref: '#/components/examples/AccountResponseGetBasicExample'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: |-
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+
+        The update Account endpoint allows a user to update their user details.
+
+        Please be aware that the users email can not be updated via the API.
+
+
+        **Note** *Only one of the four authorisation parameters are required*
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: 'User put request'
+              type: object
+              x-examples:
+                example-1:
+                  $ref: '#/components/examples/AccountPatchFirstNameExample'
+              properties:
+                FirstName:
+                  type: string
+                  minLength: 1
+                LastName:
+                  type: string
+                  minLength: 1
+                CustomFields:
+                   $ref: '#/components/schemas/AccountCustomFieldsModelUpdate' 
+                BillingDetails:
+                   $ref: '#/components/schemas/AccountBillingDetailsModelUpdate'
+            examples:
+              Update User First Name:
+                $ref: '#/components/examples/AccountPatchFirstNameExample'
+              Update User Last Name:
+                $ref: '#/components/examples/AccountPatchLastNameExample'
+              Update Custom fields:
+                $ref: '#/components/examples/AccountPatchCustomFieldsExample'
+              Update Stripe billing details:
+                $ref: '#/components/examples/AccountPatchBillingDetailsExample'
+  /api/v1/account/transactions:
+    get:
+      operationId: get-api-v1-account-transactions
+      summary: Retrieve the authenticated user's transactions
+      tags:
+        - Account
+      parameters:
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: '#/components/parameters/authCookie'
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: The current page
+        - in: query
+          name: size
+          schema:
+            type: integer
+            minimum: 1
+            default: 100
+          description: The number of transactions per page
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+          description: A sort order by created date
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: 'An User successful transactions listed in pages and ordered by creation timestamp'
+                type: object
+                properties:
+                  page: 
+                    type: integer
+                    minimum: 1
+                    default: 1
+                    description: The current page
+                  size:
+                    type: integer
+                    minimum: 1
+                    maximum: 100
+                    default: 100
+                    description: The number of transactions per page
+                  sort:
+                    type: string
+                    enum: [asc, desc]
+                    default: desc
+                    description: A sort order by created date
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        CreatedAt:
+                          type: string
+                          format: date-time
+                          description: A transaction created date.
+                        Description:
+                          type: string
+                          minLength: 1
+                          description: A subscription plan name.
+                        Provider:
+                          type: string
+                          minLength: 1
+                          description: A payment provider lile Stripe or PayPal.
+                        Reference:
+                          type: string
+                          minLength: 1
+                          description: A payment provider reference.
+                        CurrencyCode:
+                          type: string
+                          pattern: '^[A-Z]{3}$'
+                          description: A three letter currency code.
+                        Amount:
+                          type: number
+                          format: double
+                          description: A transaction amount. A positive for a payment and negative for a refund.
+                      required: 
+                        - CreatedAt
+                        - Description
+                        - Provider
+                        - Reference
+                        - CurrencyCode
+                        - Amount
+                    maxItems: 100    
                 x-examples:
                   example-1:
-                    EmailAddress: customer@email.com
-                    FirstName: Lorem
-                    LastName: Ipsum
-                    CustomFields:
-                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
-                        Name: Date of Birth
-                        Label: Date of Birth
-                        Value: '1988-08-19'
-                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
-                        Name: Favourite Football Team
-                        Label: Favourite Football Team
-                        Value: Hull City
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions:
+                      - CreatedAt: '2020-03-24T17:32:28Z'
+                        Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
+                        Provider: PayPal
+                        Reference: customer@gmail.com
+                        CurrencyCode: EUR
+                        Amount: -0.99
+                      - CreatedAt: '2020-03-17T17:32:28Z'
+                        Description: SCA Daily Pass 17 Mar 2020 to 18 Mar 2020
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        CurrencyCode: GBP
+                        Amount: 1.99 
+                  example-2:
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions: []
               examples:
                 Successful Query Response:
                   value:
-                    EmailAddress: customer@email.com
-                    FirstName: Lorem
-                    LastName: Ipsum
-                    CustomFields:
-                      - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
-                        Name: Date of Birth
-                        Label: Date of Birth
-                        Value: '1988-08-19'
-                      - Id: '3a3e6d19-44c8-4882-8899-fa923f1214e9 '
-                        Name: Favourite Football Team
-                        Label: Favourite Football Team
-                        Value: Hull City
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions:
+                      - CreatedAt: '2020-03-24T17:32:28Z'
+                        Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
+                        Provider: PayPal
+                        Reference: customer@gmail.com
+                        CurrencyCode: EUR
+                        Amount: -0.99
+                      - CreatedAt: '2020-03-17T17:32:28Z'
+                        Description: SCA Daily Pass 17 Mar 2020 to 18 Mar 2020
+                        Provider: StripeCard
+                        Reference: visa XXXX-XXXX-XXXX-4242
+                        CurrencyCode: GBP
+                        Amount: 1.99
+                Empty Query Response:
+                  value:
+                    page: 1
+                    size: 100
+                    order: desc
+                    transactions: []
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Error Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       description: |
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
-        The Account Endpoint returns an account summary of the Authenticated User.
+        The account endpoint returns transactions of the authenticated user.
 
         **Note** *Only one of the four authorisation parameters are required*
-    parameters: []
   /iap/verify:
     post:
       summary: Verify In-App-Purchase
@@ -1790,6 +2049,296 @@ components:
           value: 'emailaddress: foo@bar.com, password: somePass'
       title: String Login Request
       description: Login using a string based request
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: number
+        body:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            message:
+              type: string
+              minLength: 1
+    AccountCustomFieldsModelGet:
+      type: array
+      uniqueItems: true
+      minItems: 0
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          Id:
+            type: string
+            format: uuid
+            description: A unique identifier of custom field
+          Label:
+            type: string
+            minLength: 1
+            description: Language depends custom field label
+          Required:
+            type: boolean
+            default: false
+            readOnly: true
+            description: A required custom field
+          Value:
+            type: string
+            nullable: true
+            description: Represends a user free text or unique identifier of selected custom field option
+        required:
+          - Id
+          - Label
+          - Required
+    AccountCustomFieldsModelUpdate:
+      type: array
+      uniqueItems: true
+      minItems: 0
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          Id:
+            type: string
+            format: uuid
+            description: A unique identifier of custom field
+          Label:
+            type: string
+            minLength: 1
+            description: Language depends custom field label
+          Required:
+            type: boolean
+            default: false
+            readOnly: true
+            description: A required custom field
+          Value:
+            type: string
+            nullable: true
+            description: Represends a user free text or unique identifier of selected custom field option
+        required:
+          - Id
+          - Label
+          - Required
+    AccountBillingDetailsModelGet:
+      description: 'User billing addreess and card details'
+      type: object
+      nullable: true
+      properties:
+        AddressCountry:
+          type: string
+          description: A user billing profile country code
+        AddressCity:
+          type: string
+          description: A user billing profile city
+        AddressLine1:
+          type: string
+          description: A user billing address line 1
+        AddressLine2:
+          type: string
+          description: A user billing address line 2
+        AddressState:
+          type: string
+          description: A user billing address region or state
+        AddressZip:
+          type: string
+          description: A user billing address zip code
+        CardDetails:
+          type: object
+          properties:
+            Provider:
+              type: string
+              readOnly: true
+              description: A user billing provider - Stripe or Paypal
+            Reference:
+              type: string
+              readOnly: true
+              description: A card reference for Stripe or email address for Paypal users
+            Country:
+              type: string
+              readOnly: true
+              description: A user card country code
+            Expires:
+              type: string
+              format: date-time
+              readOnly: true
+              description: A user card expires datetimestamp
+              nullable: true
+    AccountBillingDetailsModelUpdate:
+      description: Authenticated user's Stripe provider address and card details
+      type: object
+      properties:
+        AddressCountry:
+          type: string
+          description: A user billing profile country code
+          nullable: true
+        AddressCity:
+          type: string
+          description: A user billing profile city
+          nullable: true
+        AddressLine1:
+          type: string
+          description: A user billing address line 1
+          nullable: true
+        AddressLine2:
+          type: string
+          description: A user billing address line 2
+          nullable: true
+        AddressState:
+          type: string
+          description: A user billing address region or state
+          nullable: true
+        AddressZip:
+          type: string
+          description: A user billing address zip code
+          nullable: true
+        CardDetails:
+          type: object
+          properties:
+            Number:
+              type: string
+              pattern: '^\d{8,20}$'
+              writeOnly: true
+              description: A user card number, required format from eight to twenty digits
+            ExpMonth:
+              type: string
+              format: date-month
+              writeOnly: true
+              description: A user card number expire month from 01 to 12, required format two digits
+            ExpYear:
+              type: string
+              format: date-fullyear
+              writeOnly: true
+              description: A user card number feature year, required format four digits
+            ThreeDSecure:
+              type: string
+              pattern: '^\d{3,4}$'
+              writeOnly: true
+              description: A user card number cvv, required format three or four digits
+          required:
+            - Number
+            - ExpMonth
+            - ExpYear
+            - ThreeDSecure
+    AccountSubscriptionsModelGet:
+      description: 'List of active subscriptions for an authenticated user'
+      type: array
+      uniqueItems: true
+      minItems: 0
+      items:
+        type: object
+        properties:
+          SubscriptionName:
+            type: string
+            minLength: 1
+            readOnly: true
+          Description:
+            type: string
+            minLength: 1
+            readOnly: true
+          CancelUrl:
+            type: string
+            minLength: 1
+            readOnly: true
+        required: 
+          - SubscriptionName
+          - Description                            
+  examples:
+    AccountResponseGetFullExample:
+      value:
+        EmailAddress: customer@email.com
+        FirstName: Lorem
+        LastName: Ipsum
+        CustomFields:
+          - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+            Label: Date of Birth
+            Required: true
+            Value: '1988-08-19'
+          - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
+            Label: Favourite Football Team
+            Required: false
+            Value: null
+        BillingDetails:    
+          AddressCountry: GB
+          AddressCity: Manchester
+          AddressLine1: Tomorrow Building
+          AddressLine2: MediaCityUK
+          AddressState: Salford
+          AddressZip: M50 2AB
+          CardDetails:
+            Provider: StripeCard
+            Reference: visa XXXX-XXXX-XXXX-4242
+            Country: GB
+            Expires: '2024-07-21T17:32:28Z'
+        Subscriptions:
+          - SubscriptionName: 'Day pass'
+            Description: 'Renewal of £2.00 due on 12 Jun 2021'
+            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+          - SubscriptionName: 'Monthly subscription'
+            Description: 'Renewal of £5.00 due on 2 Mar 2021'
+            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'      
+    AccountResponseGetBasicExample:
+      value:
+        EmailAddress: customer@email.com
+        FirstName: Lorem
+        LastName: Ipsum
+    AccountResponseGetCustomFieldsExample:
+      value:
+        EmailAddress: customer@email.com
+        FirstName: Lorem
+        LastName: Ipsum
+        CustomFields:
+          - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+            Label: Date of Birth
+            Required: true
+            Value: '1988-08-19'
+          - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
+            Label: Favourite Football Team
+            Required: false
+            Value: null
+    AccountResponseGetCardDetailsExample:
+      value:
+        EmailAddress: customer@email.com
+        FirstName: Lorem
+        LastName: Ipsum
+        BillingDetails:
+          CardDetails:
+            Provider: 'StripeCard'
+            Reference: 'visa XXXX-XXXX-XXXX-4242'
+            Country: 'GB'
+            Expires: '2024-07-21T17:32:28Z'
+    AccountPatchFirstNameExample:
+      value:
+        FirstName: Lorem
+    AccountPatchLastNameExample:
+      value:
+        LastName: Ipsum
+    AccountPatchCustomFieldsExample:
+      value:
+        CustomFields:
+          - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+            Label: Date of Birth
+            Required: true
+            Value: '1988-08-19'
+          - Id: 3b31e950-c540-4d39-ba76-5e6ef59df772
+            Label: Favourite Rugby Team
+            Required: false
+            Value: null
+    AccountPatchBillingDetailsExample:
+      value:
+        BillingDetails:
+            AddressCountry: GB
+            AddressCity: London
+            AddressLine1: 61 Queen Street
+            AddressLine2: ap.1
+            AddressState: London
+            AddressZip: EC4R 1AE
+            CardDetails:
+              Number: '4242424242424424'
+              ExpMonth: '06'
+              ExpYear: '2022'
+              ThreeDSecure: '123'
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
