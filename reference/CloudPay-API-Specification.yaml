@@ -1336,12 +1336,14 @@ paths:
                     - FirstName
                     - LastName
               examples:
-                Successful Response:
+                Response with all user details:
                   $ref: '#/components/examples/AccountResponseGetFullExample'
-                Successful Response 2:  
-                  $ref: '#/components/examples/AccountResponseGetBillingExample'
-                Successful Response 3:  
-                  $ref: '#/components/examples/AccountResponseGetExample'
+                Response with custom fields but without billing profile:
+                  $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
+                Response only with card details:  
+                  $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
+                Response with basic details:
+                  $ref: '#/components/examples/AccountResponseGetBasicExample'
         '400':
           description: Bad Request
           content:
@@ -1408,12 +1410,14 @@ paths:
                   - FirstName
                   - LastName
               examples:
-                Successful Response:
+                Response with all user details:
                   $ref: '#/components/examples/AccountResponseGetFullExample'
-                Successful Response 2:  
-                  $ref: '#/components/examples/AccountResponseGetBillingExample'
-                Successful Response 3:  
-                  $ref: '#/components/examples/AccountResponseGetExample'
+                Response with custom fields but without billing profile:
+                  $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
+                Response only with card details:  
+                  $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
+                Response with basic details:
+                  $ref: '#/components/examples/AccountResponseGetBasicExample'
         '400':
           description: Bad Request
           content:
@@ -2082,13 +2086,12 @@ components:
             description: A required custom field
           Value:
             type: string
-            minLength: 1
+            nullable: true
             description: Represends a user free text or unique identifier of selected custom field option
         required:
           - Id
           - Label
           - Required
-          - Value
     AccountCustomFieldsModelUpdate:
       type: array
       uniqueItems: true
@@ -2112,13 +2115,12 @@ components:
             description: A required custom field
           Value:
             type: string
-            minLength: 1
+            nullable: true
             description: Represends a user free text or unique identifier of selected custom field option
         required:
           - Id
           - Label
           - Required
-          - Value      
     AccountBillingDetailsModelGet:
       description: 'User billing addreess and card details'
       type: object
@@ -2250,13 +2252,13 @@ components:
         LastName: Ipsum
         CustomFields:
           - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
-            Name: Date of Birth
             Label: Date of Birth
+            Required: true
             Value: '1988-08-19'
           - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
-            Name: Favourite Football Team
             Label: Favourite Football Team
-            Value: Hull City
+            Required: false
+            Value: null
         BillingDetails:    
           AddressCountry: GB
           AddressCity: Manchester
@@ -2276,12 +2278,26 @@ components:
           - SubscriptionName: 'Monthly subscription'
             Description: 'Renewal of £5.00 due on 2 Mar 2021'
             CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'      
-    AccountResponseGetExample:
+    AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
         FirstName: Lorem
         LastName: Ipsum
-    AccountResponseGetBillingExample:
+    AccountResponseGetCustomFieldsExample:
+      value:
+        EmailAddress: customer@email.com
+        FirstName: Lorem
+        LastName: Ipsum
+        CustomFields:
+          - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
+            Label: Date of Birth
+            Required: true
+            Value: '1988-08-19'
+          - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
+            Label: Favourite Football Team
+            Required: false
+            Value: null
+    AccountResponseGetCardDetailsExample:
       value:
         EmailAddress: customer@email.com
         FirstName: Lorem
@@ -2302,12 +2318,13 @@ components:
       value:
         CustomFields:
           - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
-            Name: Date of Birth
             Label: Date of Birth
+            Required: true
             Value: '1988-08-19'
-          - Name: Favourite Rugby Team
+          - Id: 3b31e950-c540-4d39-ba76-5e6ef59df772
             Label: Favourite Rugby Team
-            Value: Hull FC
+            Required: false
+            Value: null
     AccountPatchBillingDetailsExample:
       value:
         BillingDetails:
