@@ -11,7 +11,7 @@ Cloud Pay supports In App Purchases from the following providers:
 
 ### Generic
 
-In order to support IAP a corresponding package must be created in Cloud Pay that matches the IAP package in terms of cost, type (recurring or non recurring) and contract length.  The product ID/s obtained from the IAP provider is used to link the Cloud Pay packages with the IA and is entered via the admin console on Cloud Pay.  This allows us to sync that various states from the providers such as Renewals, Cancellations, Refunds etc and therefore provide access to premium content.
+In order to support IAP a corresponding package must be created in Cloud Pay that matches the IAP package in terms of cost, type (recurring or non recurring) and contract length.  The product ID/s obtained from the IAP provider are used to link the Cloud Pay packages with the IA and is entered via the admin console on Cloud Pay.  This allows us to sync that various states from the providers such as Renewals, Cancellations, Refunds etc and therefore provide access to premium content.
 
 When an IAP purchase is made, the IAP integrator should verify the receipt with the Cloud Pay [verify end point](https://streamamg.stoplight.io/docs/cloudpay/reference/CloudPay-API-Specification.yaml/paths/~1iap~1verify/post).  Based on a successful response the user subscription status and entitlement in Cloud Pay is updated which are used to access premium content.
 
@@ -51,7 +51,7 @@ With Real-Time Notifications, Amazon provides real-time ***server push notificat
 #### Android
 
 ##### Receipt verification 
-Cloud Pay will verify the receipts sent from the App with the Google.
+Cloud Pay will verify the receipts sent from the App with Google.
 <br />
 ##### Notification service
 Google offers a guaranteed real-time developer notification (RTDN) service which forwards updates to Cloud Pay allowing it to react immediately to subscription state changes, avoiding the need to poll the Google Play Developer API.  RTDN leverages the use of [Google Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/overview) which is a fully managed real-time messaging service that you can use to send and receive messages between independent applications. Google Play uses Cloud Pub/Sub to publish push notifications on topics to which you subscribe.  Once setup you should add the Cloud Pay endpoint which will consume these notifications.
@@ -79,7 +79,7 @@ Using the App Store server notification service is optional but recommended, esp
 <br />
 ##### StreamAMG Requirements:
 
-* **App-Specific Shared Secret**: Shared secret is used to identify the developer issuing the request.  This is added to the Cloud Pay Admin console and can be accessed under the In-App Purchase section on the [App Store Connect](https://appstoreconnect.apple.com/).
+* **App-Specific Shared Secret**: Shared secret is used to identify the developer issuing the request.  This is added to the Cloud Pay Admin console and can be accessed via the In-App Purchase section on your [App Store Connect](https://appstoreconnect.apple.com/) account.
 
 * **Cloud Pay endpoint**: Added in the App Store Connect account.  Endpoint details will be provided as part of the setup.
 <br/>
@@ -121,7 +121,7 @@ Publishers can subscribe to Roku Pay push notifications by providing the Cloud P
 
 2. Create a ***Subscriptions*** IAP via the ***Google developer account***.  Developer details can be found [here.](https://developer.android.com/google/play/billing/getting-ready)
 
-3. Add Cloud Pay notification end point (supplied by StreamAMG) to the ***Google Cloud Pub/Sub***.
+3. Add Cloud Pay notification end point (supplied by StreamAMG) to your ***Google Cloud Pub/Sub***.
 
 4. Create Cloud Pay packages via the Admin console that match the IAP packages in terms of cost, type (renewable or non-renewable) and subscription length.
 
@@ -136,7 +136,7 @@ Publishers can subscribe to Roku Pay push notifications by providing the Cloud P
 
 1. Create ***Auto-Renewable Subscription*** IAP via the ***App Store Connect***. Developer details can be found [here](https://developer.apple.com/in-app-purchase/).
 
-2. Add Cloud Pay notification end point (supplied by StreamAMG) to the ***App Store Connect.***
+2. Add Cloud Pay notification end point (supplied by StreamAMG) to your ***App Store Connect*** account.
 
 3. Create Cloud Pay packages via the Admin console that match the IAP packages in terms of cost, type (renewable or non-renewable) and subscription length.
 
