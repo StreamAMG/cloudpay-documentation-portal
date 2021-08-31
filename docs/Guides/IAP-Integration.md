@@ -11,7 +11,7 @@ Cloud Pay supports In App Purchases from the following providers:
 
 ### Generic
 
-In order to support IAP a corresponding package must be created in Cloud Pay that matches the IAP package in terms of cost, type (recurring or non recurring) and contract length.  The product ID/s obtained from the IAP provider are used to link the Cloud Pay packages with the IA and is entered via the admin console on Cloud Pay.  This allows us to sync that various states from the providers such as Renewals, Cancellations, Refunds etc and therefore provide access to premium content.
+In order to support IAP a corresponding package must be created in Cloud Pay that matches the IAP package in terms of cost, type (recurring or non recurring) and contract length.  The product ID/s obtained from the IAP provider is used to link the Cloud Pay packages, this can be achieved by manually entering the IAP product ID within the CloudPay Admin console for the selected package.  This allows us to sync the various states from the providers such as Renewals, Cancellations, Refunds etc and therefore provide access to premium content.
 
 When an IAP purchase is made, the IAP integrator should verify the receipt with the Cloud Pay [verify end point](https://streamamg.stoplight.io/docs/cloudpay/reference/CloudPay-API-Specification.yaml/paths/~1iap~1verify/post).  Based on a successful response the user subscription status and entitlement in Cloud Pay is updated which are used to access premium content.
 
