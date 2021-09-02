@@ -1253,7 +1253,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse' 
+                $ref: '#/components/schemas/ErrorResponse'
       description: |-
         ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
@@ -1312,35 +1312,35 @@ paths:
           content:
             application/json:
               schema:
-                  type: object
-                  description: 'Customer account details'    
-                  properties:
-                    EmailAddress:
-                      type: string
-                      minLength: 1
-                      readOnly: true
-                    FirstName:
-                      type: string
-                      minLength: 1
-                    LastName:
-                      type: string
-                      minLength: 1
-                    CustomFields:
-                      $ref: '#/components/schemas/AccountCustomFieldsModelGet'
-                    BillingDetails:
-                      $ref: '#/components/schemas/AccountBillingDetailsModelGet'
-                    Subscriptions:
-                      $ref: '#/components/schemas/AccountSubscriptionsModelGet'
-                  required:
-                    - EmailAddress
-                    - FirstName
-                    - LastName
+                type: object
+                description: Customer account details
+                properties:
+                  EmailAddress:
+                    type: string
+                    minLength: 1
+                    readOnly: true
+                  FirstName:
+                    type: string
+                    minLength: 1
+                  LastName:
+                    type: string
+                    minLength: 1
+                  CustomFields:
+                    $ref: '#/components/schemas/AccountCustomFieldsModelGet'
+                  BillingDetails:
+                    $ref: '#/components/schemas/AccountBillingDetailsModelGet'
+                  Subscriptions:
+                    $ref: '#/components/schemas/AccountSubscriptionsModelGet'
+                required:
+                  - EmailAddress
+                  - FirstName
+                  - LastName
               examples:
                 Response with all user details:
                   $ref: '#/components/examples/AccountResponseGetFullExample'
                 Response with custom fields but without billing profile:
                   $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
-                Response only with card details:  
+                Response only with card details:
                   $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
                 Response with basic details:
                   $ref: '#/components/examples/AccountResponseGetBasicExample'
@@ -1370,7 +1370,7 @@ paths:
         **Note** *Only one of the four authorisation parameters are required*
     parameters: []
     patch:
-      summary: Update the User's first name, last name, custom fields and Stripe billing details
+      summary: Update the User's Summary
       operationId: put-api-v1-account
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1385,11 +1385,11 @@ paths:
           content:
             application/json:
               schema:
-                description: 'User account put response'
+                description: User account put response
                 type: object
                 x-examples:
                   example-1:
-                     $ref: '#/components/examples/AccountResponseGetFullExample'
+                    $ref: '#/components/examples/AccountResponseGetFullExample'
                 properties:
                   EmailAddress:
                     type: string
@@ -1402,7 +1402,7 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
-                    $ref: '#/components/schemas/AccountCustomFieldsModelGet' 
+                    $ref: '#/components/schemas/AccountCustomFieldsModelGet'
                   BillingDetails:
                     $ref: '#/components/schemas/AccountBillingDetailsModelGet'
                 required:
@@ -1414,7 +1414,7 @@ paths:
                   $ref: '#/components/examples/AccountResponseGetFullExample'
                 Response with custom fields but without billing profile:
                   $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
-                Response only with card details:  
+                Response only with card details:
                   $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
                 Response with basic details:
                   $ref: '#/components/examples/AccountResponseGetBasicExample'
@@ -1449,7 +1449,7 @@ paths:
         content:
           application/json:
             schema:
-              description: 'User put request'
+              description: User put request
               type: object
               x-examples:
                 example-1:
@@ -1462,9 +1462,9 @@ paths:
                   type: string
                   minLength: 1
                 CustomFields:
-                   $ref: '#/components/schemas/AccountCustomFieldsModelUpdate' 
+                  $ref: '#/components/schemas/AccountCustomFieldsModelUpdate'
                 BillingDetails:
-                   $ref: '#/components/schemas/AccountBillingDetailsModelUpdate'
+                  $ref: '#/components/schemas/AccountBillingDetailsModelUpdate'
             examples:
               Update User First Name:
                 $ref: '#/components/examples/AccountPatchFirstNameExample'
@@ -1472,12 +1472,10 @@ paths:
                 $ref: '#/components/examples/AccountPatchLastNameExample'
               Update Custom fields:
                 $ref: '#/components/examples/AccountPatchCustomFieldsExample'
-              Update Stripe billing details:
-                $ref: '#/components/examples/AccountPatchBillingDetailsExample'
   /api/v1/account/transactions:
     get:
       operationId: get-api-v1-account-transactions
-      summary: Retrieve the authenticated user's transactions
+      summary: Retrieve the User's transactions
       tags:
         - Account
       parameters:
@@ -1503,7 +1501,9 @@ paths:
           name: order
           schema:
             type: string
-            enum: [asc, desc]
+            enum:
+              - asc
+              - desc
             default: desc
           description: A sort order by created date
       responses:
@@ -1512,10 +1512,10 @@ paths:
           content:
             application/json:
               schema:
-                description: 'An User successful transactions listed in pages and ordered by creation timestamp'
+                description: An User successful transactions listed in pages and ordered by creation timestamp
                 type: object
                 properties:
-                  page: 
+                  page:
                     type: integer
                     minimum: 1
                     default: 1
@@ -1528,7 +1528,9 @@ paths:
                     description: The number of transactions per page
                   sort:
                     type: string
-                    enum: [asc, desc]
+                    enum:
+                      - asc
+                      - desc
                     default: desc
                     description: A sort order by created date
                   transactions:
@@ -1560,14 +1562,14 @@ paths:
                           type: number
                           format: double
                           description: A transaction amount. A positive for a payment and negative for a refund.
-                      required: 
+                      required:
                         - CreatedAt
                         - Description
                         - Provider
                         - Reference
                         - CurrencyCode
                         - Amount
-                    maxItems: 100    
+                    maxItems: 100
                 x-examples:
                   example-1:
                     page: 1
@@ -1585,7 +1587,7 @@ paths:
                         Provider: StripeCard
                         Reference: visa XXXX-XXXX-XXXX-4242
                         CurrencyCode: GBP
-                        Amount: 1.99 
+                        Amount: 1.99
                   example-2:
                     page: 1
                     size: 100
@@ -2122,7 +2124,7 @@ components:
           - Label
           - Required
     AccountBillingDetailsModelGet:
-      description: 'User billing addreess and card details'
+      description: User billing addreess and card details
       type: object
       nullable: true
       properties:
@@ -2200,29 +2202,29 @@ components:
               type: string
               pattern: '^\d{8,20}$'
               writeOnly: true
-              description: A user card number, required format from eight to twenty digits
+              description: 'A user card number, required format from eight to twenty digits'
             ExpMonth:
               type: string
               format: date-month
               writeOnly: true
-              description: A user card number expire month from 01 to 12, required format two digits
+              description: 'A user card number expire month from 01 to 12, required format two digits'
             ExpYear:
               type: string
               format: date-fullyear
               writeOnly: true
-              description: A user card number feature year, required format four digits
+              description: 'A user card number feature year, required format four digits'
             ThreeDSecure:
               type: string
               pattern: '^\d{3,4}$'
               writeOnly: true
-              description: A user card number cvv, required format three or four digits
+              description: 'A user card number cvv, required format three or four digits'
           required:
             - Number
             - ExpMonth
             - ExpYear
             - ThreeDSecure
     AccountSubscriptionsModelGet:
-      description: 'List of active subscriptions for an authenticated user'
+      description: List of active subscriptions for an authenticated user
       type: array
       uniqueItems: true
       minItems: 0
@@ -2241,9 +2243,9 @@ components:
             type: string
             minLength: 1
             readOnly: true
-        required: 
+        required:
           - SubscriptionName
-          - Description                            
+          - Description
   examples:
     AccountResponseGetFullExample:
       value:
@@ -2259,7 +2261,7 @@ components:
             Label: Favourite Football Team
             Required: false
             Value: null
-        BillingDetails:    
+        BillingDetails:
           AddressCountry: GB
           AddressCity: Manchester
           AddressLine1: Tomorrow Building
@@ -2272,12 +2274,12 @@ components:
             Country: GB
             Expires: '2024-07-21T17:32:28Z'
         Subscriptions:
-          - SubscriptionName: 'Day pass'
-            Description: 'Renewal of £2.00 due on 12 Jun 2021'
+          - SubscriptionName: Day pass
+            Description: Renewal of £2.00 due on 12 Jun 2021
             CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
-          - SubscriptionName: 'Monthly subscription'
-            Description: 'Renewal of £5.00 due on 2 Mar 2021'
-            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'      
+          - SubscriptionName: Monthly subscription
+            Description: Renewal of £5.00 due on 2 Mar 2021
+            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
@@ -2304,9 +2306,9 @@ components:
         LastName: Ipsum
         BillingDetails:
           CardDetails:
-            Provider: 'StripeCard'
-            Reference: 'visa XXXX-XXXX-XXXX-4242'
-            Country: 'GB'
+            Provider: StripeCard
+            Reference: visa XXXX-XXXX-XXXX-4242
+            Country: GB
             Expires: '2024-07-21T17:32:28Z'
     AccountPatchFirstNameExample:
       value:
@@ -2328,18 +2330,17 @@ components:
     AccountPatchBillingDetailsExample:
       value:
         BillingDetails:
-            AddressCountry: GB
-            AddressCity: London
-            AddressLine1: 61 Queen Street
-            AddressLine2: ap.1
-            AddressState: London
-            AddressZip: EC4R 1AE
-            CardDetails:
-              Number: '4242424242424424'
-              ExpMonth: '06'
-              ExpYear: '2022'
-              ThreeDSecure: '123'
+          AddressCountry: GB
+          AddressCity: London
+          AddressLine1: 61 Queen Street
+          AddressLine2: ap.1
+          AddressState: London
+          AddressZip: EC4R 1AE
+          CardDetails:
+            Number: '4242424242424424'
+            ExpMonth: '06'
+            ExpYear: '2022'
+            ThreeDSecure: '123'
   securitySchemes: {}
-  
 servers:
   - url: 'https://payments.streamamg.com'
