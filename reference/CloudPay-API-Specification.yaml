@@ -2291,6 +2291,11 @@ components:
             Status: 'CANCELLED'
             Description: Renewal of £5.00 due on 2 Mar 2021
             ExpiryDate: '2024-07-21T17:32:28Z'
+          - SubscriptionName: Annual subscription
+            Status: 'ACTIVE'
+            Description: Renewal of £100.00 due on 12 Jun 2021
+            ExpiryDate: '2024-07-21T17:32:28Z'
+            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
