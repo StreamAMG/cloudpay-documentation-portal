@@ -2235,6 +2235,10 @@ components:
             type: string
             minLength: 1
             readOnly: true
+          Status:
+            type: string
+            enum: ['ACTIVE', 'CANCELLED']
+            readOnly: true
           Description:
             type: string
             minLength: 1
@@ -2243,8 +2247,13 @@ components:
             type: string
             minLength: 1
             readOnly: true
+          ExpiryDate:
+            type: string
+            format: date-time
+            readOnly: true
         required:
           - SubscriptionName
+          - Status
           - Description
   examples:
     AccountResponseGetFullExample:
@@ -2275,11 +2284,13 @@ components:
             Expires: '2024-07-21T17:32:28Z'
         Subscriptions:
           - SubscriptionName: Day pass
+            Status: 'ACTIVE'
             Description: Renewal of £2.00 due on 12 Jun 2021
             CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
           - SubscriptionName: Monthly subscription
+            Status: 'CANCELLED'
             Description: Renewal of £5.00 due on 2 Mar 2021
-            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+            ExpiryDate: '2024-07-21T17:32:28Z'
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
