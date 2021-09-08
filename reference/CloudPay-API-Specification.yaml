@@ -2255,11 +2255,22 @@ components:
             type: string
             enum: ['recurring', 'non-recurring']
             readOnly: true
+          Amount:
+            type: number
+            format: double
+            readOnly: true
+          CurrencyCode:
+            type: string
+            minLength: 3
+            maxLength: 3
+            readOnly: true
         required:
           - SubscriptionName
           - Status
           - Description
           - Type
+          - Amount
+          - CurrencyCode
   examples:
     AccountResponseGetFullExample:
       value:
@@ -2292,16 +2303,22 @@ components:
             Status: 'ACTIVE'
             Type: 'non-recurring'
             Description: Renewal of £2.00 due on 12 Jun 2021
+            Amount: 2.00
+            CurrencyCode: 'GBP'
             CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
           - SubscriptionName: Monthly subscription
             Status: 'CANCELLED'
             Type: 'recurring'
             Description: Renewal of £5.00 due on 2 Mar 2021
             ExpiryDate: '2024-07-21T17:32:28Z'
+            Amount: 5.00
+            CurrencyCode: 'GBP'
           - SubscriptionName: Annual subscription
             Status: 'ACTIVE'
             Type: 'recurring'
             Description: Renewal of £100.00 due on 12 Jun 2021
+            Amount: 100.00
+            CurrencyCode: 'GBP'
             ExpiryDate: '2024-07-21T17:32:28Z'
             CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
     AccountResponseGetBasicExample:
