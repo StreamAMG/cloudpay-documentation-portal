@@ -2242,13 +2242,9 @@ components:
             readOnly: true
           Status:
             type: string
-            enum: ['ACTIVE', 'CANCELLED']
+            enum: ['active', 'cancelled']
             readOnly: true
           Description:
-            type: string
-            minLength: 1
-            readOnly: true
-          CancelUrl:
             type: string
             minLength: 1
             readOnly: true
@@ -2284,6 +2280,7 @@ components:
           - Type
           - Amount
           - CurrencyCode
+          - IsIAP
   examples:
     AccountResponseGetFullExample:
       value:
@@ -2317,9 +2314,9 @@ components:
             Status: 'ACTIVE'
             Type: 'non-recurring'
             Description: Day pass for £2.00
+            ExpiryDate: '2022-04-02T17:32:28Z'
             Amount: 2.00
             CurrencyCode: 'GBP'
-            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
             IsIAP: true
           - Id: f97e2a42-488e-4b75-93bc-e837578aa837
             SubscriptionName: Monthly subscription
@@ -2337,7 +2334,7 @@ components:
             CurrencyCode: 'GBP'
             ExpiryDate: '2022-07-12T17:32:28Z'
             RenewalDate: '2021-07-12T17:32:28Z'
-            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+            IsIAP: false
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
