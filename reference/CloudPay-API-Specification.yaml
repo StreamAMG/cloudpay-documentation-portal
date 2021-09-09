@@ -2236,6 +2236,10 @@ components:
           type: string
           minLength: 1
           readOnly: true
+        Description:
+          type: string
+          minLength: 1
+          readOnly: true
         Type:
           type: string
           enum: ['recurring', 'non-recurring']
@@ -2267,6 +2271,7 @@ components:
       required:
         - Id
         - Title
+        - Description
         - Type
         - Amount
         - CurrencyCode
