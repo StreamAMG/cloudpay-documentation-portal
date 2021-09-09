@@ -2124,7 +2124,7 @@ components:
           - Label
           - Required
     AccountBillingDetailsModelGet:
-      description: User billing addreess and card details
+      description: User billing address and card details
       type: object
       nullable: true
       properties:
