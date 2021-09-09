@@ -2231,21 +2231,56 @@ components:
       items:
         type: object
         properties:
+          Id:
+            type: string
+            format: uuid
+            minLength: 1
+            readOnly: true
           SubscriptionName:
             type: string
             minLength: 1
+            readOnly: true
+          Status:
+            type: string
+            enum: ['active', 'cancelled']
             readOnly: true
           Description:
             type: string
             minLength: 1
             readOnly: true
-          CancelUrl:
+          ExpiryDate:
             type: string
-            minLength: 1
+            format: date-time
+            readOnly: true
+          Type:
+            type: string
+            enum: ['recurring', 'non-recurring']
+            readOnly: true
+          Amount:
+            type: number
+            format: double
+            readOnly: true
+          CurrencyCode:
+            type: string
+            minLength: 3
+            maxLength: 3
+            readOnly: true
+          RenewalDate:
+            type: string
+            format: date-time
+            readOnly: true
+          IsIAP:
+            type: boolean
             readOnly: true
         required:
+          - Id
           - SubscriptionName
+          - Status
           - Description
+          - Type
+          - Amount
+          - CurrencyCode
+          - IsIAP
   examples:
     AccountResponseGetFullExample:
       value:
@@ -2274,12 +2309,32 @@ components:
             Country: GB
             Expires: '2024-07-21T17:32:28Z'
         Subscriptions:
-          - SubscriptionName: Day pass
-            Description: Renewal of £2.00 due on 12 Jun 2021
-            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
-          - SubscriptionName: Monthly subscription
+          - Id: 57ea90b2-822c-4bc1-946f-88be4c53d9dc
+            SubscriptionName: Day pass
+            Status: 'ACTIVE'
+            Type: 'non-recurring'
+            Description: Day pass for £2.00
+            ExpiryDate: '2022-04-02T17:32:28Z'
+            Amount: 2.00
+            CurrencyCode: 'GBP'
+            IsIAP: true
+          - Id: f97e2a42-488e-4b75-93bc-e837578aa837
+            SubscriptionName: Monthly subscription
             Description: Renewal of £5.00 due on 2 Mar 2021
-            CancelUrl: 'https://staging-pdc.streamamg.com/cloud-pay?path=%2Faccount%2Fsubscription%2F99bb9e24-f60a-4a62-ad35-ba63050fbc17%2Fcancel%3Flang%3Den%26apisessionid%3DZmI5NDBhMDctMWU4OS00OTI4LWE0MmItNWVlMjkzZjA2ZTQyMjAyMTA4MjQyMTMzMDk0MzAwMTVGNUZCNzVCNDE0M0E5NzNGOTdGRkYxNzVBNTNGQTM3RkE5E6FF5302'
+            ExpiryDate: '2024-03-02T17:32:28Z'
+            Amount: 5.00
+            CurrencyCode: 'GBP'
+            IsIAP: true
+          - Id: z85e2a42-488e-4b75-93bc-e837578aa999
+            SubscriptionName: Annual subscription
+            Status: 'ACTIVE'
+            Type: 'recurring'
+            Description: Renewal of £100.00 due on 12 Jun 2021
+            Amount: 100.00
+            CurrencyCode: 'GBP'
+            ExpiryDate: '2022-07-12T17:32:28Z'
+            RenewalDate: '2021-07-12T17:32:28Z'
+            IsIAP: false
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
