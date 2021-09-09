@@ -2311,7 +2311,7 @@ components:
         Subscriptions:
           - Id: 57ea90b2-822c-4bc1-946f-88be4c53d9dc
             SubscriptionName: Day pass
-            Status: 'ACTIVE'
+            Status: 'active'
             Type: 'non-recurring'
             Description: Day pass for £2.00
             ExpiryDate: '2022-04-02T17:32:28Z'
@@ -2322,12 +2322,13 @@ components:
             SubscriptionName: Monthly subscription
             Description: Renewal of £5.00 due on 2 Mar 2021
             ExpiryDate: '2024-03-02T17:32:28Z'
+            Status: 'cancelled'
             Amount: 5.00
             CurrencyCode: 'GBP'
             IsIAP: true
           - Id: z85e2a42-488e-4b75-93bc-e837578aa999
             SubscriptionName: Annual subscription
-            Status: 'ACTIVE'
+            Status: 'active'
             Type: 'recurring'
             Description: Renewal of £100.00 due on 12 Jun 2021
             Amount: 100.00
