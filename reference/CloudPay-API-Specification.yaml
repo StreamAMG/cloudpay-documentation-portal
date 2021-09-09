@@ -2236,6 +2236,11 @@ components:
             format: uuid
             minLength: 1
             readOnly: true
+          SubscriptionId:
+            type: string
+            format: uuid
+            minLength: 1
+            readOnly: true
           SubscriptionName:
             type: string
             minLength: 1
@@ -2274,6 +2279,7 @@ components:
             readOnly: true
         required:
           - Id
+          - SubscriptionId
           - SubscriptionName
           - Status
           - Description
@@ -2310,6 +2316,7 @@ components:
             Expires: '2024-07-21T17:32:28Z'
         Subscriptions:
           - Id: 57ea90b2-822c-4bc1-946f-88be4c53d9dc
+            SubscriptionId: 734fe964-841e-48c7-802d-dd21e2d9c2de
             SubscriptionName: Day pass
             Status: 'active'
             Type: 'non-recurring'
@@ -2319,6 +2326,7 @@ components:
             CurrencyCode: 'GBP'
             IsIAP: true
           - Id: f97e2a42-488e-4b75-93bc-e837578aa837
+            SubscriptionId: e42c70f9-5dd1-458d-b236-a7c6060da17d
             SubscriptionName: Monthly subscription
             Description: Renewal of £5.00 due on 2 Mar 2021
             ExpiryDate: '2024-03-02T17:32:28Z'
@@ -2327,6 +2335,7 @@ components:
             CurrencyCode: 'GBP'
             IsIAP: true
           - Id: z85e2a42-488e-4b75-93bc-e837578aa999
+            SubscriptionId: 72ae24e4-07b7-452f-a55e-ca8307233f92
             SubscriptionName: Annual subscription
             Status: 'active'
             Type: 'recurring'
