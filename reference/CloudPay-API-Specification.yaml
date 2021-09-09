@@ -2232,6 +2232,10 @@ components:
           format: uuid
           minLength: 1
           readOnly: true
+        Name:
+          type: string
+          minLength: 1
+          readOnly: true
         Title:
           type: string
           minLength: 1
@@ -2270,6 +2274,7 @@ components:
           readOnly: true
       required:
         - Id
+        - Name
         - Title
         - Description
         - Type
@@ -2345,6 +2350,7 @@ components:
             IsIAP: true
             Package:
               Id: 734fe964-841e-48c7-802d-dd21e2d9c2de
+              Name: Day pass
               Title: Day pass
               Description: Day pass for £2.00
               Type: 'non-recurring'
@@ -2358,6 +2364,7 @@ components:
             IsIAP: true
             Package:
               Id: e42c70f9-5dd1-458d-b236-a7c6060da17d
+              Name: Monthly subscription - International
               Title: Monthly subscription
               Description: Renewal of £5.00 due on 2 Mar 2021
               Type: 'recurring'
@@ -2374,6 +2381,7 @@ components:
             IsIAP: false
             Package:
               Id: 72ae24e4-07b7-452f-a55e-ca8307233f92
+              Name: Annual subscription - Canada
               Title: Annual subscription
               Description: Renewal of £100.00 due on 12 Jun 2021
               Type: 'recurring'
