@@ -66,9 +66,9 @@ paths:
                   value:
                     ErrorMessage: Invalid Login Request
       description: |-
-        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done for SSO users by generating a SSO Session. 
+        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done for SSO users by generating a SSO Session.
 
-        Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
+        Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**.
 
         **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
       operationId: generate-sso-session
@@ -102,7 +102,7 @@ paths:
       responses:
         '200':
           description: |-
-            Successful login response. 
+            Successful login response.
 
             At this point please make sure you store the "AuthenticationToken" so you can validate your session when making future API Calls.
           content:
@@ -261,7 +261,7 @@ paths:
                   value:
                     ErrorMessage: Invalid Login Request
       description: |-
-        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password. 
+        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password.
 
         Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
       tags:
@@ -283,7 +283,7 @@ paths:
       responses:
         '200':
           description: |-
-            Successful login response. 
+            Successful login response.
 
             At this point please make sure you store the "AuthenticationToken" so you can validate your session when making future API Calls.
           content:
@@ -442,7 +442,7 @@ paths:
                   value:
                     ErrorMessage: Invalid Login Request
       description: |-
-        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password. 
+        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done in multiple ways either via SSO or via Email & Password.
 
         Once a user has initialised their session by successfully logging in, the "AuthenticationToken" in the response is used as a query parameter across the other API endpoints.
       tags:
@@ -831,7 +831,7 @@ paths:
           description: |-
             KSession request responses
 
-            **Note: ** *A successful 200 response does not always contain a valid KSession  
+            **Note: ** *A successful 200 response does not always contain a valid KSession
           content:
             application/json:
               schema:
@@ -1157,7 +1157,7 @@ paths:
                     KSession: null
                     ErrorMessage: 'Customer not authenticated, user must be authenticated to play video'
       description: |-
-        In order to access media content a kSession must be provided to authorise a user to gain access. 
+        In order to access media content a kSession must be provided to authorise a user to gain access.
 
         Once a user has created a valid session they can request the generation of a kSession for a given entry.
 
@@ -1257,9 +1257,9 @@ paths:
       description: |-
         ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
-        The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier. 
+        The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier.
 
-        This endpoint will only allow a user with a valid session token to cancel their own subscriptions. 
+        This endpoint will only allow a user with a valid session token to cancel their own subscriptions.
 
         **Note** *Only one of the four authorisation parameters are required*
       requestBody:
@@ -1766,6 +1766,7 @@ paths:
                     - ios
                     - android
                     - roku
+                    - amazon
               required:
                 - receipt
                 - platform
@@ -1788,6 +1789,12 @@ paths:
                   receipt:
                     purchaseIdentifier: shdbfhgdsvfdv1234
                   platform: roku
+              amazon-example:
+                value:
+                  receipt:
+                    purchaseIdentifier: lkjhgfdsapoiuytrewq1234
+                    userId: a-amazon-userId
+                  platform: amazon
         description: ''
       parameters:
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -1942,9 +1949,9 @@ paths:
       description: |-
         ![Legacy](https://img.shields.io/static/v1?label=Implementation&message=Legacy&color=orange&style=flat-square)
 
-        The Package collection endpoint returns a list of Subscription Plans for a platform. 
+        The Package collection endpoint returns a list of Subscription Plans for a platform.
 
-        This list can be used to produce a custom package list webpage using predefined metadata for the package. 
+        This list can be used to produce a custom package list webpage using predefined metadata for the package.
 
         **Note:**. *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
       parameters:
@@ -1974,7 +1981,7 @@ paths:
       description: |-
         Redirect the client to the CloudPay checkout page with prepopulated fields for the selected package.
 
-        This endpoint should only be used for SSO Integrations, the package list endpoint will return back this route using the **PurchaseUrl** in the response body. 
+        This endpoint should only be used for SSO Integrations, the package list endpoint will return back this route using the **PurchaseUrl** in the response body.
 
         **Note:** Only one of the three authorisation parameters are required
     parameters:
