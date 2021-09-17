@@ -122,7 +122,7 @@ paths:
         name: redirect
         in: path
         required: true
-        description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs      
+        description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
   /api/v1/session/start:
     get:
       summary: Generate Session using Email & Password
