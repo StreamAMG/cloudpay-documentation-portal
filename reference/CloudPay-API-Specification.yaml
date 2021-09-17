@@ -1857,6 +1857,20 @@ paths:
                           type: string
                           minLength: 1
                           nullable: true
+                        IAPData:
+                          type: array
+                          uniqueItems: true
+                          items:
+                            type: object
+                            properties:
+                              Platform:
+                                type: string
+                                enum: [Apple, Google, Amazon, Roku]
+                                description: The IAP platform provider - Apple, Google, Amazon, Roku.
+                              ProductID:
+                                type: string
+                                description: The IAP product identifier.
+                          nullable: true
                 required:
                   - SubscriptionPlanOptions
                 x-examples:
@@ -1874,6 +1888,7 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 1days
                         Duration: 1days
+                        IAPData: null
                       - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
                         Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
                         Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the Sky platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£5.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
@@ -1886,6 +1901,12 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 1months
                         Duration: null
+                        IAPData: [
+                        {
+                          "Platform": "Roku",
+                          "ProductID": "nrmonthly"
+                        }
+                        ]
                       - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
                         Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
                         Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the TV platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£1.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
@@ -1898,6 +1919,7 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 1days
                         Duration: 1days
+                        IAPData: null
               examples:
                 List of Packages:
                   value:
@@ -1914,6 +1936,7 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 1days
                         Duration: 1days
+                        IAPData: null
                       - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
                         Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
                         Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the Sky platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£5.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
@@ -1926,6 +1949,24 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 1months
                         Duration: null
+                        IAPData: [
+                        {
+                          "Platform": "Amazon",
+                          "ProductID": "nrmonthly"
+                        },
+                        {
+                          "Platform": "Apple",
+                          "ProductID": "nrmonthly"
+                        },
+                        {
+                          "Platform": "Google",
+                          "ProductID": "nrmonthly"
+                        },
+                        {
+                          "Platform": "Roku",
+                          "ProductID": "nrmonthly"
+                        }
+                        ]
                       - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
                         Title: All the goals. All the games. All the action. Never miss a kick with Football Example TV
                         Body: "<p><span style=\"color: #1d1d1b; font-family: 'Open Sans', sans-serif; font-size: 18px; text-align: center; background-color: #ffffff;\">Available in Italy on the TV platform, the Italian-language channel is finally available online to fans outside of Italy. Football Example TV brings viewers to the heart of every match, every story and every talking point.</span></p>\r\n<p><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">only&nbsp;</span><span class=\"amg-price\" style=\"box-sizing: border-box; font-size: 2.8125rem; color: #7f0824; font-family: 'Open Sans', sans-serif; font-weight: bold; text-align: center; background-color: #ffffff;\">£1.00</span><span style=\"color: #7f0824; font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: bold; text-align: center; background-color: #ffffff;\">&nbsp;a month</span></p>"
@@ -1938,6 +1979,7 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 1days
                         Duration: 1days
+                        IAPData: null
       operationId: get-api-v1-package
       description: |-
         ![Legacy](https://img.shields.io/static/v1?label=Implementation&message=Legacy&color=orange&style=flat-square)
