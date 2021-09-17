@@ -21,6 +21,47 @@ tags:
   - name: Models
   - name: User
 paths:
+  /sso/start/:
+    get:
+      summary: Start a SSO Session
+      parameters:
+        - $ref: '#/components/parameters/languageParam'
+        - in: query
+          name: token
+          schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+          required: true
+          description: The Third-Party SSO token
+      responses:
+        '200':
+          description: Successful Response containing the Set-Cookie header containing the token. This will be stored within the browsers Cookie store for **2 hours**
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: 'ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly'
+              description: The cookie which will be stored in the cookie store
+        '500':
+          description: Unsuccessful SSO login response
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+              examples:
+                Failed Login Response:
+                  value:
+                    ErrorMessage: Invalid Login Request
+      description: |-
+        In order to perform queries against the CloudPay API a user must first initialise a session. This can be done for SSO users by generating a SSO Session. 
+
+        Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
+
+        **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
+      operationId: generate-sso-session
+      tags:
+        - SSO
   '/sso/start/{redirect}':
     get:
       summary: Start a SSO Session
@@ -71,7 +112,7 @@ paths:
         Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**. 
 
         **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
-      operationId: generate-sso-session
+      operationId: generate-sso-session-redirect
       tags:
         - SSO
     parameters:
@@ -81,7 +122,7 @@ paths:
         name: redirect
         in: path
         required: true
-        description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
+        description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs      
   /api/v1/session/start:
     get:
       summary: Generate Session using Email & Password
