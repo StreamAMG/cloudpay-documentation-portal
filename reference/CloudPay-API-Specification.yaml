@@ -121,7 +121,6 @@ paths:
           example: h4YnEwkle12d9xs
         name: redirect
         in: path
-        required: true
         description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
   /api/v1/session/start:
     get:
@@ -2287,7 +2286,9 @@ components:
           readOnly: true
         Type:
           type: string
-          enum: ['recurring', 'non-recurring']
+          enum:
+            - recurring
+            - non-recurring
           readOnly: true
         Amount:
           type: number
@@ -2338,7 +2339,9 @@ components:
             readOnly: true
           Status:
             type: string
-            enum: ['active', 'cancelled']
+            enum:
+              - active
+              - cancelled
             readOnly: true
           ExpiryDate:
             type: string
@@ -2386,7 +2389,7 @@ components:
             Expires: '2024-07-21T17:32:28Z'
         Subscriptions:
           - Id: 57ea90b2-822c-4bc1-946f-88be4c53d9dc
-            Status: 'active'
+            Status: active
             ExpiryDate: '2022-04-02T17:32:28Z'
             IsIAP: true
             Package:
@@ -2394,29 +2397,29 @@ components:
               Name: Day pass
               Title: Day pass
               Description: Day pass for £2.00
-              Type: 'non-recurring'
-              Amount: 2.00
-              CurrencyCode: 'GBP'
-              Interval: '1day'
-              Duration: '1day'
+              Type: non-recurring
+              Amount: 2
+              CurrencyCode: GBP
+              Interval: 1day
+              Duration: 1day
           - Id: f97e2a42-488e-4b75-93bc-e837578aa837
             ExpiryDate: '2024-03-02T17:32:28Z'
-            Status: 'cancelled'
+            Status: cancelled
             IsIAP: true
             Package:
               Id: e42c70f9-5dd1-458d-b236-a7c6060da17d
               Name: Monthly subscription - International
               Title: Monthly subscription
               Description: Renewal of £5.00 due on 2 Mar 2021
-              Type: 'recurring'
-              Amount: 5.00
-              CurrencyCode: 'GBP'
-              Interval: '1month'
-              Duration: '6months'
+              Type: recurring
+              Amount: 5
+              CurrencyCode: GBP
+              Interval: 1month
+              Duration: 6months
           - Id: z85e2a42-488e-4b75-93bc-e837578aa999
-            Status: 'active'
-            Type: 'recurring'
-            CurrencyCode: 'GBP'
+            Status: active
+            Type: recurring
+            CurrencyCode: GBP
             ExpiryDate: '2022-07-12T17:32:28Z'
             RenewalDate: '2021-07-12T17:32:28Z'
             IsIAP: false
@@ -2425,12 +2428,12 @@ components:
               Name: Annual subscription - Canada
               Title: Annual subscription
               Description: Renewal of £100.00 due on 12 Jun 2021
-              Type: 'recurring'
-              Amount: 100.00
-              CurrencyCode: 'GBP'
-              Interval: '1month'
-              Duration: '12months'
-              TrialDuration: '1week'
+              Type: recurring
+              Amount: 100
+              CurrencyCode: GBP
+              Interval: 1month
+              Duration: 12months
+              TrialDuration: 1week
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
