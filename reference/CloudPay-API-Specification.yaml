@@ -21,7 +21,7 @@ tags:
   - name: Models
   - name: User
 paths:
-  /sso/start/:
+  /sso/start:
     get:
       summary: Start a SSO Session
       parameters:
@@ -62,9 +62,10 @@ paths:
       operationId: generate-sso-session
       tags:
         - SSO
+    parameters: []
   '/sso/start/{redirect}':
     get:
-      summary: Start a SSO Session
+      summary: Start a SSO Session with Redirect
       parameters:
         - $ref: '#/components/parameters/languageParam'
         - in: query
@@ -122,6 +123,7 @@ paths:
         name: redirect
         in: path
         description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
+        required: true
   /api/v1/session/start:
     get:
       summary: Generate Session using Email & Password
