@@ -1757,6 +1757,8 @@ paths:
                       type: string
                     autoRenewing:
                       type: boolean
+                    userId:
+                      type: string
                     raw:
                       type: string
                       format: base64
