@@ -20,7 +20,7 @@ The following details are required;
 
 ### Sequence
 
-The following diagram demonstrates a simple integration flow between a third-party applications and the CloudPay API.
+The following diagram demonstrates a simple integration flow between a third-party application and the CloudPay API.
 <img src="https://lucid.app/publicSegments/view/0792a3d5-6df4-4785-8588-75be776fa559/image.png" alt="Sequence Diagram" width="900" style="align:center"/>
 
 ### Guide

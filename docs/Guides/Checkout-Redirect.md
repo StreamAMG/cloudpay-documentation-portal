@@ -10,5 +10,5 @@ If you would like to redirect a user back to a dynamic web page this can be achi
 
 ### Sequence
 
-The following diagram demonstrates a simple integration flow between a third-party applications and the CloudPay API.
+The following diagram demonstrates a simple integration flow between a third-party application and the CloudPay API.
 <img src="https://lucid.app/publicSegments/view/97c75dac-8548-432d-abff-45d9fedea938/image.png" alt="Sequence Diagram" width="900" style="align:center"/>
