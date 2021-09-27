@@ -6,7 +6,7 @@ The simplest mechanism to initiate the checkout process can be achieved by calli
 
 By default, upon completion of a purchase, the user will be redirected back to a static page which can be configured within your CloudPay instance. 
 
-If you would like to redirect a user back to a dynamic web page this can be achieved by passing in the "success_url" query parameter to the [Checkout](../../reference/CloudPay-API-Specification.yaml/paths/~1sso~1startbasket~1%7BsubscriptionPlanId%7D/get) Endpoint. 
+If you would like to redirect a user back to a dynamic web page this can be achieved by passing in the "success_url" query parameter to the [Checkout](../../reference/CloudPay-API-Specification.yaml/paths/~1sso~1startbasket~1%7BsubscriptionPlanId%7D/get) endpoint. 
 
 ### Sequence
 
