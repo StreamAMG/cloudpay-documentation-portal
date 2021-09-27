@@ -2018,6 +2018,12 @@ paths:
         - $ref: '#/components/parameters/apiJwtTokenParam'
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - schema:
+            type: string
+          name: success_url
+          required: false
+          description: The optional dynamic success url to redirect browser to on success of payment
+          in: query
       responses:
         '200':
           description: '![Checkout Page](../../../../assets/images/cloudpay-sso-checkout-example.png)'
@@ -2427,7 +2433,7 @@ components:
               CurrencyCode: GBP
               Interval: 1month
               Duration: 6months
-          - Id: z85e2a42-488e-4b75-93bc-e837578aa999
+          - Id: 1a534a33-051a-46fb-a9c0-69f8f7450050
             Status: active
             Type: recurring
             CurrencyCode: GBP
