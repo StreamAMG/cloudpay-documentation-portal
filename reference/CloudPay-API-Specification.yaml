@@ -2022,7 +2022,7 @@ paths:
             type: string
           name: success_url
           required: false
-          description: A base64 encoded URL to be directed to after purchase
+          description: A base64 encoded URL to be redirected to after purchase
           in: query
       responses:
         '200':
