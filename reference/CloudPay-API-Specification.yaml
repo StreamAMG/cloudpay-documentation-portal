@@ -2022,7 +2022,7 @@ paths:
             type: string
           name: success_url
           required: false
-          description: The optional dynamic success url to redirect browser to on success of payment
+          description: A base64 encoded URL to be directed to after purchase
           in: query
       responses:
         '200':
