@@ -79,9 +79,9 @@ paths:
           name: redirect
           schema:
             type: string
-            example: h4YnEwkle12d9xs
+            example: cmV0dXJudXJsOi9hY2NvdW50
           required: true
-          description: Redirect URL for SSO Start
+          description: Redirect URL for SSO Start, This URL should be base64 encoded and start with "returnurl:" followed by the path e.g. cmV0dXJudXJsOi9hY2NvdW50
       responses:
         '302':
           description: Successful Redirection Response containing the Set-Cookie header containing the token. This will be stored within the browsers Cookie store for **2 hours**
