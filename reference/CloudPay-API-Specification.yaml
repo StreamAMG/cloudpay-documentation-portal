@@ -112,6 +112,8 @@ paths:
 
         Once a client has successfully setup their JWT enviroment within CloudPay, calling the SSO Start endpoint will initialise a session using their own JWT Authentication strategy and **tokens**.
 
+        The redirect path parameter consists of a base64 encoded string starting with "returnurl:", as an example "returnurl:/account" would encode to cmV0dXJudXJsOi9hY2NvdW50
+
         **Note** *The Token from the Client will be validated and used throughout the API to track the clients session, CloudPay will not generate any new Tokens on behalf of the client*
       operationId: generate-sso-session-redirect
       tags:
@@ -119,10 +121,10 @@ paths:
     parameters:
       - schema:
           type: string
-          example: h4YnEwkle12d9xs
+          example: cmV0dXJudXJsOi9hY2NvdW50
         name: redirect
         in: path
-        description: Redirect URL for SSO Start e.g. h4YnEwkle12d9xs
+        description: 'Redirect URL for SSO Start, This URL should be base64 encoded and start with "returnurl:" followed by the path e.g. cmV0dXJudXJsOi9hY2NvdW50'
         required: true
   /api/v1/session/start:
     get:
