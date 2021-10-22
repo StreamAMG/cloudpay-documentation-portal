@@ -81,7 +81,7 @@ paths:
             type: string
             example: cmV0dXJudXJsOi9hY2NvdW50
           required: true
-          description: Redirect URL for SSO Start, This URL should be base64 encoded and start with "returnurl:" followed by the path e.g. cmV0dXJudXJsOi9hY2NvdW50
+          description: 'Redirect URL for SSO Start, This URL should be base64 encoded and start with "returnurl:" followed by the path e.g. cmV0dXJudXJsOi9hY2NvdW50'
       responses:
         '302':
           description: Successful Redirection Response containing the Set-Cookie header containing the token. This will be stored within the browsers Cookie store for **2 hours**
@@ -1507,8 +1507,6 @@ paths:
                   minLength: 1
                 CustomFields:
                   $ref: '#/components/schemas/AccountCustomFieldsModelUpdate'
-                BillingDetails:
-                  $ref: '#/components/schemas/AccountBillingDetailsModelUpdate'
             examples:
               Update User First Name:
                 $ref: '#/components/examples/AccountPatchFirstNameExample'
@@ -2226,62 +2224,6 @@ components:
               readOnly: true
               description: A user card expires datetimestamp
               nullable: true
-    AccountBillingDetailsModelUpdate:
-      description: Authenticated user's Stripe provider address and card details
-      type: object
-      properties:
-        AddressCountry:
-          type: string
-          description: A user billing profile country code
-          nullable: true
-        AddressCity:
-          type: string
-          description: A user billing profile city
-          nullable: true
-        AddressLine1:
-          type: string
-          description: A user billing address line 1
-          nullable: true
-        AddressLine2:
-          type: string
-          description: A user billing address line 2
-          nullable: true
-        AddressState:
-          type: string
-          description: A user billing address region or state
-          nullable: true
-        AddressZip:
-          type: string
-          description: A user billing address zip code
-          nullable: true
-        CardDetails:
-          type: object
-          properties:
-            Number:
-              type: string
-              pattern: '^\d{8,20}$'
-              writeOnly: true
-              description: 'A user card number, required format from eight to twenty digits'
-            ExpMonth:
-              type: string
-              format: date-month
-              writeOnly: true
-              description: 'A user card number expire month from 01 to 12, required format two digits'
-            ExpYear:
-              type: string
-              format: date-fullyear
-              writeOnly: true
-              description: 'A user card number feature year, required format four digits'
-            ThreeDSecure:
-              type: string
-              pattern: '^\d{3,4}$'
-              writeOnly: true
-              description: 'A user card number cvv, required format three or four digits'
-          required:
-            - Number
-            - ExpMonth
-            - ExpYear
-            - ThreeDSecure
     AccountSubscriptionPlanModel:
       description: Subscription plan details
       type: object
@@ -2500,20 +2442,6 @@ components:
             Label: Favourite Rugby Team
             Required: false
             Value: null
-    AccountPatchBillingDetailsExample:
-      value:
-        BillingDetails:
-          AddressCountry: GB
-          AddressCity: London
-          AddressLine1: 61 Queen Street
-          AddressLine2: ap.1
-          AddressState: London
-          AddressZip: EC4R 1AE
-          CardDetails:
-            Number: '4242424242424424'
-            ExpMonth: '06'
-            ExpYear: '2022'
-            ThreeDSecure: '123'
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
