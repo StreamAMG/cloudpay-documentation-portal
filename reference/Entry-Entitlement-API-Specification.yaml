@@ -41,7 +41,13 @@ paths:
                       - ''
                     ttl: 300
       operationId: get-entry-entitlements
-      description: Retrieve the entitlements for a given video entry
+      description: |
+        The following API Resouce should be exposed by a Third-Party to allow for entitlement comsumption from CloudPay.
+
+        The Base URL for the API is configurable and the only requirement is that the video entry ID is exposed as either a path or query parameter.
+
+        The URL is configured within the CloudPay Control Panel.
+      parameters: []
 components:
   schemas:
     EntryEntitlement:
