@@ -38,6 +38,15 @@
       "type": "item",
       "title": "API Reference",
       "uri": "reference/CloudPay-API-Specification.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Third-Party Integration"
+    },
+    {
+      "type": "item",
+      "title": "Entry Entitlement API Specification",
+      "uri": "reference/Entry-Entitlement-API-Specification.yaml"
     }
   ]
 }
