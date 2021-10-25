@@ -40,25 +40,24 @@ paths:
                     entitlement:
                       - ''
                     ttl: 300
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
+      operationId: get-entry-entitlements
+      description: Retrieve the entitlements for a given video entry
 components:
   schemas:
     EntryEntitlement:
       description: The Entry Entitlement Model contain the relvant entitlment details for a specific entry.
       type: object
-      examples:
-        - entitlement:
-            - basic
-          ttl: 0
+      examples: []
+      title: Entry Entitlement
       properties:
         entitlement:
           type: array
+          description: The entitlement tags related to the video entry
           items:
             type: string
         ttl:
           type: number
+          description: The TTL the entitlement should be cached for before recalling your API
       required:
         - entitlement
         - ttl
-      title: Entry Entitlement
