@@ -19,7 +19,7 @@ paths:
       summary: Entry Entitlements
       tags: []
       responses:
-        '200':          
+        '200':
           content:
             application/json:
               schema:
@@ -42,7 +42,7 @@ paths:
                     ttl: 300
       operationId: get-entry-entitlements
       description: |
-        The following API Resouce should be exposed by a Third-Party to allow for entitlement comsumption from CloudPay.
+        The following API Resouce should be exposed by a Third-Party to allow for entitlement consumption from CloudPay.
 
         The Base URL for the API is configurable and the only requirement is that the video entry ID is exposed as either a path or query parameter.
 
@@ -71,7 +71,6 @@ components:
             * _The anything key identifies your own tags for labeling restricted content which you can make available via your CloudPay Packages, for example; **dailypass**, **monthlypass**_
 
             </br>
-            
           items:
             type: string
         ttl:
