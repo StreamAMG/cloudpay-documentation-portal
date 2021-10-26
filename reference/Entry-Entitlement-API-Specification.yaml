@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Entry Entitlement API
+  version: 1.0.0
+  summary: API Specification for Third-Party Entry Entitlement Management
+  description: The following API Specification allows clients to create their own Entitlement management integration with CloudPay.
+servers: []
+paths:
+  /:
+    parameters:
+      - schema:
+          type: string
+        name: entryid
+        in: query
+        required: true
+        example: 0_i0tqlx81
+        description: 'A query or path parameter must be expose that contains the entry Id, in this instance ''entryid'' has been used as an example.'
+    get:
+      summary: Entry Entitlements
+      tags: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryEntitlement'
+              examples:
+                Basic Entitlement:
+                  value:
+                    entitlement:
+                      - monthlypass
+                    ttl: 300
+                Freemium:
+                  value:
+                    entitlement:
+                      - '?'
+                    ttl: 300
+                Free:
+                  value:
+                    entitlement:
+                      - '*'
+                    ttl: 300
+      operationId: get-entry-entitlements
+      description: |
+        The following API Resouce should be exposed by a Third-Party to allow for entitlement consumption from CloudPay.
+
+        The Base URL for the API is configurable and the only requirement is that the video entry ID is exposed as either a path or query parameter.
+
+        The URL is configured within the CloudPay Control Panel and will be setup prior to the integration.
+      parameters: []
+components:
+  schemas:
+    EntryEntitlement:
+      description: The Entry Entitlement Model contain the relvant entitlment details for a specific entry.
+      type: object
+      examples: []
+      title: Entry Entitlement
+      properties:
+        entitlement:
+          type: array
+          description: |
+            The entitlement tags related to the video entry
+            | key         | description |
+            |-------------|-------------|
+            | *             | Free for registered users  |
+            | ?             | Free for all users         |
+            | _anything*_   | Restricted content         |
+
+            </br>
+
+            * _The anything key identifies your own tags for labeling restricted content which you can make available via your CloudPay Packages, for example; **dailypass**, **monthlypass**_
+
+            </br>
+          items:
+            type: string
+        ttl:
+          type: number
+          description: The TTL the entitlement should be cached for before recalling your API
+      required:
+        - entitlement
+        - ttl

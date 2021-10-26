@@ -1299,6 +1299,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       description: |-
+        <!--
+        focus: false
+        -->
+
         ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier.
@@ -1407,6 +1411,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       description: |
+        <!--
+        focus: false
+        -->
         ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The Account Endpoint returns an account summary of the Authenticated User.
@@ -1481,6 +1488,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       description: |-
+        <!--
+        focus: false
+        -->
+
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
         The update Account endpoint allows a user to update their user details.
@@ -1679,6 +1690,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       description: |
+        <!--
+        focus: false
+        -->
+
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
         The account endpoint returns transactions of the authenticated user.
@@ -1777,6 +1792,10 @@ paths:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
       description: |-
+        <!--
+        focus: false
+        -->
+
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
 
         The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
@@ -1991,6 +2010,10 @@ paths:
                         Duration: 1days
       operationId: get-api-v1-package
       description: |-
+        <!--
+        focus: false
+        -->
+
         ![Legacy](https://img.shields.io/static/v1?label=Implementation&message=Legacy&color=orange&style=flat-square)
 
         The Package collection endpoint returns a list of Subscription Plans for a platform.
