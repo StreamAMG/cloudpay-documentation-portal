@@ -35,6 +35,10 @@
       "uri": "docs/Guides/Checkout-Redirect.md"
     },
     {
+      "type": "divider",
+      "title": "CloudPay API"
+    },
+    {
       "type": "item",
       "title": "API Reference",
       "uri": "reference/CloudPay-API-Specification.yaml"
