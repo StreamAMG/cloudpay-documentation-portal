@@ -15,11 +15,10 @@ paths:
         required: true
         description: 'A query or path parameter must be expose that contains the entry Id, in this instance ''entryid'' has been used as an example.'
     get:
-      summary: Get Entry Entitlements
+      summary: Entry Entitlements
       tags: []
       responses:
-        '200':
-          description: Valid Entry Entitlements
+        '200':          
           content:
             application/json:
               schema:
@@ -46,7 +45,7 @@ paths:
 
         The Base URL for the API is configurable and the only requirement is that the video entry ID is exposed as either a path or query parameter.
 
-        The URL is configured within the CloudPay Control Panel.
+        The URL is configured within the CloudPay Control Panel and will be setup prior to the integration.
       parameters: []
 components:
   schemas:
