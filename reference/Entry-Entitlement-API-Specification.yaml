@@ -57,7 +57,20 @@ components:
       properties:
         entitlement:
           type: array
-          description: The entitlement tags related to the video entry
+          description: |
+            The entitlement tags related to the video entry
+            | key         | description |
+            |-------------|-------------|
+            | *             | Free for registered users  |
+            | ?             | Free for all users         |
+            | _anything*_   | Restricted content         |
+
+            </br>
+            
+            * _The anything key identifies your own tags for labeling restricted content which you can make available via your CloudPay Packages, for example; **dailypass**, **monthlypass**_
+
+            </br>
+            
           items:
             type: string
         ttl:
