@@ -13,6 +13,7 @@ paths:
         name: entryid
         in: query
         required: true
+        example: 0_i0tqlx81
         description: 'A query or path parameter must be expose that contains the entry Id, in this instance ''entryid'' has been used as an example.'
     get:
       summary: Entry Entitlements
