@@ -27,7 +27,7 @@ paths:
                 Basic Entitlement:
                   value:
                     entitlement:
-                      - basic
+                      - monthlypass
                     ttl: 300
                 Freemium:
                   value:
@@ -37,7 +37,7 @@ paths:
                 Free:
                   value:
                     entitlement:
-                      - ''
+                      - '*'
                     ttl: 300
       operationId: get-entry-entitlements
       description: |
@@ -66,7 +66,7 @@ components:
             | _anything*_   | Restricted content         |
 
             </br>
-            
+
             * _The anything key identifies your own tags for labeling restricted content which you can make available via your CloudPay Packages, for example; **dailypass**, **monthlypass**_
 
             </br>
