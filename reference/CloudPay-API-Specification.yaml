@@ -2164,12 +2164,12 @@ components:
           Required:
             type: boolean
             default: false
-            readOnly: true
             description: A required custom field
+            readOnly: true
           Value:
             type: string
-            nullable: true
             description: Represends a user free text or unique identifier of selected custom field option
+            nullable: true
         required:
           - Id
           - Label
@@ -2423,6 +2423,8 @@ components:
         EmailAddress: customer@email.com
         FirstName: Lorem
         LastName: Ipsum
+        Subscriptions: []
+        CustomDetails: []
     AccountResponseGetCustomFieldsExample:
       value:
         EmailAddress: customer@email.com
@@ -2437,6 +2439,7 @@ components:
             Label: Favourite Football Team
             Required: false
             Value: null
+        Subscriptions: []
     AccountResponseGetCardDetailsExample:
       value:
         EmailAddress: customer@email.com
@@ -2448,6 +2451,8 @@ components:
             Reference: visa XXXX-XXXX-XXXX-4242
             Country: GB
             Expires: '2024-07-21T17:32:28Z'
+        CustomFields: []
+        Subscriptions: []
     AccountPatchFirstNameExample:
       value:
         FirstName: Lorem
