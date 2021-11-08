@@ -246,11 +246,11 @@ paths:
                       CustomerEmailAddress: customer@email.com
                       CustomerFirstName: Lorem
                       CustomerLastName: Ipsum
-                      CustomerBillingProfileCreatedAt: null
-                      CustomerBillingProfileExpiresAt: null
+                      CustomerBillingProfileCreatedAt: '2019-07-31T13:22:14.000Z'
+                      CustomerBillingProfileExpiresAt: '2022-02-28T23:59:59.000Z'
                       CustomerBillingProfileLastFailedAt: null
-                      CustomerBillingProfileProvider: null
-                      CustomerBillingProfileReference: null
+                      CustomerBillingProfileProvider: 'StripeCard'
+                      CustomerBillingProfileReference: 'Visa XXXX-XXXX-XXXX-4242'
                       CustomerDeleted: false
                       CustomerEntitlements: ''
                       CustomerFullAccessUntil: null
@@ -1601,8 +1601,10 @@ paths:
                           description: A subscription plan name.
                         Provider:
                           type: string
-                          minLength: 1
-                          description: A payment provider lile Stripe or PayPal.
+                          enum:
+                            - StripeCard
+                            - PayPal
+                          description: A payment provider lile StripeCard or PayPal.
                         Reference:
                           type: string
                           minLength: 1
@@ -2231,12 +2233,15 @@ components:
           properties:
             Provider:
               type: string
+              enum:
+                - StripeCard
+                - PayPal
               readOnly: true
-              description: A user billing provider - Stripe or Paypal
+              description: A user billing provider - StripeCard or PayPal
             Reference:
               type: string
               readOnly: true
-              description: A card reference for Stripe or email address for Paypal users
+              description: A card reference for Stripe or email address for PayPal users
             Country:
               type: string
               readOnly: true
