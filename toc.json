@@ -31,8 +31,26 @@
     },
     {
       "type": "item",
+      "title": "Checkout Redirect",
+      "uri": "docs/Guides/Checkout-Redirect.md"
+    },
+    {
+      "type": "divider",
+      "title": "CloudPay API"
+    },
+    {
+      "type": "item",
       "title": "API Reference",
       "uri": "reference/CloudPay-API-Specification.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Third-Party Integration"
+    },
+    {
+      "type": "item",
+      "title": "API Specification",
+      "uri": "reference/Entry-Entitlement-API-Specification.yaml"
     }
   ]
 }
