@@ -2328,6 +2328,7 @@ components:
             readOnly: true
           Status:
             type: string
+            description: Status lists subscriptions that are active or soft-cancelled. Soft-cancelled status only applies to recurring subscriptions. Means the user has cancelled the subscription, but will keep access to the content until expiry date.
             enum:
               - active
               - cancelled
@@ -2478,3 +2479,4 @@ components:
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
+  
