@@ -249,8 +249,8 @@ paths:
                       CustomerBillingProfileCreatedAt: '2019-07-31T13:22:14.000Z'
                       CustomerBillingProfileExpiresAt: '2022-02-28T23:59:59.000Z'
                       CustomerBillingProfileLastFailedAt: null
-                      CustomerBillingProfileProvider: 'StripeCard'
-                      CustomerBillingProfileReference: 'Visa XXXX-XXXX-XXXX-4242'
+                      CustomerBillingProfileProvider: StripeCard
+                      CustomerBillingProfileReference: Visa XXXX-XXXX-XXXX-4242
                       CustomerDeleted: false
                       CustomerEntitlements: ''
                       CustomerFullAccessUntil: null
@@ -1943,7 +1943,7 @@ paths:
                         PurchaseUrl:
                           type: string
                           minLength: 1
-                          description: A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL. 
+                          description: 'A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL.'
                           readOnly: true
                         Interval:
                           type: string
@@ -1964,8 +1964,12 @@ paths:
                             properties:
                               Platform:
                                 type: string
-                                enum: [Apple, Google, Amazon, Roku]
-                                description: The IAP platform provider - Apple, Google, Amazon, Roku.
+                                enum:
+                                  - Apple
+                                  - Google
+                                  - Amazon
+                                  - Roku
+                                description: 'The IAP platform provider - Apple, Google, Amazon, Roku.'
                                 readOnly: true
                               ProductID:
                                 type: string
@@ -1995,7 +1999,7 @@ paths:
                     SubscriptionPlanOptions:
                       - Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
                         Title: Rest of the world - Monthly Subscription
-                        Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 9.99
                         Currency: GBP
@@ -2006,13 +2010,13 @@ paths:
                         Interval: 1months
                         Duration: 1months
                         IAPData: []
-                        Metadata: 
-                          - Name: "packageType"
-                            Code: "packageTypeCode"
-                            Value: "video"
+                        Metadata:
+                          - Name: packageType
+                            Code: packageTypeCode
+                            Value: video
                       - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
                         Title: Rest of the world - Monthly Subscription
-                        Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 59.99
                         Currency: GBP
@@ -2022,18 +2026,18 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 12months
                         Duration: null
-                        IAPData: 
-                          - Platform: "Amazon"
-                            ProductID: "nryearly"
-                          - Platform: "Apple"
-                            ProductID: "nryearly"
-                          - Platform: "Google"
-                            ProductID: "nryearly"      
-                          - Platform: "Roku"
-                            ProductID: "nryearly"  
+                        IAPData:
+                          - Platform: Amazon
+                            ProductID: nryearly
+                          - Platform: Apple
+                            ProductID: nryearly
+                          - Platform: Google
+                            ProductID: nryearly
+                          - Platform: Roku
+                            ProductID: nryearly
                       - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
                         Title: Rest of the world - Weekend Pass
-                        Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 2.99
                         Currency: GBP
@@ -2050,7 +2054,7 @@ paths:
                     SubscriptionPlanOptions:
                       - Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
                         Title: Rest of the world - Monthly Subscription
-                        Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 9.99
                         Currency: GBP
@@ -2061,13 +2065,13 @@ paths:
                         Interval: 1months
                         Duration: 1months
                         IAPData: []
-                        Metadata: 
-                          - Name: "packageType"
-                            Code: "packageTypeCode"
-                            Value: "video"
+                        Metadata:
+                          - Name: packageType
+                            Code: packageTypeCode
+                            Value: video
                       - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
                         Title: Rest of the world - Monthly Subscription
-                        Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 59.99
                         Currency: GBP
@@ -2077,18 +2081,18 @@ paths:
                         PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
                         Interval: 12months
                         Duration: null
-                        IAPData: 
-                          - Platform: "Amazon"
-                            ProductID: "nryearly"
-                          - Platform: "Apple"
-                            ProductID: "nryearly"
-                          - Platform: "Google"
-                            ProductID: "nryearly"      
-                          - Platform: "Roku"
-                            ProductID: "nryearly"  
+                        IAPData:
+                          - Platform: Amazon
+                            ProductID: nryearly
+                          - Platform: Apple
+                            ProductID: nryearly
+                          - Platform: Google
+                            ProductID: nryearly
+                          - Platform: Roku
+                            ProductID: nryearly
                       - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
                         Title: Rest of the world - Weekend Pass
-                        Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 2.99
                         Currency: GBP
@@ -2111,7 +2115,9 @@ paths:
 
         This list can be used to produce a custom package list webpage using predefined metadata for the package.
 
-        **Note:**. *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
+        **Note:** 
+         * *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
+         * *By default the Package List endpoint will not return IAP packages, the 'type' query parameter must be passed to the API with the value of 'iap' to return only the IAP Packages.*
       parameters:
         - schema:
             type: string
@@ -2121,11 +2127,12 @@ paths:
           description: The language code
         - schema:
             type: string
-            enum: [iap]
+            enum:
+              - iap
           in: query
           name: type
           required: false
-          description: The type of subscription plan  
+          description: The type of subscription plan
         - schema:
             type: string
           in: query
@@ -2582,4 +2589,3 @@ components:
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
-  
