@@ -1880,120 +1880,6 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  SubscriptionPlanOptions:
-                    type: array
-                    uniqueItems: true
-                    minItems: 0
-                    items:
-                      type: object
-                      required:
-                        - Id
-                        - Title
-                        - Body
-                        - Amount
-                        - Currency
-                        - AmountFormatted
-                        - HasFreeTrial
-                        - PurchaseUrl
-                        - Interval
-                      properties:
-                        Id:
-                          type: string
-                          format: uuid
-                          minLength: 1
-                          readOnly: true
-                        Title:
-                          type: string
-                          description: If has a free trial shows the subscription plan free trial listing title otherwise the subscription plan listing title.
-                          minLength: 1
-                          readOnly: true
-                        Body:
-                          type: string
-                          description: If has a free trial shows the subscription plan free trial listing body otherwise the subscription plan listing body.
-                          minLength: 1
-                          readOnly: true
-                        Style:
-                          type: string
-                          description: If has a free trial shows the subscription plan free trial listing css class otherwise the subscription plan listing css class.
-                          nullable: true
-                          readOnly: true
-                        Amount:
-                          type: number
-                          description: A subscription plan price amount.
-                        Currency:
-                          type: string
-                          pattern: '^[A-Z]{3}$'
-                          description: A three letter currency code from subscription plan price.
-                          readOnly: true
-                        AmountFormatted:
-                          type: string
-                          minLength: 1
-                          description: A formatted amount including the currency symbol for a currency code.
-                          readOnly: true
-                        HasFreeTrial:
-                          type: boolean
-                          description: Shows that subscription plan has a free trial. This property depends of Trial Duration property.
-                          readOnly: true
-                        TrialDuration:
-                          type: string
-                          nullable: true
-                          description: Shows a trial duration of subscription plan if available.
-                          readOnly: true
-                        PurchaseUrl:
-                          type: string
-                          minLength: 1
-                          description: 'A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL.'
-                          readOnly: true
-                        Interval:
-                          type: string
-                          minLength: 1
-                          description: The subscription plan contract length.
-                          readOnly: true
-                        Duration:
-                          type: string
-                          minLength: 1
-                          nullable: true
-                          description: The subscription plan auto renew period.
-                          readOnly: true
-                        IAPData:
-                          type: array
-                          uniqueItems: true
-                          items:
-                            type: object
-                            properties:
-                              Platform:
-                                type: string
-                                enum:
-                                  - Apple
-                                  - Google
-                                  - Amazon
-                                  - Roku
-                                description: 'The IAP platform provider - Apple, Google, Amazon, Roku.'
-                                readOnly: true
-                              ProductID:
-                                type: string
-                                description: The IAP product identifier.
-                                readOnly: true
-                          minItems: 0
-                        Metadata:
-                          type: array
-                          uniqueItems: true
-                          items:
-                            type: object
-                            properties:
-                              Name:
-                                type: string
-                                readOnly: true
-                              Code:
-                                type: string
-                                readOnly: true
-                              Value:
-                                type: string
-                                readOnly: true
-                          minItems: 0
-                required:
-                  - SubscriptionPlanOptions
                 x-examples:
                   example-1:
                     SubscriptionPlanOptions:
@@ -2048,6 +1934,132 @@ paths:
                         Interval: 2days
                         Duration: null
                         IAPData: []
+                properties:
+                  SubscriptionPlanOptions:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      properties:
+                        Id:
+                          type: string
+                          format: uuid
+                          minLength: 1
+                          readOnly: true
+                        Title:
+                          type: string
+                          description: If has a free trial shows the subscription plan free trial listing title otherwise the subscription plan listing title.
+                          minLength: 1
+                          readOnly: true
+                        Body:
+                          type: string
+                          description: If has a free trial shows the subscription plan free trial listing body otherwise the subscription plan listing body.
+                          minLength: 1
+                          readOnly: true
+                        Style:
+                          type: string
+                          description: If has a free trial shows the subscription plan free trial listing css class otherwise the subscription plan listing css class.
+                          nullable: true
+                          readOnly: true
+                        Amount:
+                          type: number
+                          description: A subscription plan price amount.
+                        Currency:
+                          type: string
+                          pattern: '^[A-Z]{3}$'
+                          description: A three letter currency code from subscription plan price.
+                          readOnly: true
+                        AmountFormatted:
+                          type: string
+                          minLength: 1
+                          description: A formatted amount including the currency symbol for a currency code.
+                          readOnly: true
+                        HasFreeTrial:
+                          type: boolean
+                          description: Shows that subscription plan has a free trial. This property depends of Trial Duration property.
+                          readOnly: true
+                        TrialDuration:
+                          type: string
+                          description: Shows a trial duration of subscription plan if available.
+                          nullable: true
+                          readOnly: true
+                        PurchaseUrl:
+                          type: string
+                          minLength: 1
+                          description: 'A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL.'
+                          readOnly: true
+                        Interval:
+                          type: string
+                          minLength: 1
+                          description: The subscription plan contract length.
+                          readOnly: true
+                        Duration:
+                          type: string
+                          minLength: 1
+                          description: The subscription plan auto renew period.
+                          nullable: true
+                          readOnly: true
+                        IAPData:
+                          type: array
+                          uniqueItems: true
+                          minItems: 0
+                          items:
+                            type: object
+                            properties:
+                              Platform:
+                                type: string
+                                enum:
+                                  - Apple
+                                  - Google
+                                  - Amazon
+                                  - Roku
+                                description: 'The IAP platform provider - Apple, Google, Amazon, Roku.'
+                                readOnly: true
+                              ProductID:
+                                type: string
+                                description: The IAP product identifier.
+                                readOnly: true
+                            required:
+                              - Platform
+                              - ProductID
+                        Metadata:
+                          type: array
+                          uniqueItems: true
+                          minItems: 0
+                          items:
+                            type: object
+                            properties:
+                              Name:
+                                type: string
+                                description: The description of the custom metadata field
+                                readOnly: true
+                              Code:
+                                type: string
+                                description: The code identifier of the metadata field
+                                readOnly: true
+                              Value:
+                                type: string
+                                description: The value of the custom metadata
+                                readOnly: true
+                            required:
+                              - Name
+                              - Code
+                              - Value
+                      required:
+                        - Id
+                        - Title
+                        - Body
+                        - Amount
+                        - Currency
+                        - AmountFormatted
+                        - HasFreeTrial
+                        - PurchaseUrl
+                        - Interval
+                        - IAPData
+                        - Metadata
+                required:
+                  - SubscriptionPlanOptions
               examples:
                 List of Packages:
                   value:
