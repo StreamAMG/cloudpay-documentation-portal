@@ -1972,6 +1972,22 @@ paths:
                                 description: The IAP product identifier.
                                 readOnly: true
                           minItems: 0
+                        Metadata:
+                          type: array
+                          uniqueItems: true
+                          items:
+                            type: object
+                            properties:
+                              Name:
+                                type: string
+                                readOnly: true
+                              Code:
+                                type: string
+                                readOnly: true
+                              Value:
+                                type: string
+                                readOnly: true
+                          minItems: 0
                 required:
                   - SubscriptionPlanOptions
                 x-examples:
@@ -1990,6 +2006,10 @@ paths:
                         Interval: 1months
                         Duration: 1months
                         IAPData: []
+                        Metadata: 
+                          - Name: "packageType"
+                            Code: "packageTypeCode"
+                            Value: "video"
                       - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
                         Title: Rest of the world - Monthly Subscription
                         Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
@@ -2041,6 +2061,10 @@ paths:
                         Interval: 1months
                         Duration: 1months
                         IAPData: []
+                        Metadata: 
+                          - Name: "packageType"
+                            Code: "packageTypeCode"
+                            Value: "video"
                       - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
                         Title: Rest of the world - Monthly Subscription
                         Body: <p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>
@@ -2095,6 +2119,13 @@ paths:
           name: lang
           required: false
           description: The language code
+        - schema:
+            type: string
+            enum: [iap]
+          in: query
+          name: type
+          required: false
+          description: The type of subscription plan  
         - schema:
             type: string
           in: query
@@ -2551,3 +2582,4 @@ components:
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
+  
