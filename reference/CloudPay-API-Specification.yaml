@@ -2090,6 +2090,7 @@ paths:
                             ProductID: nryearly
                           - Platform: Roku
                             ProductID: nryearly
+                        Metadata: []
                       - Id: 783da5fe-52bd-4e97-a88f-2383886b2e44
                         Title: Rest of the world - Weekend Pass
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
@@ -2103,6 +2104,7 @@ paths:
                         Interval: 2days
                         Duration: null
                         IAPData: []
+                        Metadata: []
       operationId: get-api-v1-package
       description: |-
         <!--
