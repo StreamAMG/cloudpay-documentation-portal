@@ -697,7 +697,7 @@ paths:
                     CurrentCustomerSession: null
                     ModelErrors: {}
       description: |-
-        The Presence check provides the functionlality to validate the activeness of a users session.
+        The Presence check provides the functionality to validate the activeness of a users session.
 
         One of the following parameters must be provided to perform the presence check.
 
