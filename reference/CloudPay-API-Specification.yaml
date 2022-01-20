@@ -20,6 +20,7 @@ tags:
   - name: Scripts
   - name: Models
   - name: User
+  - name: Resume
 paths:
   /sso/start:
     get:
@@ -881,11 +882,44 @@ paths:
               schema:
                 description: ''
                 type: object
+                x-examples:
+                  example-1:
+                    UtcNow: 1592991198112
+                    LocationFromIp:
+                      Name: null
+                      Country: null
+                      CountryCode: MT
+                      State: null
+                      City: null
+                    CurrentCustomerSessionStatus: -1
+                    CurrentCustomerSession:
+                      Id: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQyMTMyNTlGMTRCNUJGQkQ0Mjk5NUNEODZGODhBRjlGQ0IyRjA0NUVCNkU2NUIy0567B255
+                      CustomerId: c5d702fb-15f7-499b-90d5-cc36922e2ab2
+                      CustomerEmailAddress: customer@email.com
+                      CustomerFirstName: Lorem
+                      CustomerLastName: Ipsum
+                      CustomerBillingProfileCreatedAt: null
+                      CustomerBillingProfileExpiresAt: null
+                      CustomerBillingProfileLastFailedAt: null
+                      CustomerBillingProfileProvider: null
+                      CustomerBillingProfileReference: null
+                      CustomerDeleted: false
+                      CustomerEntitlements: ''
+                      CustomerFullAccessUntil: null
+                      CustomerNonExpiringSubscriptionCount: 0
+                      CustomerSubscriptionCount: 0
+                      RequiresCardAuthenticationCount: 0
+                    ModelErrors: {}
+                    Status: -1
+                    KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
+                    ErrorMessage: null
                 properties:
                   UtcNow:
                     type: number
                   LocationFromIp:
                     type: object
+                    required:
+                      - CountryCode
                     properties:
                       Name: {}
                       Country: {}
@@ -894,12 +928,21 @@ paths:
                         minLength: 1
                       State: {}
                       City: {}
-                    required:
-                      - CountryCode
                   CurrentCustomerSessionStatus:
                     type: number
                   CurrentCustomerSession:
                     type: object
+                    required:
+                      - Id
+                      - CustomerId
+                      - CustomerEmailAddress
+                      - CustomerFirstName
+                      - CustomerLastName
+                      - CustomerDeleted
+                      - CustomerEntitlements
+                      - CustomerNonExpiringSubscriptionCount
+                      - CustomerSubscriptionCount
+                      - RequiresCardAuthenticationCount
                     nullable: true
                     properties:
                       Id:
@@ -933,20 +976,8 @@ paths:
                         type: number
                       RequiresCardAuthenticationCount:
                         type: number
-                    required:
-                      - Id
-                      - CustomerId
-                      - CustomerEmailAddress
-                      - CustomerFirstName
-                      - CustomerLastName
-                      - CustomerDeleted
-                      - CustomerEntitlements
-                      - CustomerNonExpiringSubscriptionCount
-                      - CustomerSubscriptionCount
-                      - RequiresCardAuthenticationCount
                   ModelErrors:
                     type: object
-                    properties: {}
                   Status:
                     type: number
                   KSession:
@@ -954,6 +985,12 @@ paths:
                     minLength: 1
                     nullable: true
                   ErrorMessage: {}
+                  Resume:
+                    type: object
+                    nullable: true
+                    properties:
+                      timestamp:
+                        type: number
                 required:
                   - UtcNow
                   - LocationFromIp
@@ -962,37 +999,6 @@ paths:
                   - ModelErrors
                   - Status
                   - KSession
-                x-examples:
-                  example-1:
-                    UtcNow: 1592991198112
-                    LocationFromIp:
-                      Name: null
-                      Country: null
-                      CountryCode: MT
-                      State: null
-                      City: null
-                    CurrentCustomerSessionStatus: -1
-                    CurrentCustomerSession:
-                      Id: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQyMTMyNTlGMTRCNUJGQkQ0Mjk5NUNEODZGODhBRjlGQ0IyRjA0NUVCNkU2NUIy0567B255
-                      CustomerId: c5d702fb-15f7-499b-90d5-cc36922e2ab2
-                      CustomerEmailAddress: customer@email.com
-                      CustomerFirstName: Lorem
-                      CustomerLastName: Ipsum
-                      CustomerBillingProfileCreatedAt: null
-                      CustomerBillingProfileExpiresAt: null
-                      CustomerBillingProfileLastFailedAt: null
-                      CustomerBillingProfileProvider: null
-                      CustomerBillingProfileReference: null
-                      CustomerDeleted: false
-                      CustomerEntitlements: ''
-                      CustomerFullAccessUntil: null
-                      CustomerNonExpiringSubscriptionCount: 0
-                      CustomerSubscriptionCount: 0
-                      RequiresCardAuthenticationCount: 0
-                    ModelErrors: {}
-                    Status: -1
-                    KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
-                    ErrorMessage: null
               examples:
                 Successful KSession Response:
                   value:
@@ -1024,6 +1030,8 @@ paths:
                     ModelErrors: {}
                     Status: -1
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
+                    Resume:
+                      Timestamp: 30
                     ErrorMessage: null
                 Customer has No Subscriptions:
                   value:
@@ -1056,6 +1064,8 @@ paths:
                     ModelErrors: {}
                     Status: 1
                     KSession: null
+                    Resume:
+                      Timestamp: 0
                     ErrorMessage: Customer has no subscriptions
                 Unable to Retrieve Valid JSON Entitlements:
                   value:
@@ -1071,6 +1081,7 @@ paths:
                     ModelErrors: {}
                     Status: 5
                     KSession: null
+                    Resume: null
                     ErrorMessage: Unable to retrieve valid json entitlements
                 Too Many Failed Login Attempts:
                   value:
@@ -1098,6 +1109,8 @@ paths:
                     ModelErrors: {}
                     Status: 3
                     KSession: null
+                    Resume:
+                      Timestamp: 20
                     ErrorMessage: The customer account is blocked; too may failed login attempts
                 Blocked due to Concurrency Limit:
                   value:
@@ -1125,6 +1138,8 @@ paths:
                     ModelErrors: {}
                     Status: 5
                     KSession: null
+                    Resume:
+                      Timestamp: 30
                     ErrorMessage: The customer account is blocked due to concurrency limit
         '204':
           description: The KSession token generate request processed successfully but there is no response content
@@ -2191,6 +2206,117 @@ paths:
         in: path
         required: true
         description: The Subscription Plan ID you would like to purchase
+  '/api/v1/user/{userId}/entries':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+        description: the unique identifier for user
+    get:
+      summary: Get user entries with timestamps
+      tags:
+        - Resume
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    entries:
+                      - entryId: 0_abcdwxyz
+                        timestamp: 30
+                      - entryId: 0_xyxyxyxy
+                        timestamp: 7
+                      - entryId: 0_rdrdrdrd
+                        timestamp: 56
+                properties:
+                  entries:
+                    type: array
+                    uniqueItems: true
+                    minItems: 0
+                    items:
+                      type: object
+                      properties:
+                        entryId:
+                          type: string
+                          minLength: 1
+                        timestamp:
+                          type: number
+                          minimum: 0
+                      required:
+                        - entryId
+                        - timestamp
+              examples:
+                User entries found:
+                  value:
+                    entries:
+                      - entryId: 0_abcdwxyz
+                        timestamp: 30
+                      - entryId: 0_xyxyxyxy
+                        timestamp: 7
+                      - entryId: 0_rdrdrdrd
+                        timestamp: 56
+                User entries not found:
+                  value:
+                    entries: []
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  responseCode:
+                    type: number
+                  message:
+                    type: string
+                required:
+                  - responseCode
+                  - message
+                x-examples:
+                  example-1:
+                    responseCode: 404
+                    message: ''
+              examples:
+                Bad request:
+                  value:
+                    responseCode: 400
+                    message: Bad request
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  responseCode:
+                    type: number
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - responseCode
+                  - message
+                x-examples:
+                  example-1:
+                    responseCode: 404
+                    message: User not found
+              examples:
+                User not found:
+                  value:
+                    responseCode: 404
+                    message: User not found
+      operationId: get-user-userId-entries
+      description: The endpoint returns video entries watched by the user along with their last watched timestamp.
+      parameters: []
 components:
   parameters:
     languageParam:
@@ -2453,7 +2579,7 @@ components:
             readOnly: true
           Status:
             type: string
-            description: Status lists subscriptions that are active or cancelled. Cancelled status only applies to recurring subscriptions. It reflects the situation where the user cancelled the subscription, but will keep access to the content until expiry date.
+            description: 'Status lists subscriptions that are active or cancelled. Cancelled status only applies to recurring subscriptions. It reflects the situation where the user cancelled the subscription, but will keep access to the content until expiry date.'
             enum:
               - active
               - cancelled
@@ -2604,4 +2730,3 @@ components:
   securitySchemes: {}
 servers:
   - url: 'https://payments.streamamg.com'
-  
