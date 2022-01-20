@@ -987,6 +987,7 @@ paths:
                   ErrorMessage: {}
                   Resume:
                     type: object
+                    nullable: true
                     properties:
                       timestamp:
                         type: number
@@ -2205,7 +2206,7 @@ paths:
         in: path
         required: true
         description: The Subscription Plan ID you would like to purchase
-  '/user/{userId}/entries':
+  '/api/v1/user/{userId}/entries':
     parameters:
       - schema:
           type: string
@@ -2238,7 +2239,7 @@ paths:
                   entries:
                     type: array
                     uniqueItems: true
-                    minItems: 1
+                    minItems: 0
                     items:
                       type: object
                       properties:
@@ -2312,7 +2313,7 @@ paths:
                 User not found:
                   value:
                     responseCode: 404
-                    message: ''
+                    message: User not found
       operationId: get-user-userId-entries
       description: The endpoint returns video entries watched by the user along with their last watched timestamp.
       parameters: []
