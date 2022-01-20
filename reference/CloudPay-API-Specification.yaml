@@ -2206,14 +2206,8 @@ paths:
         in: path
         required: true
         description: The Subscription Plan ID you would like to purchase
-  '/api/v1/user/{userId}/entries':
-    parameters:
-      - schema:
-          type: string
-        name: userId
-        in: path
-        required: true
-        description: the unique identifier for user
+  /api/v1/user/entries:
+    parameters: []
     get:
       summary: Get user entries with timestamps
       tags:
@@ -2249,6 +2243,10 @@ paths:
                         timestamp:
                           type: number
                           minimum: 0
+                          description: Denotes how far the video viewing was progressed
+                        lastViewedAt:
+                          type: string
+                          description: The date and time when entry was viewed the last time
                       required:
                         - entryId
                         - timestamp
@@ -2258,10 +2256,13 @@ paths:
                     entries:
                       - entryId: 0_abcdwxyz
                         timestamp: 30
+                        lastViewedAt: '2021-06-28T13:14:20'
                       - entryId: 0_xyxyxyxy
                         timestamp: 7
+                        lastViewedAt: '2021-06-27T13:14:20'
                       - entryId: 0_rdrdrdrd
                         timestamp: 56
+                        lastViewedAt: '2021-05-27T13:14:20'
                 User entries not found:
                   value:
                     entries: []
@@ -2272,22 +2273,23 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  responseCode:
-                    type: number
-                  message:
-                    type: string
-                required:
-                  - responseCode
-                  - message
                 x-examples:
                   example-1:
                     responseCode: 404
                     message: ''
+                properties:
+                  statusCode:
+                    type: number
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - statusCode
+                  - message
               examples:
                 Bad request:
                   value:
-                    responseCode: 400
+                    statusCode: 400
                     message: Bad request
         '404':
           description: Not Found
@@ -2296,27 +2298,73 @@ paths:
               schema:
                 description: ''
                 type: object
+                x-examples:
+                  example-1:
+                    responseCode: 404
+                    message: User not found
                 properties:
-                  responseCode:
+                  statusCode:
                     type: number
                   message:
                     type: string
                     minLength: 1
                 required:
-                  - responseCode
+                  - statusCode
                   - message
-                x-examples:
-                  example-1:
-                    responseCode: 404
-                    message: User not found
               examples:
                 User not found:
                   value:
-                    responseCode: 404
+                    statusCode: 404
                     message: User not found
       operationId: get-user-userId-entries
-      description: The endpoint returns video entries watched by the user along with their last watched timestamp.
-      parameters: []
+      description: |-
+        The endpoint returns video entries watched by the user along with their last watched timestamp.
+
+        **Note** Only one of the four authorisation parameters are required
+      parameters:
+        - schema:
+            type: string
+          in: query
+          description: the JWT Token used for Authorisation
+          name: apijwttoken
+        - schema:
+            type: string
+          in: query
+          name: apisessionid
+          description: the CloudPay Session used for Authorisation
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+          in: query
+          name: order
+          description: A sort order by entry view date
+        - schema:
+            type: integer
+            minimum: 1
+            default: 1
+          in: query
+          description: The current page
+          name: page
+        - schema:
+            type: integer
+            minimum: 1
+            default: 10
+          in: query
+          description: The number of entries per page
+          name: size
+        - schema:
+            type: string
+          in: cookie
+          name: . auth
+          description: The authentication cookie header
+        - schema:
+            type: string
+          in: cookie
+          name: thirdpartyauthentication
+          description: The authentication Cookie
 components:
   parameters:
     languageParam:
