@@ -51,6 +51,15 @@
       "type": "item",
       "title": "API Specification",
       "uri": "reference/Entry-Entitlement-API-Specification.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Embeds"
+    },
+    {
+      "type": "item",
+      "title": "User Card Details",
+      "uri": "docs/Guides/BillingDetails-IFrame.md"
     }
   ]
 }
