@@ -2314,11 +2314,7 @@ paths:
                     message: ''
       operationId: get-user-userId-entries
       description: The endpoint returns video entries watched by the user along with their last watched timestamp.
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: userId
+      parameters: []
 components:
   parameters:
     languageParam:
