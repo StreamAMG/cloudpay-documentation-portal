@@ -2212,6 +2212,7 @@ paths:
         name: userId
         in: path
         required: true
+        description: the unique identifier for user
     get:
       summary: Get user entries with timestamps
       tags:
