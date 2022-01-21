@@ -2230,6 +2230,21 @@ paths:
                       - entryId: 0_rdrdrdrd
                         timestamp: 56
                 properties:
+                  page:
+                    type: integer
+                    minimum: 1
+                    default: 1
+                    description: The current page
+                    readOnly: true
+                  size:
+                    type: integer
+                    description: The number of entries per page
+                    minimum: 1
+                    default: 10
+                    readOnly: true
+                  order:
+                    type: string
+                    description: The sort order by lastViewedAt date and time
                   entries:
                     type: array
                     uniqueItems: true
@@ -2250,9 +2265,18 @@ paths:
                       required:
                         - entryId
                         - timestamp
+                        - lastViewedAt
+                required:
+                  - page
+                  - size
+                  - order
+                  - entries
               examples:
                 User entries found:
                   value:
+                    page: 1
+                    size: 10
+                    order: desc
                     entries:
                       - entryId: 0_abcdwxyz
                         timestamp: 30
@@ -2265,6 +2289,9 @@ paths:
                         lastViewedAt: '2021-05-27T13:14:20'
                 User entries not found:
                   value:
+                    page: 1
+                    size: 10
+                    order: desc
                     entries: []
         '400':
           description: Bad Request
@@ -2316,8 +2343,38 @@ paths:
                   value:
                     statusCode: 404
                     message: User not found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  statusCode:
+                    type: number
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - statusCode
+                  - message
+                x-examples:
+                  example-1:
+                    statusCode: 0
+                    message: string
+              examples:
+                Internal server error:
+                  value:
+                    statusCode: 500
+                    message: Internal server error
       operationId: get-user-userId-entries
       description: |-
+        <!--
+        focus: false
+        -->
+        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        
         The endpoint returns video entries watched by the user along with their last watched timestamp.
 
         **Note** Only one of the four authorisation parameters are required
@@ -2358,7 +2415,7 @@ paths:
         - schema:
             type: string
           in: cookie
-          name: . auth
+          name: .auth
           description: The authentication cookie header
         - schema:
             type: string
