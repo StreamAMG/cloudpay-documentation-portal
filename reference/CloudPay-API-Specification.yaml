@@ -989,8 +989,10 @@ paths:
                     type: object
                     nullable: true
                     properties:
-                      timestamp:
+                      Timestamp:
                         type: number
+                      LastViewedAt:
+                        type: string
                 required:
                   - UtcNow
                   - LocationFromIp
@@ -1032,6 +1034,7 @@ paths:
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
                     Resume:
                       Timestamp: 30
+                      LastViewedAt: '2021-06-28T13:14:20'
                     ErrorMessage: null
                 Customer has No Subscriptions:
                   value:
@@ -1066,6 +1069,7 @@ paths:
                     KSession: null
                     Resume:
                       Timestamp: 0
+                      LastViewedAt: ''
                     ErrorMessage: Customer has no subscriptions
                 Unable to Retrieve Valid JSON Entitlements:
                   value:
@@ -1111,6 +1115,7 @@ paths:
                     KSession: null
                     Resume:
                       Timestamp: 20
+                      LastViewedAt: '2021-06-28T13:14:20'
                     ErrorMessage: The customer account is blocked; too may failed login attempts
                 Blocked due to Concurrency Limit:
                   value:
@@ -1140,6 +1145,7 @@ paths:
                     KSession: null
                     Resume:
                       Timestamp: 30
+                      LastViewedAt: '2021-06-28T13:14:20'
                     ErrorMessage: The customer account is blocked due to concurrency limit
         '204':
           description: The KSession token generate request processed successfully but there is no response content
@@ -1317,9 +1323,6 @@ paths:
         <!--
         focus: false
         -->
-
-        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
-
         The Account Cancellation API endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier.
 
         This endpoint will only allow a user with a valid session token to cancel their own subscriptions.
@@ -1429,8 +1432,6 @@ paths:
         <!--
         focus: false
         -->
-        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
-
         The Account Endpoint returns an account summary of the Authenticated User.
 
         **Note** *Only one of the four authorisation parameters are required*
@@ -1506,9 +1507,6 @@ paths:
         <!--
         focus: false
         -->
-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
-
         The update Account endpoint allows a user to update their user details.
 
         Please be aware that the users email can not be updated via the API.
@@ -1710,9 +1708,6 @@ paths:
         <!--
         focus: false
         -->
-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
-
         The account endpoint returns transactions of the authenticated user.
 
         **Note** *Only one of the four authorisation parameters are required*
@@ -1812,9 +1807,6 @@ paths:
         <!--
         focus: false
         -->
-
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
-
         The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
 
         **Note:** Only one of the four authorisation parameters are required
@@ -2373,7 +2365,7 @@ paths:
         <!--
         focus: false
         -->
-        ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
+        ![In Development](https://img.shields.io/badge/Status-In%20Development-green?style=flat-square)
 
         The endpoint returns customer's video resume information, such as, entryId, video watching progress in seconds, and the date and time when the video was last viewed.
 
