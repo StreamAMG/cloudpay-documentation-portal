@@ -2206,7 +2206,7 @@ paths:
         in: path
         required: true
         description: The Subscription Plan ID you would like to purchase
-  /api/v1/user/entries:
+  /api/v1/resume:
     parameters: []
     get:
       summary: Get user entries with timestamps
@@ -2252,20 +2252,20 @@ paths:
                     items:
                       type: object
                       properties:
-                        entryId:
+                        EntryId:
                           type: string
                           minLength: 1
-                        timestamp:
+                        Timestamp:
                           type: number
                           minimum: 0
                           description: Denotes how far the video viewing was progressed
-                        lastViewedAt:
+                        LastViewedAt:
                           type: string
                           description: The date and time when entry was viewed the last time
                       required:
-                        - entryId
-                        - timestamp
-                        - lastViewedAt
+                        - EntryId
+                        - Timestamp
+                        - LastViewedAt
                 required:
                   - page
                   - size
@@ -2278,15 +2278,15 @@ paths:
                     size: 10
                     order: desc
                     entries:
-                      - entryId: 0_abcdwxyz
-                        timestamp: 30
-                        lastViewedAt: '2021-06-28T13:14:20'
-                      - entryId: 0_xyxyxyxy
-                        timestamp: 7
-                        lastViewedAt: '2021-06-27T13:14:20'
-                      - entryId: 0_rdrdrdrd
-                        timestamp: 56
-                        lastViewedAt: '2021-05-27T13:14:20'
+                      - EntryId: 0_abcdwxyz
+                        Timestamp: 30
+                        LastViewedAt: '2021-06-28T13:14:20Z'
+                      - EntryId: 0_xyxyxyxy
+                        Timestamp: 7
+                        LastViewedAt: '2021-06-27T13:14:20Z'
+                      - EntryId: 0_rdrdrdrd
+                        Timestamp: 56
+                        LastViewedAt: '2021-05-27T13:14:20Z'
                 User entries not found:
                   value:
                     page: 1
@@ -2374,8 +2374,8 @@ paths:
         focus: false
         -->
         ![In Review](https://img.shields.io/badge/Status-In%20Review-green?style=flat-square)
-        
-        The endpoint returns video entries watched by the user along with their last watched timestamp.
+
+        The endpoint returns customer's video resume information, such as, entryId, video watching progress in seconds, and the date and time when the video was last viewed.
 
         **Note** Only one of the four authorisation parameters are required
       parameters:
