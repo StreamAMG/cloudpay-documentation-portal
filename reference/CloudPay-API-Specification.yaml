@@ -2209,7 +2209,7 @@ paths:
   /api/v1/resume:
     parameters: []
     get:
-      summary: Get user entries with timestamps
+      summary: Get user media entry resume information
       tags:
         - Resume
       responses:
