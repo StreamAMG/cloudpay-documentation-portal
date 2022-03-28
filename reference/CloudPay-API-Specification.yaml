@@ -1832,6 +1832,18 @@ paths:
                     raw:
                       type: string
                       format: base64
+                    payment:
+                      type: object
+                      properties:
+                        countryCode:
+                          type: string
+                          required: true
+                        currencyCode:
+                          type: string
+                        amount:
+                          type: string
+                        discount:
+                          type: string
                 platform:
                   type: string
                   enum:
@@ -1847,6 +1859,11 @@ paths:
                 value:
                   receipt:
                     raw: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
+                    payment:
+                      country: GB
+                      currency: GBP
+                      amount: "9.99"
+                      discount: "1.99"
                   platform: ios
               android-example:
                 value:
@@ -1855,17 +1872,29 @@ paths:
                     packageName: a-package-name
                     productId: a-product-id-456
                     autoRenewing: true
+                    payment:
+                      country: BR
+                      currency: BRL
+                      amount: "62.29"
                   platform: android
               roku-example:
                 value:
                   receipt:
                     purchaseIdentifier: shdbfhgdsvfdv1234
+                    payment:
+                      country: CA
+                      currency: CAD
+                      amount: "16.41"
                   platform: roku
               amazon-example:
                 value:
                   receipt:
                     purchaseIdentifier: lkjhgfdsapoiuytrewq1234
                     userId: a-amazon-userId
+                    payment:
+                      country: US
+                      currency: USD
+                      amount: "13.13"
                   platform: amazon
         description: ''
       parameters:
