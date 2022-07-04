@@ -1828,7 +1828,8 @@ paths:
         focus: false
         -->
         The verify endpoint validates the in-app purchase with the provider, such as, Apple, Android, Roku; so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
-
+        Please see examples prodived.
+        
         **Note:** Only one of the four authorisation parameters are required
       requestBody:
         content:
