@@ -1869,6 +1869,7 @@ paths:
                           required: true
                         amount:
                           type: string
+                          required: true
                         discount:
                           type: string
                 platform:
