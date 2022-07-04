@@ -1724,18 +1724,38 @@ paths:
               schema:
                 type: object
                 properties:
-                  status:
+                  statusCode:
                     type: number
-                  isVerified:
-                    type: boolean
+                  headers:
+                    type: object
+                    properties:
+                      Access-Control-Allow-Credentials:
+                        type: boolean
+                      Access-Control-Allow-Origin:
+                        type: string
+                      Content-Type:
+                        type: string
+                  multiValueHeaders:
+                    type: object
+                  body:
+                    type: object
+                    properties:
+                      isVerified:
+                        type: boolean
                 required:
-                  - status
-                  - isVerified
+                  - statusCode
+                  - body
               examples:
                 sucess-example:
                   value:
-                    status: 200
-                    isVerified: true
+                    statusCode: 200
+                    headers:
+                      Access-Control-Allow-Credentials: true
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
+                    multiValueHeaders: {}
+                    body:
+                      isVerified: true
         '400':
           description: Bad Request
           content:
@@ -1745,12 +1765,12 @@ paths:
                 type: object
                 x-examples:
                   example-1:
-                    status: 400
+                    statusCode: 400
                     error:
                       sourceErrorCode: 21005
                       message: The receipt server is not currently available.
                 properties:
-                  status:
+                  statusCode:
                     type: number
                   body:
                     type: object
@@ -1764,12 +1784,12 @@ paths:
                         type: string
                         minLength: 1
                 required:
-                  - status
+                  - statusCode
                   - body
               examples:
                 error-from-provider-example:
                   value:
-                    status: 400
+                    statusCode: 400
                     body:
                       sourceErrorCode: 21005
                       errorMessage: The receipt server is not currently available.
@@ -1784,7 +1804,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  status:
+                  statusCode:
                     type: number
                   body:
                     type: object
@@ -1794,12 +1814,12 @@ paths:
                       errorMessage:
                         type: string
                 required:
-                  - status
+                  - statusCode
                   - body
               examples:
                 error-example:
                   value:
-                    status: 500
+                    statusCode: 500
                     body:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
@@ -1821,17 +1841,23 @@ paths:
                   properties:
                     purchaseIdentifier:
                       type: string
+                      description: optional for ios if the raw key member is being populated
                     packageName:
                       type: string
+                      description: optional for ios, roku and amazon
                     productId:
                       type: string
+                      description: optional for ios, roku and amazon
                     autoRenewing:
                       type: boolean
+                      description: optional
                     userId:
                       type: string
+                      description: optional for ios, roku and android
                     raw:
                       type: string
                       format: base64
+                      description: optional for roku, android, amazon (also ios if the purchaseIdentifier key member is being used)
                     payment:
                       type: object
                       properties:
@@ -1840,6 +1866,7 @@ paths:
                           required: true
                         currencyCode:
                           type: string
+                          required: true
                         amount:
                           type: string
                         discount:
@@ -1860,8 +1887,8 @@ paths:
                   receipt:
                     raw: bmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA=
                     payment:
-                      country: GB
-                      currency: GBP
+                      countryCode: GB
+                      currencyCode: GBP
                       amount: "9.99"
                       discount: "1.99"
                   platform: ios
@@ -1873,8 +1900,8 @@ paths:
                     productId: a-product-id-456
                     autoRenewing: true
                     payment:
-                      country: BR
-                      currency: BRL
+                      countryCode: BR
+                      currencyCode: BRL
                       amount: "62.29"
                   platform: android
               roku-example:
@@ -1882,8 +1909,8 @@ paths:
                   receipt:
                     purchaseIdentifier: shdbfhgdsvfdv1234
                     payment:
-                      country: CA
-                      currency: CAD
+                      countryCode: CA
+                      currencyCode: CAD
                       amount: "16.41"
                   platform: roku
               amazon-example:
@@ -1892,8 +1919,8 @@ paths:
                     purchaseIdentifier: lkjhgfdsapoiuytrewq1234
                     userId: a-amazon-userId
                     payment:
-                      country: US
-                      currency: USD
+                      countryCode: US
+                      currencyCode: USD
                       amount: "13.13"
                   platform: amazon
         description: ''
