@@ -1766,17 +1766,30 @@ paths:
                 x-examples:
                   example-1:
                     statusCode: 400
-                    error:
+                    headers:
+                      Access-Control-Allow-Credentials: true
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
+                    multiValueHeaders: { }
+                    body:
                       sourceErrorCode: 21005
                       message: The receipt server is not currently available.
                 properties:
                   statusCode:
                     type: number
+                  headers:
+                    type: object
+                    properties:
+                      Access-Control-Allow-Credentials:
+                        type: boolean
+                      Access-Control-Allow-Origin:
+                        type: string
+                      Content-Type:
+                        type: string
+                  multiValueHeaders:
+                    type: object
                   body:
                     type: object
-                    required:
-                      - sourceErrorCode
-                      - errorMessage
                     properties:
                       sourceErrorCode:
                         type: number
@@ -1790,6 +1803,11 @@ paths:
                 error-from-provider-example:
                   value:
                     statusCode: 400
+                    headers:
+                      Access-Control-Allow-Credentials: true
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
+                    multiValueHeaders: { }
                     body:
                       sourceErrorCode: 21005
                       errorMessage: The receipt server is not currently available.
@@ -1806,6 +1824,17 @@ paths:
                 properties:
                   statusCode:
                     type: number
+                  headers:
+                    type: object
+                    properties:
+                      Access-Control-Allow-Credentials:
+                        type: boolean
+                      Access-Control-Allow-Origin:
+                        type: string
+                      Content-Type:
+                        type: string
+                  multiValueHeaders:
+                      type: object
                   body:
                     type: object
                     required:
@@ -1820,6 +1849,11 @@ paths:
                 error-example:
                   value:
                     statusCode: 500
+                    headers:
+                      Access-Control-Allow-Credentials: true
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
+                    multiValueHeaders: { }
                     body:
                       errorMessage: Internal server error
       operationId: post-iap-verifyReceipt
