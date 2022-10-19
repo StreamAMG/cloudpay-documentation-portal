@@ -2535,10 +2535,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    Granted: false
-                    Reason: Invalid customer id
                 properties:
                   Granted:
                     type: boolean
@@ -2550,11 +2546,15 @@ paths:
               examples:
                 Customer account is granted:
                   value:
-                    Granted: true     
+                    Granted: true
+                Entry entitlements error:
+                  value:
+                    Granted: false
+                    Reason: Entry entitlements error     
                 Customer account is blocked:
                   value:
                     Granted: false
-                    Reason: Account blocked  
+                    Reason: Customer is blocked or deleted  
                 Customer account don't have an active session:
                   value:
                     Granted: false
@@ -2562,15 +2562,39 @@ paths:
                 Customer account don't have valid entitlements:
                   value:
                     Granted: false
-                    Reason: No entitlement
+                    Reason: No entitlements
                 Customer account don't have valid subscription:
                   value:
                     Granted: false
                     Reason: No subscription
-                Unknown reason, includes CardAuthenticationRequired but doesn't include ConcurrencyCheck:
+                Customer payment card requires authorization:
                   value:
                     Granted: false
-                    Reason: Unknown reason    
+                    Reason: Customer payment card requires authorization
+                Customer data error:
+                  value:
+                    Granted: false
+                    Reason: Customer error       
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  Granted: 
+                    type: boolean
+                  Reason:
+                    type: string
+                required:
+                  - Granted
+                  - Reason
+              examples:
+                Invalid customer id:
+                  value:
+                    Granted: false
+                    Reason: BadRequestException
         '500':
           description: Internal server error
           content:
@@ -2586,15 +2610,11 @@ paths:
                 required:
                   - Granted
                   - Reason
-                x-examples:
-                  example-1:
-                    Granted: false
-                    Reason: Unknown reason
               examples:
                 Unknown reason:
                   value:
                     Granted: false
-                    Reason: Unknown reason
+                    Reason: Exception name
       description: |-
         In order to validate that a customer has an access to the media entry.
 
