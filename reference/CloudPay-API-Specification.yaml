@@ -2512,6 +2512,7 @@ paths:
       summary: Validate a customer access to the MediaPlatform entry
       tags:
         - DRM
+      x-internal: true  
       parameters:
         - in: path
           name: entryId
