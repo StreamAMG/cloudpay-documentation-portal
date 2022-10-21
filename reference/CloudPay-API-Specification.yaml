@@ -21,6 +21,7 @@ tags:
   - name: Models
   - name: User
   - name: Resume
+  - name: DRM
 paths:
   /sso/start:
     get:
@@ -2506,6 +2507,122 @@ paths:
           in: cookie
           name: thirdpartyauthentication
           description: The authentication Cookie
+  /api/v1/validatedrm/{entryId}/{customerId}:
+    get:
+      summary: Validate a customer access to the MediaPlatform entry
+      tags:
+        - DRM
+      x-internal: true  
+      parameters:
+        - in: path
+          name: entryId
+          schema:
+            type: string
+            minLength: 1
+          required: true
+          description: The entry id
+        - in: path
+          name: customerId
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: The customer id  
+      responses:
+        '200':
+          description: |-
+            Validation request responses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Granted:
+                    type: boolean
+                  Reason:
+                    type: string
+                    nullable: true       
+                required:
+                  - Granted
+              examples:
+                Customer account is granted:
+                  value:
+                    Granted: true
+                Entry entitlements error:
+                  value:
+                    Granted: false
+                    Reason: Entry entitlements error     
+                Customer account is blocked:
+                  value:
+                    Granted: false
+                    Reason: Customer is blocked or deleted  
+                Customer account don't have an active session:
+                  value:
+                    Granted: false
+                    Reason: No active session
+                Customer account don't have valid entitlements:
+                  value:
+                    Granted: false
+                    Reason: No entitlements
+                Customer account don't have valid subscription:
+                  value:
+                    Granted: false
+                    Reason: No subscription
+                Customer payment card requires authorization:
+                  value:
+                    Granted: false
+                    Reason: Customer payment card requires authorization
+                Customer data error:
+                  value:
+                    Granted: false
+                    Reason: Customer error       
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  Granted: 
+                    type: boolean
+                  Reason:
+                    type: string
+                required:
+                  - Granted
+                  - Reason
+              examples:
+                Invalid customer id:
+                  value:
+                    Granted: false
+                    Reason: BadRequestException
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  Granted: 
+                    type: boolean
+                  Reason:
+                    type: string
+                required:
+                  - Granted
+                  - Reason
+              examples:
+                Unknown reason:
+                  value:
+                    Granted: false
+                    Reason: Exception name
+      description: |-
+        In order to validate that a customer has an access to the media entry.
+
+        A customer should have a valid session (Freemium and Premium) and a correct paid subscription (entitlements) for Premium content.
+
+      operationId: validate-drm
+    parameters: []
 components:
   parameters:
     languageParam:
