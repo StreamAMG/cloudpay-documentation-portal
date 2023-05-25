@@ -1,0 +1,298 @@
+x-internal: true
+x-stoplight:
+  docs:
+    showModels: false
+
+openapi: 3.1.0
+info:
+  title: API Reference
+  version: '1.0'
+  contact:
+    name: Jonathon Robins
+    email: Jonathon.Robins@pamediagroup.com
+  summary: Service for payments processing with Stripe integration.
+  description: |-
+    Exposes functionality to process a payment of a subscription for CloudPay services utilizing Stripe payment flow.
+tags:
+  - name: Stripe
+  - name: StreamAMG
+servers:
+  - url: 'https://checkout-api-development.dev.streamamg.com/api/v1/'
+paths:
+  /payment/stripe/checkout:
+    post:
+      summary: Initiate Stripe Payment Processing
+      description: |-
+        Starts Payment Request processing, creates a Stripe PaymentIntent/SetupIntent based on the requested package and returns clientSecret which then needs to be confirmed using Stripe library. Refer to [Stripe documentation](https://stripe.com/docs/payments/accept-a-payment?ui=elements). 
+        
+        One of the following parameters must be provided to be able to access the API:
+
+        * apisessionid
+        * apijwttoken
+
+      operationId: post-payment-request
+      parameters:
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostPaymentRequest"
+      responses:
+        "201":
+          description: Payment Request Created
+          content:
+            application/json:
+              schema:
+                oneOf: 
+                  - $ref: "#/components/schemas/PostPaymentResponse"
+                  - $ref: "#/components/schemas/PostOffSessionPaymentResponse"
+              examples:
+                Example - Payment Processing Initiated Successfully:
+                  value:
+                    paymentIntentId: 'pi_3MqDaKHhzXcPYLMM0SOelv6u'
+                    clientSecret: 'secret'
+        "400":
+          description: Bad Request
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
+              examples:
+                Example - No client secret was generated:
+                  value:
+                    statusCode: '400'
+                    message: 'No client secret was generated'
+                    error: 'Bad Request'
+        "401":
+          description: Unauthorized
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
+        "404":
+          description: Not Found
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
+        "500":
+          description: Internal Server Error
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
+      tags:
+        - Stripe
+
+  /voucher/stripe/redeem:
+    post:
+      summary: Redeem discount voucher
+      operationId: discount-voucher-redeem
+      description: |-
+        Redeems a discount voucher.
+        
+        One of the following parameters must be provided to be able to access the API:
+
+        * apisessionid
+        * apijwttoken
+
+      parameters:
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RedeemDiscountVoucherRequest"
+      responses:
+        "200":
+          description: Discount Voucher Redeemed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedeemDiscountVoucherResponse"
+        "400":
+          description: Bad Request
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+        "401":
+          description: Unauthorized
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+        "404":
+          description: Not Found
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+        "500":
+          description: Internal Server Error
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+      tags:
+        - Stripe
+
+  /discount/streamamg/sync:
+    post:
+      summary: Initiate Discount Sync
+      operationId: discount-sync
+      x-internal: true
+      description: Internal admin endpoint for Discounts and Discount Vouchers synchronization. Requires an API Key - use CloudPay admin API Key or contact Zeus team to get it.
+      security:
+        - ApiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostDiscountSyncRequest"
+      tags:
+        - StreamAMG
+      responses:
+        "200":
+          description: Discount Sync Message Posted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDiscountSyncResponse"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDiscountSyncErrorMessage"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostDiscountSyncErrorMessage"
+
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+  parameters:
+    apiJwtTokenParam:
+      in: query
+      name: apijwttoken
+      schema:
+        type: string
+      required: false
+      description: the JWT Token used for Authorisation
+    apiSessionIdParam:
+      in: query
+      name: apisessionid
+      schema:
+        type: string
+      required: false
+      description: the CloudPay Session used for Authorisation
+  schemas:
+    PostPaymentRequest:
+      type: object
+      properties:
+        packageId:
+          type: string
+      required:
+        - packageId
+    PostPaymentResponse:
+      type: object
+      properties:
+        paymentIntentId:
+          type: string
+        clientSecret:
+          type: string
+        authenticationRequired:
+          type: boolean
+      required:
+        - paymentIntentId
+        - clientSecret
+    PostOffSessionPaymentResponse:
+      type: object
+      properties:
+        setupIntentId:
+          type: string
+        clientSecret:
+          type: string
+    PostPaymentErrorMessage:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        error:
+          type: string
+    RedeemDiscountVoucherRequest:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        code:
+          type: string
+      required:
+        - clientSecret
+        - code
+    RedeemDiscountVoucherResponse:
+      type: object
+      properties:
+        statusCode:
+          type: string
+    RedeemDiscountVoucherErrorMessage:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        error:
+          type: string
+    PostDiscountSyncRequest:
+      type: object
+      properties:
+        site:
+          type: string
+        event:
+          type: string
+          enum:
+            - DiscountCreatedOrUpdatedEvent
+            - DiscountVouchersUpdatedEvent
+        discountId:
+          type: string
+    PostDiscountSyncResponse:
+      type: object
+      properties:
+        SendMessageResponse:
+          type: object
+          properties:
+            ResponseMetadata:
+              type: object
+              properties:
+                RequestId:
+                  type: string
+    PostDiscountSyncErrorMessage:
+      type: object
+      properties:
+        Error:
+          type: object
+          properties:
+            Code:
+              type: string
+            Message:
+              type: string
+            Type:
+              type: string
+        RequestId:
+          type: string
