@@ -3266,8 +3266,7 @@ components:
         LastName: Ipsum
         BillingDetails:
           CardDetails:
-            Provider: 
-            Card
+            Provider: StripeCard
             Reference: visa XXXX-XXXX-XXXX-4242
             Country: GB
             Expires: '2024-07-21T17:32:28Z'
