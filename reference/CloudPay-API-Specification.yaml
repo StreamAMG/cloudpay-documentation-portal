@@ -2637,7 +2637,6 @@ paths:
         * apijwttoken
 
       operationId: post-payment-request
-      x-internal: true
       parameters:
         - $ref: '#/components/parameters/apiSessionIdParam'
         - $ref: '#/components/parameters/apiJwtTokenParam'
@@ -2698,7 +2697,6 @@ paths:
     post:
       summary: Redeem discount voucher
       operationId: discount-voucher-redeem
-      x-internal: true
       description: |-
         Redeems a discount voucher.
 
