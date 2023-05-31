@@ -2838,7 +2838,7 @@ components:
     PostPaymentResponse:
       type: object
       properties:
-        paymentIntentId:
+        basketId:
           type: string
         clientSecret:
           type: string
@@ -2850,7 +2850,7 @@ components:
     PostOffSessionPaymentResponse:
       type: object
       properties:
-        setupIntentId:
+        basketId:
           type: string
         clientSecret:
           type: string
@@ -2866,7 +2866,7 @@ components:
     RedeemDiscountVoucherRequest:
       type: object
       properties:
-        clientSecret:
+        basketId:
           type: string
         code:
           type: string
