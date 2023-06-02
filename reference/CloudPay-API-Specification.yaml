@@ -2658,7 +2658,7 @@ paths:
               examples:
                 Example - Payment Processing Initiated Successfully:
                   value:
-                    paymentIntentId: 'pi_3MqDaKHhzXcPYLMM0SOelv6u'
+                    basketId: 'payment_intent#pi_3MqDaKHhzXcPYLMM0SOelv6u'
                     clientSecret: 'secret'
         '400':
           description: Bad Request
@@ -2693,9 +2693,9 @@ paths:
       tags:
         - Checkout
 
-  /voucher/stripe/redeem:
+  /payment/stripe/discount:
     post:
-      summary: Redeem discount voucher
+      summary: Redeem a discount voucher
       operationId: discount-voucher-redeem
       description: |-
         Redeems a discount voucher.
@@ -2721,6 +2721,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RedeemDiscountVoucherResponse'
+              examples:
+                Example - Discount Applied Successfully:
+                  value:
+                    clientSecret: 'secret'
         '400':
           description: Bad Request
           content:
@@ -2876,7 +2880,7 @@ components:
     RedeemDiscountVoucherResponse:
       type: object
       properties:
-        statusCode:
+        clientSecret:
           type: string
     RedeemDiscountVoucherErrorMessage:
       type: object
