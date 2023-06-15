@@ -2751,6 +2751,59 @@ paths:
                 $ref: '#/components/schemas/RedeemDiscountVoucherErrorMessage'
       tags:
         - Checkout
+  
+  /billing/stripe/update:
+    post:
+      summary: Initiate customer billing details update
+      operationId: billing-update
+      description: |-
+        Initiates customer billing details update.
+
+        One of the following parameters must be provided to be able to access the API:
+
+        * apisessionid
+        * apijwttoken
+
+      parameters:
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+      responses:
+        '200':
+          description: Billing Details Update Initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsResponse'
+              examples:
+                Example - Billing Details Update Initiated Successfully:
+                  value:
+                    clientSecret: 'secret'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+      tags:
+        - Checkout
 
   /discount/streamamg/sync:
     post:
@@ -2883,6 +2936,20 @@ components:
         clientSecret:
           type: string
     RedeemDiscountVoucherErrorMessage:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        error:
+          type: string
+    UpdateBillingDetailsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+    UpdateBillingDetailsErrorMessage:
       type: object
       properties:
         statusCode:
