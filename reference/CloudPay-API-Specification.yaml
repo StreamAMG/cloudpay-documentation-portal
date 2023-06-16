@@ -2658,7 +2658,7 @@ paths:
               examples:
                 Example - Payment Processing Initiated Successfully:
                   value:
-                    paymentIntentId: 'pi_3MqDaKHhzXcPYLMM0SOelv6u'
+                    basketId: 'payment_intent#pi_3MqDaKHhzXcPYLMM0SOelv6u'
                     clientSecret: 'secret'
         '400':
           description: Bad Request
@@ -2693,9 +2693,9 @@ paths:
       tags:
         - Checkout
 
-  /voucher/stripe/redeem:
+  /payment/stripe/discount:
     post:
-      summary: Redeem discount voucher
+      summary: Redeem a discount voucher
       operationId: discount-voucher-redeem
       description: |-
         Redeems a discount voucher.
@@ -2721,6 +2721,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RedeemDiscountVoucherResponse'
+              examples:
+                Example - Discount Applied Successfully:
+                  value:
+                    clientSecret: 'secret'
         '400':
           description: Bad Request
           content:
@@ -2745,6 +2749,59 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RedeemDiscountVoucherErrorMessage'
+      tags:
+        - Checkout
+  
+  /billing/stripe/update:
+    post:
+      summary: Initiate customer billing details update
+      operationId: billing-update
+      description: |-
+        Initiates customer billing details update.
+
+        One of the following parameters must be provided to be able to access the API:
+
+        * apisessionid
+        * apijwttoken
+
+      parameters:
+        - $ref: '#/components/parameters/apiSessionIdParam'
+        - $ref: '#/components/parameters/apiJwtTokenParam'
+      responses:
+        '200':
+          description: Billing Details Update Initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsResponse'
+              examples:
+                Example - Billing Details Update Initiated Successfully:
+                  value:
+                    clientSecret: 'secret'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
       tags:
         - Checkout
 
@@ -2876,9 +2933,23 @@ components:
     RedeemDiscountVoucherResponse:
       type: object
       properties:
-        statusCode:
+        clientSecret:
           type: string
     RedeemDiscountVoucherErrorMessage:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        error:
+          type: string
+    UpdateBillingDetailsResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+    UpdateBillingDetailsErrorMessage:
       type: object
       properties:
         statusCode:
