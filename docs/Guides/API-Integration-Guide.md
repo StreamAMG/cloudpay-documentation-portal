@@ -281,6 +281,6 @@ The [**Terminate API**](https://streamamg.stoplight.io/docs/cloudpay/60a1611a526
 
 This endpoint will only allow a user with a valid session token to terminate the session.
 
-> A defult session length is configured via the CloudPay backend admin console in the cse that a user fails to log out
+> A defult session length is configured via the CloudPay backend admin console in the case that a user fails to log out
 
 An active session counts towards the device lock number so it is important that a user session is terminated.
