@@ -40,8 +40,12 @@ The [**Session Start API**](https://streamamg.stoplight.io/docs/cloudpay/a0c77a8
 
 This endpoint will only allow a user with a valid JWT session token to start a CloudPay session.  The JWT token should be passed as a query param as follows.
 
+<!--
+title: "JWT Token query param example"
+-->
 ```json
-?**apijwttoken**=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+https://{client}payments.streamamg.com
+/sso/start?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
 
 Once a CloudPay session has been established the session token (JWT) can be used throughout the CloudPay flow to provide trust when requesting access to other API functionality.
@@ -78,6 +82,9 @@ This is the first step of the checkout flow which differs for Web and Mobile int
 
 Each subscription plan object in the package API response contains a subscription Id.  This value is needed for the checkout API in order to pull back the amount and currency that is passed to Stripe when building the basket.
 
+<!--
+title: "Subscription Id value needed to create a basket as part of the Checkout API call"
+-->
 ```json
 "SubscriptionPlanOptions": [
 {
@@ -88,8 +95,11 @@ Each subscription plan object in the package API response contains a subscriptio
 
 For a mobile integration a query param should be used to return the IAP related subscriptions.  
 
+<!--
+title: "Include the ‘type’ query param and value ‘iap’ to return IAP related subscriptions"
+-->
 ```html
-https://payments.streamamg.com/api/v1/package**?type=iap**
+https://payments.streamamg.com/api/v1/package?type=iap
 ```
 
 > By default the Package API endpoint will not return IAP related subscriptions
@@ -97,6 +107,9 @@ https://payments.streamamg.com/api/v1/package**?type=iap**
 
 The response contains the App ProductID that should be used to return the In App Payment (IAP) subscriptions from the various app stores calls.
 
+<!--
+title: "IAPData object when using the type=iap query param"
+-->
 ```json
 "IAPData": [{
 		"Platform": "Amazon",
@@ -147,6 +160,9 @@ This endpoint will only allow a user with a valid session token to apply a disco
 
 To apply a discount to the checkout amount you should pass in the basket ID (Payment Intent) and the discount code to the body of the API request.
 
+<!--
+Title: "Body example for the discount API request"
+-->
 ```json
 {
   "basketId": "pi_1Gszkg7eZvGYlo3C6ZLlAL7t",
@@ -222,15 +238,23 @@ This endpoint will only allow a user with a valid session token to return their 
 
 The status value shows if a transaction has been successful or not and the ProviderMessage provides details around the status.
 
+<!--
+title: "Successful transaction"
+-->
+```json
+"Status": 1,
+"ProviderMessage": null
+```
+&nbsp;
+
+<!--
+title: "Failed transaction"
+-->
 ```json
 "Status": -1,
 "ProviderMessage": "Your card has insufficient funds."
 ```
 
-```json
-"Status": 1,
-"ProviderMessage": null
-```
 
 ### Cancel a subscription
 
@@ -242,6 +266,9 @@ This endpoint will only allow a user with a valid session token to cancel their 
 
 The ID can be returned using the Account API and is found in the ‘Subscriptions’ object
 
+<!--
+title: "Example of the ID needed to cancel a user subscription"
+-->
 ```json
 "Subscriptions": [
         {
