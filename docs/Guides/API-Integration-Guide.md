@@ -36,7 +36,7 @@ The first part of the integration relies on the client to authorise the user and
 
 ### Start a CloudPay session
 
-The **Session Start API** endpoint exposes the functionality for a user to begin a CloudPay session and thus count towards the device lock total - concurrent devices logged into a single account.
+The [**Session Start API**](https://streamamg.stoplight.io/docs/cloudpay/a0c77a8e1e511-start-a-sso-session) endpoint exposes the functionality for a user to begin a CloudPay session and thus count towards the device lock total - concurrent devices logged into a single account.
 
 This endpoint will only allow a user with a valid JWT session token to start a CloudPay session.  The JWT token should be passed as a query param as follows.
 
@@ -52,7 +52,7 @@ The CloudPay SSO session start counts towards the device lock which is configure
 
 ### Validate an active CloudPay session
 
-The **Prescence API** endpoint exposes the functionality to validate the activeness of a users session and whether they have any active subscriptions.
+The [**Prescence API**](https://streamamg.stoplight.io/docs/cloudpay/785e1808f7dc2-validate-active-session) endpoint exposes the functionality to validate the activeness of a users session and whether they have any active subscriptions.
 
 This endpoint will only allow a user with a valid session token to return the status of their session.
 
@@ -66,7 +66,7 @@ CustomerPackages can be used to return the package UUID that a user has subscrib
 
 ### Return subscription packages
 
-The **Package API** endpoint exposes the functionality to return a list of packages available to the user.
+The [**Package API**](https://streamamg.stoplight.io/docs/cloudpay/01e3818123b90-retrieve-a-list-of-packages) endpoint exposes the functionality to return a list of packages available to the user.
 
 Package geo-restrictions are configured via the CloudPay admin backend with the editor deciding which countries are allowed to access which package.  When a request is made to the package API it is the ‘location’ request header that is used to determine the users location and therefore access to available packages.
 
@@ -121,7 +121,7 @@ Once the IAP subscriptions have been returned you checkout via the IAP provider 
 
 ### Purchase a Web subscription
 
-The **Checkout API** endpoint exposes the functionality for a user to purchase a subscription plan using the SubscriptionPlanOptions ID from the Package API (see web integration).
+The [**Checkout API**](https://streamamg.stoplight.io/docs/cloudpay/464d71acc566d-initiate-stripe-payment-processing) endpoint exposes the functionality for a user to purchase a subscription plan using the SubscriptionPlanOptions ID from the Package API (see web integration).
 
 This endpoint will only allow a user with a valid session token to purchase a subscription. 
 
@@ -141,7 +141,7 @@ Payment methods displayed via the stripe payment element are configured manually
 
 ### Apply a discount
 
-The **Discount API** endpoint exposes the functionality for a user to enter a discount code to reduce the amount owed.
+The [**Discount API**](https://streamamg.stoplight.io/docs/cloudpay/fb909ab5e583d-redeem-a-discount-voucher) endpoint exposes the functionality for a user to enter a discount code to reduce the amount owed.
 
 This endpoint will only allow a user with a valid session token to apply a discount code. 
 
@@ -164,7 +164,7 @@ The amount is updated in the basket (Payment Intent) and the client secret is us
 
 ### Verify an IAP purchase
 
-The **Verify API** endpoint exposes the functionality for CloudPay to validate the in-app purchase with the provider, such as, Apple, Android, Roku and Amazon so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
+The [**Verify API**](https://streamamg.stoplight.io/docs/cloudpay/1fec8f959a067-verify-in-app-purchase) endpoint exposes the functionality for CloudPay to validate the in-app purchase with the provider, such as, Apple, Android, Roku and Amazon so that we can ascertain legitimacy of the purchase and avoid purchase frauds.
 
 This endpoint will only allow a user with a valid session token to validate their in-app purchase.
 
@@ -183,7 +183,7 @@ Status changes include, renewals, refunds, cancellations (soft and hard) and dun
 
 ### Return My Account details
 
-The **Account API** endpoint exposes the functionality for a user to return user, subscription and billing details.
+The [**Account API**](https://streamamg.stoplight.io/docs/cloudpay/af82360415cad-retrieve-the-user-s-summary) endpoint exposes the functionality for a user to return user, subscription and billing details.
 
 This endpoint will only allow a user with a valid session token to return their account information.
 
@@ -196,7 +196,7 @@ There are additional endpoints available to make changes to the account summary 
 
 ### Update My Account details
 
-The **Account API** also allows you to make a **PATCH** request to update the existing user details.  
+The [**Account API**](https://streamamg.stoplight.io/docs/cloudpay/d7a68091df705-update-the-user-s-summary) also allows you to make a **PATCH** request to update the existing user details.  
 
 Updates to the core information; Email, FirstName and LastName are done by entering a new Key:Value pair.  The custom fields are referenced and updated using the UUID that is assigned to them by CloudPay.  The custom field UUID’s are returned in the account API responses for reference when updating.
 
@@ -204,7 +204,7 @@ Updates to the core information; Email, FirstName and LastName are done by enter
 
 ### Update billing details
 
-The **Billing Update API** endpoint exposes the functionality for a user to update their stripe billing details by creating a new Stripe Setup Intent that will be used when the next transaction attempt occurs.
+The [**Billing Update API**](https://streamamg.stoplight.io/docs/cloudpay/b479552ababbb-initiate-customer-billing-details-update) endpoint exposes the functionality for a user to update their stripe billing details by creating a new Stripe Setup Intent that will be used when the next transaction attempt occurs.
 
 This endpoint will only allow a user with a valid session token to update their preferred payment method / billing details.
 
@@ -216,7 +216,7 @@ Once submitted this will be updated both in Stripe and as part of the billing pr
 
 ### Return transaction details
 
-The **Transaction API** endpoint exposes the functionality for a user to return a list of transactions that includes the initial transaction, renewals, refunds and failed transactions.  
+The [**Transaction API**](https://streamamg.stoplight.io/docs/cloudpay/c5076d47110ed-retrieve-the-user-s-transactions) endpoint exposes the functionality for a user to return a list of transactions that includes the initial transaction, renewals, refunds and failed transactions.  
 
 This endpoint will only allow a user with a valid session token to return their transaction details.
 
@@ -234,7 +234,7 @@ The status value shows if a transaction has been successful or not and the Provi
 
 ### Cancel a subscription
 
-The **Cancellation API** endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier.
+The [**Cancellation API**](https://streamamg.stoplight.io/docs/cloudpay/8f658ee55f417-cancel-subscription) endpoint exposes the functionality for a user to cancel a subscription plan using the customers subscription identifier.
 
 This endpoint will only allow a user with a valid session token to cancel their own subscriptions.
 
@@ -250,7 +250,7 @@ The ID can be returned using the Account API and is found in the ‘Subscription
 
 ### Terminate a session with CloudPay
 
-The **Terminate API** endpoint exposes the functionality for a user to terminate a CloudPay session once a user has finished making requests against the CloudPay API as part of the logout flow.  
+The [**Terminate API**](https://streamamg.stoplight.io/docs/cloudpay/60a1611a526aa-terminate-a-session) endpoint exposes the functionality for a user to terminate a CloudPay session once a user has finished making requests against the CloudPay API as part of the logout flow.  
 
 This endpoint will only allow a user with a valid session token to terminate the session.
 
