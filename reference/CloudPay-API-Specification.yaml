@@ -2629,7 +2629,7 @@ paths:
     post:
       summary: Initiate Stripe Payment Processing
       description: |-
-        Starts Payment Request processing, creates a Stripe PaymentIntent/SetupIntent based on the requested package and returns clientSecret which then needs to be confirmed using Stripe library. Refer to [Stripe documentation](https://stripe.com/docs/payments/accept-a-payment?ui=elements). 
+        Starts Payment Request processing, creates a Stripe PaymentIntent/SetupIntent based on the requested package and returns clientSecret which then needs to be confirmed using Stripe library. Refer to [Stripe documentation](https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements#web-submit-payment). 
 
         One of the following parameters must be provided to be able to access the API:
 
@@ -2753,11 +2753,11 @@ paths:
         - Checkout
   
   /billing/stripe/update:
-    post:
+    put:
       summary: Initiate customer billing details update
       operationId: billing-update
       description: |-
-        Initiates customer billing details update.
+        Initiates customer billing details update. Returns clientSecret which then needs to be confirmed using Stripe library. Refer to [Stripe documentation](https://stripe.com/docs/payments/save-and-reuse?platform=web&ui=elements#submit-payment-details).
 
         One of the following parameters must be provided to be able to access the API:
 
