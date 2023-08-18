@@ -220,7 +220,7 @@ Updates to the core information; Email, FirstName and LastName are done by enter
 
 ### Update billing details
 
-The [**Billing Update API**](https://streamamg.stoplight.io/docs/cloudpay/b479552ababbb-initiate-customer-billing-details-update) endpoint exposes the functionality for a user to update their stripe billing details by creating a new Stripe Setup Intent that will be used when the next transaction attempt occurs.
+The [**Billing Update API**](https://streamamg.stoplight.io/docs/cloudpay/87f2bba032154-initiate-customer-billing-details-update) endpoint exposes the functionality for a user to update their stripe billing details by creating a new Stripe Setup Intent that will be used when the next transaction attempt occurs.
 
 This endpoint will only allow a user with a valid session token to update their preferred payment method / billing details.
 
