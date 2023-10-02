@@ -29,7 +29,7 @@ paths:
     get:
       summary: Start a SSO Session
       parameters:
-        - $ref: '#/components/parameters/languageParam'
+        - $ref: "#/components/parameters/languageParam"
         - in: query
           name: token
           schema:
@@ -38,20 +38,20 @@ paths:
           required: true
           description: The Third-Party SSO token
       responses:
-        '200':
+        "200":
           description: Successful Response containing the Set-Cookie header containing the token. This will be stored within the browsers Cookie store for **2 hours**
           headers:
             Set-Cookie:
               schema:
                 type: string
-                example: 'ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly'
+                example: "ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly"
               description: The cookie which will be stored in the cookie store
-        '500':
+        "500":
           description: Unsuccessful SSO login response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Failed Login Response:
@@ -67,11 +67,11 @@ paths:
       tags:
         - SSO
     parameters: []
-  '/sso/start/{redirect}':
+  "/sso/start/{redirect}":
     get:
       summary: Start a SSO Session with Redirect
       parameters:
-        - $ref: '#/components/parameters/languageParam'
+        - $ref: "#/components/parameters/languageParam"
         - in: query
           name: token
           schema:
@@ -87,7 +87,7 @@ paths:
           required: true
           description: 'Redirect URL for SSO Start, This URL should be base64 encoded and start with "returnurl:" followed by the path e.g. cmV0dXJudXJsOi9hY2NvdW50'
       responses:
-        '302':
+        "302":
           description: Successful Redirection Response containing the Set-Cookie header containing the token. This will be stored within the browsers Cookie store for **2 hours**
           headers:
             Location:
@@ -98,14 +98,14 @@ paths:
             Set-Cookie:
               schema:
                 type: string
-                example: 'ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly'
+                example: "ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly"
               description: The cookie which will be stored in the cookie store
-        '500':
+        "500":
           description: Unsuccessful SSO login response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Failed Login Response:
@@ -134,7 +134,7 @@ paths:
     get:
       summary: Generate Session using Email & Password
       parameters:
-        - $ref: '#/components/parameters/languageParam'
+        - $ref: "#/components/parameters/languageParam"
         - in: query
           name: emailaddress
           schema:
@@ -148,7 +148,7 @@ paths:
           required: true
           description: The user password
       responses:
-        '200':
+        "200":
           description: |-
             Successful login response.
 
@@ -156,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   UtcNow:
@@ -250,13 +250,13 @@ paths:
                       CustomerEmailAddress: customer@email.com
                       CustomerFirstName: Lorem
                       CustomerLastName: Ipsum
-                      CustomerBillingProfileCreatedAt: '2019-07-31T13:22:14.000Z'
-                      CustomerBillingProfileExpiresAt: '2022-02-28T23:59:59.000Z'
+                      CustomerBillingProfileCreatedAt: "2019-07-31T13:22:14.000Z"
+                      CustomerBillingProfileExpiresAt: "2022-02-28T23:59:59.000Z"
                       CustomerBillingProfileLastFailedAt: null
                       CustomerBillingProfileProvider: StripeCard
                       CustomerBillingProfileReference: Visa XXXX-XXXX-XXXX-4242
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -287,7 +287,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -295,14 +295,14 @@ paths:
                     ModelErrors: {}
                     AuthenticationToken: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQwMDM1NTdDRTVCRDg2ODREODhBMjMyMTExOEUxRTI1M0UyQzg3RDhCMDVBNEUz15B098C6
                     PageUrl: null
-        '204':
+        "204":
           description: The login request processed successfully but there is no response content
-        '500':
+        "500":
           description: Unsuccessful login response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Failed Login Response:
@@ -319,17 +319,17 @@ paths:
       operationId: generate-session-payload
       summary: Generate Session using Payload
       parameters:
-        - $ref: '#/components/parameters/languageParam'
+        - $ref: "#/components/parameters/languageParam"
       requestBody:
         required: false
         content:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/StringLoginRequest'
-                - $ref: '#/components/schemas/LoginRequest'
+                - $ref: "#/components/schemas/StringLoginRequest"
+                - $ref: "#/components/schemas/LoginRequest"
       responses:
-        '200':
+        "200":
           description: |-
             Successful login response.
 
@@ -337,7 +337,7 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   UtcNow:
@@ -437,7 +437,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -468,7 +468,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -476,14 +476,14 @@ paths:
                     ModelErrors: {}
                     AuthenticationToken: YzVkNzAyZmItMTVmNy00OTliLTkwZDUtY2MzNjkyMmUyYWIyMjAyMDA2MjQwMDM1NTdDRTVCRDg2ODREODhBMjMyMTExOEUxRTI1M0UyQzg3RDhCMDVBNEUz15B098C6
                     PageUrl: null
-        '204':
+        "204":
           description: The login request processed successfully but there is no response content
-        '500':
+        "500":
           description: Unsuccessful login response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Failed Cookie Response:
@@ -499,18 +499,18 @@ paths:
     get:
       summary: Validate Active Session
       parameters:
-        - $ref: '#/components/parameters/languageParam'
-        - $ref: '#/components/parameters/authCookie'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: "#/components/parameters/languageParam"
+        - $ref: "#/components/parameters/authCookie"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
       responses:
-        '200':
+        "200":
           description: Successful presence check response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   UtcNow:
@@ -605,7 +605,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -634,20 +634,20 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
                       RequiresCardAuthenticationCount: 0
                     ModelErrors: {}
-        '204':
+        "204":
           description: The presence check request processed successfully but there is no response content
-        '500':
+        "500":
           description: Unsuccessful presence check response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   UtcNow:
@@ -712,7 +712,7 @@ paths:
         - Session
       operationId: validate-active-session
     parameters: []
-  '/api/v1/session/setcookie/{authenticationToken}':
+  "/api/v1/session/setcookie/{authenticationToken}":
     get:
       summary: Set an Authentication Cookie
       parameters:
@@ -728,12 +728,12 @@ paths:
           name: callbackurl
           description: Redirect Location
       responses:
-        '302':
+        "302":
           description: Successful set cookie response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Successful Cookie Response:
@@ -746,14 +746,14 @@ paths:
             Set-Cookie:
               schema:
                 type: string
-                example: '.auth=eh2j182jjj2abnwj8m228djj2nJd221d219kdd231s3dlj2c211dds; Path=/; expires=${tomorrow}; SameSite=None; Secure; HttpOnly'
+                example: ".auth=eh2j182jjj2abnwj8m228djj2nJd221d219kdd231s3dlj2c211dds; Path=/; expires=${tomorrow}; SameSite=None; Secure; HttpOnly"
               description: Cookie information that will be persisted
-        '500':
+        "500":
           description: Unsuccessful set cookie response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Failed Cookie Response:
@@ -777,18 +777,18 @@ paths:
     get:
       summary: Terminate a Session
       parameters:
-        - $ref: '#/components/parameters/languageParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
+        - $ref: "#/components/parameters/languageParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
+        - $ref: "#/components/parameters/authCookie"
       responses:
-        '200':
+        "200":
           description: Successful session terminate check response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   UtcNow:
@@ -841,14 +841,14 @@ paths:
                     CurrentCustomerSessionStatus: 0
                     CurrentCustomerSession: null
                     ModelErrors: {}
-        '204':
+        "204":
           description: The session terminate request processed successfully but there is no response content
-        '500':
+        "500":
           description: Unsuccessful session terminate response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Failed Login Response:
@@ -863,11 +863,11 @@ paths:
     get:
       summary: Generate a KSession Token
       parameters:
-        - $ref: '#/components/parameters/languageParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
+        - $ref: "#/components/parameters/languageParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
+        - $ref: "#/components/parameters/authCookie"
         - in: query
           name: entryid
           schema:
@@ -875,7 +875,7 @@ paths:
           required: true
           description: The entry id
       responses:
-        '200':
+        "200":
           description: |-
             KSession request responses
 
@@ -883,7 +883,7 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 x-examples:
                   example-1:
@@ -907,7 +907,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1027,7 +1027,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1037,7 +1037,7 @@ paths:
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
                     Resume:
                       Timestamp: 30
-                      LastViewedAt: '2021-06-28T13:14:20'
+                      LastViewedAt: "2021-06-28T13:14:20"
                     ErrorMessage: null
                 Customer has No Subscriptions:
                   value:
@@ -1061,7 +1061,7 @@ paths:
                       CustomerBillingProfileProvider: null
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
-                      CustomerEntitlements: ''
+                      CustomerEntitlements: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1072,7 +1072,7 @@ paths:
                     KSession: null
                     Resume:
                       Timestamp: 0
-                      LastViewedAt: ''
+                      LastViewedAt: ""
                     ErrorMessage: Customer has no subscriptions
                 Unable to Retrieve Valid JSON Entitlements:
                   value:
@@ -1118,7 +1118,7 @@ paths:
                     KSession: null
                     Resume:
                       Timestamp: 20
-                      LastViewedAt: '2021-06-28T13:14:20'
+                      LastViewedAt: "2021-06-28T13:14:20"
                     ErrorMessage: The customer account is blocked; too may failed login attempts
                 Blocked due to Concurrency Limit:
                   value:
@@ -1148,16 +1148,16 @@ paths:
                     KSession: null
                     Resume:
                       Timestamp: 30
-                      LastViewedAt: '2021-06-28T13:14:20'
+                      LastViewedAt: "2021-06-28T13:14:20"
                     ErrorMessage: The customer account is blocked due to concurrency limit
-        '204':
+        "204":
           description: The KSession token generate request processed successfully but there is no response content
-        '500':
+        "500":
           description: Unsuccessful KSession token generate response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   UtcNow:
@@ -1207,7 +1207,7 @@ paths:
                     ModelErrors: {}
                     Status: 0
                     KSession: null
-                    ErrorMessage: 'Customer not authenticated, user must be authenticated to play video'
+                    ErrorMessage: "Customer not authenticated, user must be authenticated to play video"
               examples:
                 Not Authorised:
                   value:
@@ -1223,7 +1223,7 @@ paths:
                     ModelErrors: {}
                     Status: 0
                     KSession: null
-                    ErrorMessage: 'Customer not authenticated, user must be authenticated to play video'
+                    ErrorMessage: "Customer not authenticated, user must be authenticated to play video"
       description: |-
         In order to access media content a kSession must be provided to authorise a user to gain access.
 
@@ -1238,18 +1238,18 @@ paths:
     get:
       summary: Stream Payments Client JS Script
       parameters:
-        - $ref: '#/components/parameters/minifiedParam'
+        - $ref: "#/components/parameters/minifiedParam"
       responses:
-        '204':
+        "204":
           description: The get streamPayment script request processed successfully but there is no response content
-        '302':
+        "302":
           description: Successful get streamPayment script response
-        '500':
+        "500":
           description: Unsuccessful get streamPayment script response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Bad Request:
@@ -1259,7 +1259,7 @@ paths:
       tags:
         - Scripts
       operationId: stream-payments-script
-  '/js/{version}/stream-payments.js':
+  "/js/{version}/stream-payments.js":
     get:
       summary: Versioned Stream Payments Client JS Script
       parameters:
@@ -1269,18 +1269,18 @@ paths:
             type: string
           required: true
           description: The streamPayment script version required
-        - $ref: '#/components/parameters/minifiedParam'
+        - $ref: "#/components/parameters/minifiedParam"
       responses:
-        '200':
+        "200":
           description: Successful get versioned streamPayment script response
-        '204':
+        "204":
           description: The get versioned streamPayment script request processed successfully but there is no response content
-        '500':
+        "500":
           description: Unsuccessful get streamPayment script response
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
               examples:
                 Bad Request:
@@ -1295,33 +1295,33 @@ paths:
       operationId: post-api-v1-account-cancellation
       summary: Cancel Subscription
       parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
+        - $ref: "#/components/parameters/authCookie"
       tags:
         - Account
       responses:
-        '202':
+        "202":
           description: Accepted
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '403':
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Error Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
       description: |-
         <!--
         focus: false
@@ -1335,7 +1335,7 @@ paths:
         content:
           application/json:
             schema:
-              description: ''
+              description: ""
               type: object
               properties:
                 customerSubscriptionId:
@@ -1370,13 +1370,13 @@ paths:
       tags:
         - Account
       parameters:
-        - $ref: '#/components/parameters/languageParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
+        - $ref: "#/components/parameters/languageParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
+        - $ref: "#/components/parameters/authCookie"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -1395,42 +1395,42 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
-                    $ref: '#/components/schemas/AccountCustomFieldsModelGet'
+                    $ref: "#/components/schemas/AccountCustomFieldsModelGet"
                   BillingDetails:
-                    $ref: '#/components/schemas/AccountBillingDetailsModelGet'
+                    $ref: "#/components/schemas/AccountBillingDetailsModelGet"
                   Subscriptions:
-                    $ref: '#/components/schemas/AccountSubscriptionsModelGet'
+                    $ref: "#/components/schemas/AccountSubscriptionsModelGet"
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
               examples:
                 Response with all user details:
-                  $ref: '#/components/examples/AccountResponseGetFullExample'
+                  $ref: "#/components/examples/AccountResponseGetFullExample"
                 Response with custom fields but without billing profile:
-                  $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
+                  $ref: "#/components/examples/AccountResponseGetCustomFieldsExample"
                 Response only with card details:
-                  $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
+                  $ref: "#/components/examples/AccountResponseGetCardDetailsExample"
                 Response with basic details:
-                  $ref: '#/components/examples/AccountResponseGetBasicExample'
-        '400':
+                  $ref: "#/components/examples/AccountResponseGetBasicExample"
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '403':
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Error Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
       description: |
         <!--
         focus: false
@@ -1443,14 +1443,14 @@ paths:
       summary: Update the User's Summary
       operationId: put-api-v1-account
       parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
+        - $ref: "#/components/parameters/authCookie"
       tags:
         - Account
       responses:
-        '202':
+        "202":
           description: Accepted
           content:
             application/json:
@@ -1459,7 +1459,7 @@ paths:
                 type: object
                 x-examples:
                   example-1:
-                    $ref: '#/components/examples/AccountResponseGetFullExample'
+                    $ref: "#/components/examples/AccountResponseGetFullExample"
                 properties:
                   EmailAddress:
                     type: string
@@ -1472,40 +1472,40 @@ paths:
                     type: string
                     minLength: 1
                   CustomFields:
-                    $ref: '#/components/schemas/AccountCustomFieldsModelGet'
+                    $ref: "#/components/schemas/AccountCustomFieldsModelGet"
                   BillingDetails:
-                    $ref: '#/components/schemas/AccountBillingDetailsModelGet'
+                    $ref: "#/components/schemas/AccountBillingDetailsModelGet"
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
               examples:
                 Response with all user details:
-                  $ref: '#/components/examples/AccountResponseGetFullExample'
+                  $ref: "#/components/examples/AccountResponseGetFullExample"
                 Response with custom fields but without billing profile:
-                  $ref: '#/components/examples/AccountResponseGetCustomFieldsExample'
+                  $ref: "#/components/examples/AccountResponseGetCustomFieldsExample"
                 Response only with card details:
-                  $ref: '#/components/examples/AccountResponseGetCardDetailsExample'
+                  $ref: "#/components/examples/AccountResponseGetCardDetailsExample"
                 Response with basic details:
-                  $ref: '#/components/examples/AccountResponseGetBasicExample'
-        '400':
+                  $ref: "#/components/examples/AccountResponseGetBasicExample"
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '403':
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Error Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
       description: |-
         <!--
         focus: false
@@ -1524,7 +1524,7 @@ paths:
               type: object
               x-examples:
                 example-1:
-                  $ref: '#/components/examples/AccountPatchFirstNameExample'
+                  $ref: "#/components/examples/AccountPatchFirstNameExample"
               properties:
                 FirstName:
                   type: string
@@ -1533,14 +1533,14 @@ paths:
                   type: string
                   minLength: 1
                 CustomFields:
-                  $ref: '#/components/schemas/AccountCustomFieldsModelUpdate'
+                  $ref: "#/components/schemas/AccountCustomFieldsModelUpdate"
             examples:
               Update User First Name:
-                $ref: '#/components/examples/AccountPatchFirstNameExample'
+                $ref: "#/components/examples/AccountPatchFirstNameExample"
               Update User Last Name:
-                $ref: '#/components/examples/AccountPatchLastNameExample'
+                $ref: "#/components/examples/AccountPatchLastNameExample"
               Update Custom fields:
-                $ref: '#/components/examples/AccountPatchCustomFieldsExample'
+                $ref: "#/components/examples/AccountPatchCustomFieldsExample"
   /api/v1/account/transactions:
     get:
       operationId: get-api-v1-account-transactions
@@ -1548,10 +1548,10 @@ paths:
       tags:
         - Account
       parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
-        - $ref: '#/components/parameters/authCookie'
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
+        - $ref: "#/components/parameters/authCookie"
         - in: query
           name: page
           schema:
@@ -1576,7 +1576,7 @@ paths:
             default: desc
           description: A sort order by created date
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -1627,7 +1627,7 @@ paths:
                           description: A payment provider reference.
                         CurrencyCode:
                           type: string
-                          pattern: '^[A-Z]{3}$'
+                          pattern: "^[A-Z]{3}$"
                           description: A three letter currency code.
                         Amount:
                           type: number
@@ -1647,13 +1647,13 @@ paths:
                     size: 100
                     order: desc
                     transactions:
-                      - CreatedAt: '2020-03-24T17:32:28Z'
+                      - CreatedAt: "2020-03-24T17:32:28Z"
                         Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
                         Provider: PayPal
                         Reference: customer@gmail.com
                         CurrencyCode: EUR
                         Amount: -0.99
-                      - CreatedAt: '2020-03-17T17:32:28Z'
+                      - CreatedAt: "2020-03-17T17:32:28Z"
                         Description: SCA Daily Pass 17 Mar 2020 to 18 Mar 2020
                         Provider: StripeCard
                         Reference: visa XXXX-XXXX-XXXX-4242
@@ -1671,13 +1671,13 @@ paths:
                     size: 100
                     order: desc
                     transactions:
-                      - CreatedAt: '2020-03-24T17:32:28Z'
+                      - CreatedAt: "2020-03-24T17:32:28Z"
                         Description: SCA Weekly Pass  24 Mar 2020 to 31 Mar 2020
                         Provider: PayPal
                         Reference: customer@gmail.com
                         CurrencyCode: EUR
                         Amount: -0.99
-                      - CreatedAt: '2020-03-17T17:32:28Z'
+                      - CreatedAt: "2020-03-17T17:32:28Z"
                         Description: SCA Daily Pass 17 Mar 2020 to 18 Mar 2020
                         Provider: StripeCard
                         Reference: visa XXXX-XXXX-XXXX-4242
@@ -1689,24 +1689,24 @@ paths:
                     size: 100
                     order: desc
                     transactions: []
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '403':
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '500':
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
           description: Error Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
       description: |
         <!--
         focus: false
@@ -1720,7 +1720,7 @@ paths:
       tags:
         - IAP
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
@@ -1754,25 +1754,25 @@ paths:
                     statusCode: 200
                     headers:
                       Access-Control-Allow-Credentials: true
-                      Access-Control-Allow-Origin: '*'
-                      Content-Type: 'application/json'
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
                     multiValueHeaders: {}
                     body:
                       isVerified: true
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 x-examples:
                   example-1:
                     statusCode: 400
                     headers:
                       Access-Control-Allow-Credentials: true
-                      Access-Control-Allow-Origin: '*'
-                      Content-Type: 'application/json'
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
                     multiValueHeaders: {}
                     body:
                       sourceErrorCode: 21005
@@ -1808,8 +1808,8 @@ paths:
                     statusCode: 400
                     headers:
                       Access-Control-Allow-Credentials: true
-                      Access-Control-Allow-Origin: '*'
-                      Content-Type: 'application/json'
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
                     multiValueHeaders: {}
                     body:
                       sourceErrorCode: 21005
@@ -1818,7 +1818,7 @@ paths:
               schema:
                 type: object
                 properties: {}
-        '500':
+        "500":
           description: Internal Server Error
           content:
             application/json:
@@ -1854,8 +1854,8 @@ paths:
                     statusCode: 500
                     headers:
                       Access-Control-Allow-Credentials: true
-                      Access-Control-Allow-Origin: '*'
-                      Content-Type: 'application/json'
+                      Access-Control-Allow-Origin: "*"
+                      Content-Type: "application/json"
                     multiValueHeaders: {}
                     body:
                       errorMessage: Internal server error
@@ -1928,8 +1928,8 @@ paths:
                     payment:
                       countryCode: GB
                       currencyCode: GBP
-                      amount: '9.99'
-                      discount: '1.99'
+                      amount: "9.99"
+                      discount: "1.99"
                   platform: ios
               android-example:
                 value:
@@ -1941,7 +1941,7 @@ paths:
                     payment:
                       countryCode: BR
                       currencyCode: BRL
-                      amount: '62.29'
+                      amount: "62.29"
                   platform: android
               roku-example:
                 value:
@@ -1950,7 +1950,7 @@ paths:
                     payment:
                       countryCode: CA
                       currencyCode: CAD
-                      amount: '16.41'
+                      amount: "16.41"
                   platform: roku
               amazon-example:
                 value:
@@ -1960,14 +1960,14 @@ paths:
                     payment:
                       countryCode: US
                       currencyCode: USD
-                      amount: '13.13'
+                      amount: "13.13"
                   platform: amazon
-        description: ''
+        description: ""
       parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/authCookie'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/authCookie"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
     parameters: []
   /api/v1/package:
     get:
@@ -1975,12 +1975,12 @@ paths:
       tags:
         - Packages
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 x-examples:
                   example-1:
@@ -1994,7 +1994,7 @@ paths:
                         AmountFormatted: £9.99
                         HasFreeTrial: false
                         TrialDuration: null
-                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
                         Interval: 1months
                         Duration: 1months
                         IAPData: []
@@ -2011,7 +2011,7 @@ paths:
                         AmountFormatted: £59.99
                         HasFreeTrial: false
                         TrialDuration: null
-                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
                         Interval: 12months
                         Duration: null
                         IAPData:
@@ -2032,7 +2032,7 @@ paths:
                         AmountFormatted: £2.99
                         HasFreeTrial: true
                         TrialDuration: 2days
-                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
                         Interval: 2days
                         Duration: null
                         IAPData: []
@@ -2069,7 +2069,7 @@ paths:
                           description: A subscription plan price amount.
                         Currency:
                           type: string
-                          pattern: '^[A-Z]{3}$'
+                          pattern: "^[A-Z]{3}$"
                           description: A three letter currency code from subscription plan price.
                           readOnly: true
                         AmountFormatted:
@@ -2089,7 +2089,7 @@ paths:
                         PurchaseUrl:
                           type: string
                           minLength: 1
-                          description: 'A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL.'
+                          description: "A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL."
                           readOnly: true
                         Interval:
                           type: string
@@ -2116,7 +2116,7 @@ paths:
                                   - Google
                                   - Amazon
                                   - Roku
-                                description: 'The IAP platform provider - Apple, Google, Amazon, Roku.'
+                                description: "The IAP platform provider - Apple, Google, Amazon, Roku."
                                 readOnly: true
                               ProductID:
                                 type: string
@@ -2175,7 +2175,7 @@ paths:
                         AmountFormatted: £9.99
                         HasFreeTrial: false
                         TrialDuration: null
-                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
                         Interval: 1months
                         Duration: 1months
                         IAPData: []
@@ -2192,7 +2192,7 @@ paths:
                         AmountFormatted: £59.99
                         HasFreeTrial: false
                         TrialDuration: null
-                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
                         Interval: 12months
                         Duration: null
                         IAPData:
@@ -2214,7 +2214,7 @@ paths:
                         AmountFormatted: £2.99
                         HasFreeTrial: true
                         TrialDuration: 2days
-                        PurchaseUrl: 'https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en'
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/783da5fe-52bd-4e97-a88f-2383886b2e44?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
                         Interval: 2days
                         Duration: null
                         IAPData: []
@@ -2261,15 +2261,15 @@ paths:
           name: apisessionid
           required: false
           description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
-  '/sso/startbasket/{subscriptionPlanId}':
+  "/sso/startbasket/{subscriptionPlanId}":
     get:
       summary: Navigate to Checkout Page
       tags:
         - SSO
       parameters:
-        - $ref: '#/components/parameters/apiJwtTokenParam'
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/thirdPartyAuthCookie'
+        - $ref: "#/components/parameters/apiJwtTokenParam"
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/thirdPartyAuthCookie"
         - schema:
             type: string
           name: success_url
@@ -2277,8 +2277,8 @@ paths:
           description: A base64 encoded URL to be redirected to after purchase
           in: query
       responses:
-        '200':
-          description: '![Checkout Page](../../../../assets/images/cloudpay-sso-checkout-example.png)'
+        "200":
+          description: "![Checkout Page](../../../../assets/images/cloudpay-sso-checkout-example.png)"
       operationId: get-sso-startbasket
       description: |-
         Redirect the client to the CloudPay checkout page with prepopulated fields for the selected package.
@@ -2300,12 +2300,12 @@ paths:
       tags:
         - Resume
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 x-examples:
                   example-1:
@@ -2367,30 +2367,30 @@ paths:
                     entries:
                       - EntryId: 0_abcdwxyz
                         Timestamp: 30
-                        LastViewedAt: '2021-06-28T13:14:20Z'
+                        LastViewedAt: "2021-06-28T13:14:20Z"
                       - EntryId: 0_xyxyxyxy
                         Timestamp: 7
-                        LastViewedAt: '2021-06-27T13:14:20Z'
+                        LastViewedAt: "2021-06-27T13:14:20Z"
                       - EntryId: 0_rdrdrdrd
                         Timestamp: 56
-                        LastViewedAt: '2021-05-27T13:14:20Z'
+                        LastViewedAt: "2021-05-27T13:14:20Z"
                 User entries not found:
                   value:
                     page: 1
                     size: 10
                     order: desc
                     entries: []
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 x-examples:
                   example-1:
                     responseCode: 404
-                    message: ''
+                    message: ""
                 properties:
                   statusCode:
                     type: number
@@ -2405,12 +2405,12 @@ paths:
                   value:
                     statusCode: 400
                     message: Bad request
-        '404':
+        "404":
           description: Not Found
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 x-examples:
                   example-1:
@@ -2430,12 +2430,12 @@ paths:
                   value:
                     statusCode: 404
                     message: User not found
-        '500':
+        "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   statusCode:
@@ -2531,7 +2531,7 @@ paths:
           required: true
           description: The customer id
       responses:
-        '200':
+        "200":
           description: |-
             Validation request responses
           content:
@@ -2578,12 +2578,12 @@ paths:
                   value:
                     Granted: false
                     Reason: Customer error
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   Granted:
@@ -2598,12 +2598,12 @@ paths:
                   value:
                     Granted: false
                     Reason: BadRequestException
-        '500':
+        "500":
           description: Internal server error
           content:
             application/json:
               schema:
-                description: ''
+                description: ""
                 type: object
                 properties:
                   Granted:
@@ -2638,58 +2638,59 @@ paths:
 
       operationId: post-payment-request
       parameters:
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostPaymentRequest'
+              $ref: "#/components/schemas/PostPaymentRequest"
       responses:
-        '201':
+        "201":
           description: Payment Request Created
           content:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/PostPaymentResponse'
-                  - $ref: '#/components/schemas/PostOffSessionPaymentResponse'
+                  - $ref: "#/components/schemas/PostPaymentResponse"
+                  - $ref: "#/components/schemas/PostOffSessionPaymentResponse"
               examples:
                 Example - Payment Processing Initiated Successfully:
                   value:
-                    basketId: 'payment_intent#pi_3MqDaKHhzXcPYLMM0SOelv6u'
-                    clientSecret: 'secret'
-        '400':
+                    basketId: "payment_intent#pi_3MqDaKHhzXcPYLMM0SOelv6u"
+                    clientSecret: "secret"
+                    publicKey: "pk_test_*"
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostPaymentErrorMessage'
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
               examples:
                 Example - No client secret was generated:
                   value:
-                    statusCode: '400'
-                    message: 'No client secret was generated'
-                    error: 'Bad Request'
-        '401':
+                    statusCode: "400"
+                    message: "No client secret was generated"
+                    error: "Bad Request"
+        "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostPaymentErrorMessage'
-        '404':
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
+        "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostPaymentErrorMessage'
-        '500':
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
+        "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostPaymentErrorMessage'
+                $ref: "#/components/schemas/PostPaymentErrorMessage"
       tags:
         - Checkout
 
@@ -2706,52 +2707,52 @@ paths:
         * apijwttoken
 
       parameters:
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RedeemDiscountVoucherRequest'
+              $ref: "#/components/schemas/RedeemDiscountVoucherRequest"
       responses:
-        '200':
+        "200":
           description: Discount Voucher Redeemed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RedeemDiscountVoucherResponse'
+                $ref: "#/components/schemas/RedeemDiscountVoucherResponse"
               examples:
                 Example - Discount Applied Successfully:
                   value:
-                    clientSecret: 'secret'
-        '400':
+                    clientSecret: "secret"
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RedeemDiscountVoucherErrorMessage'
-        '401':
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+        "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RedeemDiscountVoucherErrorMessage'
-        '404':
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+        "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RedeemDiscountVoucherErrorMessage'
-        '500':
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
+        "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RedeemDiscountVoucherErrorMessage'
+                $ref: "#/components/schemas/RedeemDiscountVoucherErrorMessage"
       tags:
         - Checkout
-  
+
   /billing/stripe/update:
     put:
       summary: Initiate customer billing details update
@@ -2765,43 +2766,44 @@ paths:
         * apijwttoken
 
       parameters:
-        - $ref: '#/components/parameters/apiSessionIdParam'
-        - $ref: '#/components/parameters/apiJwtTokenParam'
+        - $ref: "#/components/parameters/apiSessionIdParam"
+        - $ref: "#/components/parameters/apiJwtTokenParam"
       responses:
-        '200':
+        "200":
           description: Billing Details Update Initiated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateBillingDetailsResponse'
+                $ref: "#/components/schemas/UpdateBillingDetailsResponse"
               examples:
                 Example - Billing Details Update Initiated Successfully:
                   value:
-                    clientSecret: 'secret'
-        '400':
+                    clientSecret: "secret"
+                    publicKey: "pk_test_*"
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
-        '401':
+                $ref: "#/components/schemas/UpdateBillingDetailsErrorMessage"
+        "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
-        '404':
+                $ref: "#/components/schemas/UpdateBillingDetailsErrorMessage"
+        "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
-        '500':
+                $ref: "#/components/schemas/UpdateBillingDetailsErrorMessage"
+        "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateBillingDetailsErrorMessage'
+                $ref: "#/components/schemas/UpdateBillingDetailsErrorMessage"
       tags:
         - Checkout
 
@@ -2818,28 +2820,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostDiscountSyncRequest'
+              $ref: "#/components/schemas/PostDiscountSyncRequest"
       tags:
         - InternalStreamAMG
       responses:
-        '200':
+        "200":
           description: Discount Sync Message Posted
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostDiscountSyncResponse'
-        '400':
+                $ref: "#/components/schemas/PostDiscountSyncResponse"
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostDiscountSyncErrorMessage'
-        '500':
+                $ref: "#/components/schemas/PostDiscountSyncErrorMessage"
+        "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostDiscountSyncErrorMessage'
+                $ref: "#/components/schemas/PostDiscountSyncErrorMessage"
 components:
   parameters:
     languageParam:
@@ -2901,9 +2903,12 @@ components:
           type: string
         authenticationRequired:
           type: boolean
+        publicKey:
+          type: string
       required:
         - paymentIntentId
         - clientSecret
+        - publicKey
     PostOffSessionPaymentResponse:
       type: object
       properties:
@@ -2948,6 +2953,8 @@ components:
       type: object
       properties:
         clientSecret:
+          type: string
+        publicKey:
           type: string
     UpdateBillingDetailsErrorMessage:
       type: object
@@ -3010,11 +3017,11 @@ components:
       description: Login Request using Payload Body
     StringLoginRequest:
       type: string
-      example: 'emailaddress: foo@bar.com, password: somePass'
+      example: "emailaddress: foo@bar.com, password: somePass"
       x-internal: true
       x-examples:
         String Login Request:
-          value: 'emailaddress: foo@bar.com, password: somePass'
+          value: "emailaddress: foo@bar.com, password: somePass"
       title: String Login Request
       description: Login using a string based request
     ErrorResponse:
@@ -3212,7 +3219,7 @@ components:
             readOnly: true
           Status:
             type: string
-            description: 'Status lists subscriptions that are active or cancelled. Cancelled status only applies to recurring subscriptions. It reflects the situation where the user cancelled the subscription, but will keep access to the content until expiry date.'
+            description: "Status lists subscriptions that are active or cancelled. Cancelled status only applies to recurring subscriptions. It reflects the situation where the user cancelled the subscription, but will keep access to the content until expiry date."
             enum:
               - active
               - cancelled
@@ -3229,7 +3236,7 @@ components:
             type: boolean
             readOnly: true
           Package:
-            $ref: '#/components/schemas/AccountSubscriptionPlanModel'
+            $ref: "#/components/schemas/AccountSubscriptionPlanModel"
         required:
           - Id
           - Status
@@ -3244,7 +3251,7 @@ components:
           - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
             Label: Date of Birth
             Required: true
-            Value: '1988-08-19'
+            Value: "1988-08-19"
           - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
             Label: Favourite Football Team
             Required: false
@@ -3260,11 +3267,11 @@ components:
             Provider: StripeCard
             Reference: visa XXXX-XXXX-XXXX-4242
             Country: GB
-            Expires: '2024-07-21T17:32:28Z'
+            Expires: "2024-07-21T17:32:28Z"
         Subscriptions:
           - Id: 57ea90b2-822c-4bc1-946f-88be4c53d9dc
             Status: active
-            ExpiryDate: '2022-04-02T17:32:28Z'
+            ExpiryDate: "2022-04-02T17:32:28Z"
             IsIAP: true
             Package:
               Id: 734fe964-841e-48c7-802d-dd21e2d9c2de
@@ -3277,7 +3284,7 @@ components:
               Interval: 1day
               Duration: 1day
           - Id: f97e2a42-488e-4b75-93bc-e837578aa837
-            ExpiryDate: '2024-03-02T17:32:28Z'
+            ExpiryDate: "2024-03-02T17:32:28Z"
             Status: cancelled
             IsIAP: true
             Package:
@@ -3294,8 +3301,8 @@ components:
             Status: active
             Type: recurring
             CurrencyCode: GBP
-            ExpiryDate: '2022-07-12T17:32:28Z'
-            RenewalDate: '2021-07-12T17:32:28Z'
+            ExpiryDate: "2022-07-12T17:32:28Z"
+            RenewalDate: "2021-07-12T17:32:28Z"
             IsIAP: false
             Package:
               Id: 72ae24e4-07b7-452f-a55e-ca8307233f92
@@ -3324,7 +3331,7 @@ components:
           - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
             Label: Date of Birth
             Required: true
-            Value: '1988-08-19'
+            Value: "1988-08-19"
           - Id: 3a3e6d19-44c8-4882-8899-fa923f1214e9
             Label: Favourite Football Team
             Required: false
@@ -3340,7 +3347,7 @@ components:
             Provider: StripeCard
             Reference: visa XXXX-XXXX-XXXX-4242
             Country: GB
-            Expires: '2024-07-21T17:32:28Z'
+            Expires: "2024-07-21T17:32:28Z"
         CustomFields: []
         Subscriptions: []
     AccountPatchFirstNameExample:
@@ -3355,7 +3362,7 @@ components:
           - Id: 2b31e959-c540-4d39-ba76-5e6ef59df772
             Label: Date of Birth
             Required: true
-            Value: '1988-08-19'
+            Value: "1988-08-19"
           - Id: 3b31e950-c540-4d39-ba76-5e6ef59df772
             Label: Favourite Rugby Team
             Required: false
@@ -3366,4 +3373,4 @@ components:
       in: header
       name: x-api-key
 servers:
-  - url: 'https://payments.streamamg.com'
+  - url: "https://payments.streamamg.com"
