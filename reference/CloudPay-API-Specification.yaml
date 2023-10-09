@@ -2661,6 +2661,7 @@ paths:
                     basketId: "payment_intent#pi_3MqDaKHhzXcPYLMM0SOelv6u"
                     clientSecret: "secret"
                     publicKey: "pk_test_*"
+                    discountsEnabled: true
         "400":
           description: Bad Request
           content:
@@ -2726,6 +2727,8 @@ paths:
                 Example - Discount Applied Successfully:
                   value:
                     clientSecret: "secret"
+                    amount: 5.99
+                    currency: "GBP"
         "400":
           description: Bad Request
           content:
@@ -2905,6 +2908,8 @@ components:
           type: boolean
         publicKey:
           type: string
+        discountsEnabled:
+          type: boolean
       required:
         - paymentIntentId
         - clientSecret
@@ -2939,6 +2944,10 @@ components:
       type: object
       properties:
         clientSecret:
+          type: string
+        amount:
+          type: number
+        currency:
           type: string
     RedeemDiscountVoucherErrorMessage:
       type: object
