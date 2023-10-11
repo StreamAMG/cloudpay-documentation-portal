@@ -2261,6 +2261,277 @@ paths:
           name: apisessionid
           required: false
           description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
+
+  /api/v1/package/{packageId}:
+    get:
+      summary: Retrieve a package by its id
+      tags:
+        - Packages
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ""
+                type: object
+                x-examples:
+                  example-1:
+                    SubscriptionPlanOptions:
+                      - Id: 8488ee27-e87b-451b-bca8-abe4edea5be9
+                        Title: Rest of the world - Monthly Subscription
+                        Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
+                        Style: null
+                        Amount: 59.99
+                        Currency: GBP
+                        AmountFormatted: £59.99
+                        HasFreeTrial: false
+                        TrialDuration: null
+                        PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/8488ee27-e87b-451b-bca8-abe4edea5be9?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
+                        Interval: 12months
+                        Duration: null
+                        IAPData:
+                          - Platform: Amazon
+                            ProductID: nryearly
+                          - Platform: Apple
+                            ProductID: nryearly
+                          - Platform: Google
+                            ProductID: nryearly
+                          - Platform: Roku
+                            ProductID: nryearly
+                properties:
+                  SubscriptionPlanOptions:
+                    type: object
+                    properties:
+                      Id:
+                        type: string
+                        format: uuid
+                        minLength: 1
+                        readOnly: true
+                      Title:
+                        type: string
+                        description: If has a free trial shows the subscription plan free trial listing title otherwise the subscription plan listing title.
+                        minLength: 1
+                        readOnly: true
+                      Body:
+                        type: string
+                        description: If has a free trial shows the subscription plan free trial listing body otherwise the subscription plan listing body.
+                        minLength: 1
+                        readOnly: true
+                      Style:
+                        type: string
+                        description: If has a free trial shows the subscription plan free trial listing css class otherwise the subscription plan listing css class.
+                        nullable: true
+                        readOnly: true
+                      Amount:
+                        type: number
+                        description: A subscription plan price amount.
+                      Currency:
+                        type: string
+                        pattern: "^[A-Z]{3}$"
+                        description: A three letter currency code from subscription plan price.
+                        readOnly: true
+                      AmountFormatted:
+                        type: string
+                        minLength: 1
+                        description: A formatted amount including the currency symbol for a currency code.
+                        readOnly: true
+                      HasFreeTrial:
+                        type: boolean
+                        description: Shows that subscription plan has a free trial. This property depends of Trial Duration property.
+                        readOnly: true
+                      TrialDuration:
+                        type: string
+                        description: Shows a trial duration of subscription plan if available.
+                        nullable: true
+                        readOnly: true
+                      PurchaseUrl:
+                        type: string
+                        minLength: 1
+                        description: "A purchase URL depends of any JWT Authentication Provider. If any customer JWT token or API session ID is provided, it is attached to the URL."
+                        readOnly: true
+                      Interval:
+                        type: string
+                        minLength: 1
+                        description: The subscription plan contract length.
+                        readOnly: true
+                      Duration:
+                        type: string
+                        minLength: 1
+                        description: The subscription plan auto renew period.
+                        nullable: true
+                        readOnly: true
+                      IAPData:
+                        type: array
+                        uniqueItems: true
+                        minItems: 0
+                        items:
+                          type: object
+                          properties:
+                            Platform:
+                              type: string
+                              enum:
+                                - Apple
+                                - Google
+                                - Amazon
+                                - Roku
+                              description: "The IAP platform provider - Apple, Google, Amazon, Roku."
+                              readOnly: true
+                            ProductID:
+                              type: string
+                              description: The IAP product identifier.
+                              readOnly: true
+                          required:
+                            - Platform
+                            - ProductID
+                      Metadata:
+                        type: array
+                        uniqueItems: true
+                        minItems: 0
+                        items:
+                          type: object
+                          properties:
+                            Name:
+                              type: string
+                              description: The description of the custom metadata field
+                              readOnly: true
+                            Code:
+                              type: string
+                              description: The code identifier of the metadata field
+                              readOnly: true
+                            Value:
+                              type: string
+                              description: The value of the custom metadata
+                              readOnly: true
+                          required:
+                            - Name
+                            - Code
+                            - Value
+                    required:
+                      - Id
+                      - Title
+                      - Body
+                      - Amount
+                      - Currency
+                      - AmountFormatted
+                      - HasFreeTrial
+                      - PurchaseUrl
+                      - Interval
+                      - IAPData
+                      - Metadata
+              examples:
+                Package:
+                  value:
+                    Id: 82fa21ed-6e23-469f-b802-4e2a67679c54
+                    Title: Rest of the world - Monthly Subscription
+                    Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
+                    Style: null
+                    Amount: 9.99
+                    Currency: GBP
+                    AmountFormatted: £9.99
+                    HasFreeTrial: false
+                    TrialDuration: null
+                    PurchaseUrl: "https://payments.streamamg.com/sso/startbasket/82fa21ed-6e23-469f-b802-4e2a67679c54?apijwttoken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&lang=en"
+                    Interval: 1months
+                    Duration: 1months
+                    IAPData: []
+                    Metadata:
+                      - Name: packageType
+                        Code: packageTypeCode
+                        Value: video
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                description: ""
+                type: object
+                x-examples:
+                  BadRequestError:
+                    statusCode: 400
+                    message: "Package should be updated."
+                properties:
+                  statusCode:
+                    type: number
+                    readOnly: true
+                  message:
+                    type: string
+                    description: The error message
+                required:
+                  - statusCode
+                  - message
+              examples:
+                BadRequestError:
+                  value:
+                    statusCode: 400
+                    message: "Package should be updated."
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                description: ""
+                type: object
+                x-examples:
+                  NotFoundError:
+                    statusCode: 404
+                    message: "Package not found."
+                properties:
+                  statusCode:
+                    type: number
+                    readOnly: true
+                  message:
+                    type: string
+                    description: The error message
+                required:
+                  - statusCode
+                  - message
+              examples:
+                NotFoundError:
+                  value:
+                    statusCode: 404
+                    message: "Package not found."
+      operationId: get-api-v1-package-by-id
+      description: |-
+        <!--
+        focus: false
+        -->
+
+        ![Developing](https://img.shields.io/static/v1?label=Implementation&message=Developing&color=blue&style=flat-square)
+
+        The Package endpoint returns a package by its id.
+
+        **Note:** 
+         * *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
+         * *By default the Package endpoint will not return IAP packages, the 'type' query parameter must be passed to the API with the value of 'iap' to return the IAP Package.*
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: lang
+          required: false
+          description: The language code
+        - schema:
+            type: string
+            enum:
+              - iap
+          in: query
+          name: type
+          required: false
+          description: The type of subscription plan
+        - schema:
+            type: string
+          in: query
+          name: apijwttoken
+          required: false
+          description: In the instance of a client using SSO the purchase URL will be pointed at the StartBasket endpoint
+        - schema:
+            type: string
+          in: query
+          name: apisessionid
+          required: false
+          description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
+
   "/sso/startbasket/{subscriptionPlanId}":
     get:
       summary: Navigate to Checkout Page
