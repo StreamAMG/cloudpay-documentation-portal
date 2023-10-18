@@ -2265,6 +2265,7 @@ paths:
   /api/v1/package/{packageId}:
     get:
       summary: Retrieve a package by its id
+      x-internal: true
       tags:
         - Packages
       responses:
@@ -2448,22 +2449,22 @@ paths:
                 type: object
                 x-examples:
                   BadRequestError:
-                    statusCode: 400
+                    status: 400
                     message: "Package should be updated."
                 properties:
-                  statusCode:
+                  status:
                     type: number
                     readOnly: true
                   message:
                     type: string
                     description: The error message
                 required:
-                  - statusCode
+                  - status
                   - message
               examples:
                 BadRequestError:
                   value:
-                    statusCode: 400
+                    status: 400
                     message: "Package should be updated."
         "404":
           description: "Not Found"
@@ -2474,22 +2475,22 @@ paths:
                 type: object
                 x-examples:
                   NotFoundError:
-                    statusCode: 404
+                    status: 404
                     message: "Package not found."
                 properties:
-                  statusCode:
+                  status:
                     type: number
                     readOnly: true
                   message:
                     type: string
                     description: The error message
                 required:
-                  - statusCode
+                  - status
                   - message
               examples:
                 NotFoundError:
                   value:
-                    statusCode: 404
+                    status: 404
                     message: "Package not found."
       operationId: get-api-v1-package-by-id
       description: |-
@@ -2497,14 +2498,19 @@ paths:
         focus: false
         -->
 
-        ![Developing](https://img.shields.io/static/v1?label=Implementation&message=Developing&color=blue&style=flat-square)
-
-        The Package endpoint returns a package by its id.
+        The Package endpoint to return a package by its id.
 
         **Note:** 
          * *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
          * *By default the Package endpoint will not return IAP packages, the 'type' query parameter must be passed to the API with the value of 'iap' to return the IAP Package.*
       parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: path
+          name: packageId
+          required: true
+          description: Package id.
         - schema:
             type: string
           in: query
