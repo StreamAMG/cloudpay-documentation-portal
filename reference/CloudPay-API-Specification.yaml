@@ -1400,10 +1400,13 @@ paths:
                     $ref: "#/components/schemas/AccountBillingDetailsModelGet"
                   Subscriptions:
                     $ref: "#/components/schemas/AccountSubscriptionsModelGet"
+                  Entitlements:
+                    type: string
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
+                  - Entitlements
               examples:
                 Response with all user details:
                   $ref: "#/components/examples/AccountResponseGetFullExample"
@@ -1475,10 +1478,13 @@ paths:
                     $ref: "#/components/schemas/AccountCustomFieldsModelGet"
                   BillingDetails:
                     $ref: "#/components/schemas/AccountBillingDetailsModelGet"
+                  Entitlements:
+                    type: string
                 required:
                   - EmailAddress
                   - FirstName
                   - LastName
+                  - Entitlements
               examples:
                 Response with all user details:
                   $ref: "#/components/examples/AccountResponseGetFullExample"
@@ -2265,7 +2271,6 @@ paths:
   /api/v1/package/{packageId}:
     get:
       summary: Retrieve a package by its id
-      x-internal: true
       tags:
         - Packages
       responses:
@@ -3601,6 +3606,7 @@ components:
               Interval: 1month
               Duration: 12months
               TrialDuration: 1week
+        Entitlements: 'paid,basic'
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
@@ -3608,6 +3614,7 @@ components:
         LastName: Ipsum
         Subscriptions: []
         CustomDetails: []
+        Entitlements: ''
     AccountResponseGetCustomFieldsExample:
       value:
         EmailAddress: customer@email.com
@@ -3623,6 +3630,7 @@ components:
             Required: false
             Value: null
         Subscriptions: []
+        Entitlements: 'paid,basic'
     AccountResponseGetCardDetailsExample:
       value:
         EmailAddress: customer@email.com
@@ -3636,6 +3644,7 @@ components:
             Expires: "2024-07-21T17:32:28Z"
         CustomFields: []
         Subscriptions: []
+        Entitlements: 'paid,basic'
     AccountPatchFirstNameExample:
       value:
         FirstName: Lorem
