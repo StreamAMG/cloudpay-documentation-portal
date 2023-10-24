@@ -1401,7 +1401,9 @@ paths:
                   Subscriptions:
                     $ref: "#/components/schemas/AccountSubscriptionsModelGet"
                   Entitlements:
-                    type: string
+                    type: array
+                    items: 
+                      type: string
                 required:
                   - EmailAddress
                   - FirstName
@@ -1479,7 +1481,9 @@ paths:
                   BillingDetails:
                     $ref: "#/components/schemas/AccountBillingDetailsModelGet"
                   Entitlements:
-                    type: string
+                    type: array
+                    items:
+                      type: string
                 required:
                   - EmailAddress
                   - FirstName
@@ -3606,7 +3610,7 @@ components:
               Interval: 1month
               Duration: 12months
               TrialDuration: 1week
-        Entitlements: 'paid,basic'
+        Entitlements: ["paid","basic"]
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
@@ -3614,7 +3618,7 @@ components:
         LastName: Ipsum
         Subscriptions: []
         CustomDetails: []
-        Entitlements: ''
+        Entitlements: []
     AccountResponseGetCustomFieldsExample:
       value:
         EmailAddress: customer@email.com
@@ -3630,7 +3634,7 @@ components:
             Required: false
             Value: null
         Subscriptions: []
-        Entitlements: 'paid,basic'
+        Entitlements: ["paid","basic"]
     AccountResponseGetCardDetailsExample:
       value:
         EmailAddress: customer@email.com
@@ -3644,7 +3648,7 @@ components:
             Expires: "2024-07-21T17:32:28Z"
         CustomFields: []
         Subscriptions: []
-        Entitlements: 'paid,basic'
+        Entitlements: ["paid","basic"]
     AccountPatchFirstNameExample:
       value:
         FirstName: Lorem
