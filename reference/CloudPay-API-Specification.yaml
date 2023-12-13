@@ -2235,8 +2235,6 @@ paths:
         focus: false
         -->
 
-        ![Legacy](https://img.shields.io/static/v1?label=Implementation&message=Legacy&color=orange&style=flat-square)
-
         The Package collection endpoint returns a list of Subscription Plans for a platform.
 
         This list can be used to produce a custom package list webpage using predefined metadata for the package.
@@ -2511,7 +2509,6 @@ paths:
 
         **Note:** 
          * *The embedded PurchaseUrl is dynamic based on the authorisation mechanism specified*
-         * *By default the Package endpoint will not return IAP packages, the 'type' query parameter must be passed to the API with the value of 'iap' to return the IAP Package.*
       parameters:
         - schema:
             type: string
@@ -2526,14 +2523,6 @@ paths:
           name: lang
           required: false
           description: The language code
-        - schema:
-            type: string
-            enum:
-              - iap
-          in: query
-          name: type
-          required: false
-          description: The type of subscription plan
         - schema:
             type: string
           in: query
