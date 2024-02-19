@@ -2000,8 +2000,8 @@ paths:
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 9.99
-                        Currency: GBP
                         DisplayOrder: 0
+                        Currency: GBP
                         AmountFormatted: £9.99
                         HasFreeTrial: false
                         TrialDuration: null
@@ -2018,8 +2018,8 @@ paths:
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 59.99
-                        Currency: GBP
                         DisplayOrder: 0
+                        Currency: GBP
                         AmountFormatted: £59.99
                         HasFreeTrial: false
                         TrialDuration: null
@@ -2040,8 +2040,8 @@ paths:
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 2.99
-                        Currency: GBP
                         DisplayOrder: 0
+                        Currency: GBP
                         AmountFormatted: £2.99
                         HasFreeTrial: true
                         TrialDuration: 2days
@@ -2080,6 +2080,9 @@ paths:
                         Amount:
                           type: number
                           description: A subscription plan price amount.
+                        DisplayOrder:
+                          type: number
+                          description: The order in which the subscription plan has been set to show.
                         Currency:
                           type: string
                           pattern: "^[A-Z]{3}$"
@@ -2184,8 +2187,8 @@ paths:
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 9.99
-                        Currency: GBP
                         DisplayOrder: 0
+                        Currency: GBP
                         AmountFormatted: £9.99
                         HasFreeTrial: false
                         TrialDuration: null
@@ -2202,8 +2205,8 @@ paths:
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 59.99
-                        Currency: GBP
                         DisplayOrder: 0
+                        Currency: GBP
                         AmountFormatted: £59.99
                         HasFreeTrial: false
                         TrialDuration: null
@@ -2225,8 +2228,8 @@ paths:
                         Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                         Style: null
                         Amount: 2.99
-                        Currency: GBP
                         DisplayOrder: 0
+                        Currency: GBP
                         AmountFormatted: £2.99
                         HasFreeTrial: true
                         TrialDuration: 2days
@@ -2341,6 +2344,9 @@ paths:
                       Amount:
                         type: number
                         description: A subscription plan price amount.
+                      DisplayOrder:
+                        type: number
+                        description: The order in which the subscription plan has been set to show.
                       Currency:
                         type: string
                         pattern: "^[A-Z]{3}$"
@@ -2442,8 +2448,8 @@ paths:
                     Body: '<p class="package-body">Full Coverage of TV tournaments, Players Championships &amp; European Tour events, interviews and archive content</p><ul><li>European Tour Streaming</li><li>Players Championship Streaming</li><li>TV Events (Live)</li><li>TV Events (Highlights)</li><li>Archive &amp; Feature Content</li><li>Access to the PDC Newsletter</li><li>Partner discounts</li></ul>'
                     Style: null
                     Amount: 9.99
-                    Currency: GBP
                     DisplayOrder: 0
+                    Currency: GBP
                     AmountFormatted: £9.99
                     HasFreeTrial: false
                     TrialDuration: null
