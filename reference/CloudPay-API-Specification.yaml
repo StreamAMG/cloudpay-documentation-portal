@@ -2700,6 +2700,12 @@ paths:
                   value:
                     statusCode: 400
                     message: Bad request
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
         "404":
           description: Not Found
           content:
@@ -2893,12 +2899,6 @@ paths:
                   value:
                     Granted: false
                     Reason: BadRequestException
-        "401":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
         "500":
           description: Internal server error
           content:
