@@ -2893,6 +2893,12 @@ paths:
                   value:
                     Granted: false
                     Reason: BadRequestException
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
         "500":
           description: Internal server error
           content:
