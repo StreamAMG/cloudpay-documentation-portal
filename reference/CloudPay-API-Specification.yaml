@@ -1158,6 +1158,12 @@ paths:
                     ErrorMessage: The customer account is blocked due to concurrency limit
         "204":
           description: The KSession token generate request processed successfully but there is no response content
+        "401":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
         "500":
           description: Unsuccessful KSession token generate response
           content:
