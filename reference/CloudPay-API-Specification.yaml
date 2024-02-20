@@ -46,6 +46,12 @@ paths:
                 type: string
                 example: "ThirdPartyAuthentication=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c; Path=/; expires=${2 hours}; SameSite=None; Secure; HttpOnly"
               description: The cookie which will be stored in the cookie store
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
         "500":
           description: Unsuccessful SSO login response
           content:
