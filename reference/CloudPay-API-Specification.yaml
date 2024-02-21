@@ -847,8 +847,6 @@ paths:
                     CurrentCustomerSessionStatus: 0
                     CurrentCustomerSession: null
                     ModelErrors: {}
-        "204":
-          description: The session terminate request processed successfully but there is no response content
         "500":
           description: Unsuccessful session terminate response
           content:
