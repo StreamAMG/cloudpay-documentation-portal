@@ -912,10 +912,12 @@ paths:
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
                       CustomerEntitlements: ""
+                      CustomerPackages": ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
                       RequiresCardAuthenticationCount: 0
+                      Expiry: null
                     ModelErrors: {}
                     Status: -1
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
@@ -976,6 +978,8 @@ paths:
                         type: boolean
                       CustomerEntitlements:
                         type: string
+                      CustomerPackages:
+                        type: string
                       CustomerFullAccessUntil: {}
                       CustomerNonExpiringSubscriptionCount:
                         type: number
@@ -983,6 +987,8 @@ paths:
                         type: number
                       RequiresCardAuthenticationCount:
                         type: number
+                      Expiry:
+                        type: string
                   ModelErrors:
                     type: object
                   Status:
@@ -1032,10 +1038,12 @@ paths:
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
                       CustomerEntitlements: ""
+                      CustomerPackages": ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
                       RequiresCardAuthenticationCount: 0
+                      Expiry: null
                     ModelErrors: {}
                     Status: -1
                     KSession: OWE1MGI2NmQ5ZTc2MjA5NjllYzEzY2EzMGFmNzUzNmExOTVkYzdlYXwzMDAxMTkyOzMwMDExOTI7MTU5Mjk5MzQwMDswOzE1OTI5OTI4MDA7Vmlld2VyO3N2aWV3OjBfOHpiNnV3Nngsc2V0cm9sZTpQTEFZQkFDS19CQVNFX1JPTEUsd2lkZ2V0OjE7Ow==
@@ -1066,6 +1074,7 @@ paths:
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
                       CustomerEntitlements: ""
+                      CustomerPackages": ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1112,6 +1121,7 @@ paths:
                       CustomerLastName: Ipsum
                       CustomerDeleted: true
                       CustomerEntitlements: pldarts
+                      CustomerPackages": ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 1
