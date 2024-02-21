@@ -912,7 +912,7 @@ paths:
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
                       CustomerEntitlements: ""
-                      CustomerPackages": ""
+                      CustomerPackages: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1038,7 +1038,7 @@ paths:
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
                       CustomerEntitlements: ""
-                      CustomerPackages": ""
+                      CustomerPackages: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1074,7 +1074,7 @@ paths:
                       CustomerBillingProfileReference: null
                       CustomerDeleted: false
                       CustomerEntitlements: ""
-                      CustomerPackages": ""
+                      CustomerPackages: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 0
@@ -1121,7 +1121,7 @@ paths:
                       CustomerLastName: Ipsum
                       CustomerDeleted: true
                       CustomerEntitlements: pldarts
-                      CustomerPackages": ""
+                      CustomerPackages: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 1
@@ -1152,6 +1152,7 @@ paths:
                       CustomerLastName: Ipsum
                       CustomerDeleted: true
                       CustomerEntitlements: pldarts
+                      CustomerPackages: ""
                       CustomerFullAccessUntil: null
                       CustomerNonExpiringSubscriptionCount: 0
                       CustomerSubscriptionCount: 1
