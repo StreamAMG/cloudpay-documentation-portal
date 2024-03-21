@@ -2319,11 +2319,11 @@ paths:
           required: false
           description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
         - schema:
-          type: string
-        in: query
-        name: entitlement
-        required: false
-        description: Used to return a list of packages that match a single or multiple entitlements.
+            type: string
+          in: query
+          name: entitlement
+          required: false
+          description: Used to return a list of packages that match a single or multiple entitlements.
 
   /api/v1/package/{packageId}:
     get:
