@@ -2107,6 +2107,9 @@ paths:
                         DisplayOrder:
                           type: number
                           description: The order in which the subscription plan has been set to show.
+                        Entitlement:
+                          type: array
+                          description: A string array that contains all the associated entitlements for a given package.
                         Currency:
                           type: string
                           pattern: "^[A-Z]{3}$"
@@ -2381,6 +2384,9 @@ paths:
                       DisplayOrder:
                         type: number
                         description: The order in which the subscription plan has been set to show.
+                      Entitlement:
+                        type: array
+                        description: A string array that contains all the associated entitlements for a given package.
                       Currency:
                         type: string
                         pattern: "^[A-Z]{3}$"
