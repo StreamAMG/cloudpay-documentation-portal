@@ -1423,7 +1423,7 @@ paths:
                     $ref: "#/components/schemas/AccountSubscriptionsModelGet"
                   Entitlements:
                     type: array
-                    items: 
+                    items:
                       type: string
                 required:
                   - EmailAddress
@@ -2022,6 +2022,7 @@ paths:
                         Style: null
                         Amount: 9.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £9.99
                         HasFreeTrial: false
@@ -2040,6 +2041,7 @@ paths:
                         Style: null
                         Amount: 59.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £59.99
                         HasFreeTrial: false
@@ -2062,6 +2064,7 @@ paths:
                         Style: null
                         Amount: 2.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £2.99
                         HasFreeTrial: true
@@ -2104,6 +2107,9 @@ paths:
                         DisplayOrder:
                           type: number
                           description: The order in which the subscription plan has been set to show.
+                        Entitlement:
+                          type: array
+                          description: A string array that contains all the associated entitlements for a given package.
                         Currency:
                           type: string
                           pattern: "^[A-Z]{3}$"
@@ -2209,6 +2215,7 @@ paths:
                         Style: null
                         Amount: 9.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £9.99
                         HasFreeTrial: false
@@ -2227,6 +2234,7 @@ paths:
                         Style: null
                         Amount: 59.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £59.99
                         HasFreeTrial: false
@@ -2250,6 +2258,7 @@ paths:
                         Style: null
                         Amount: 2.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £2.99
                         HasFreeTrial: true
@@ -2299,6 +2308,12 @@ paths:
           name: apisessionid
           required: false
           description: When SSO is not active the purchase URL is pointed at the RegisterCreateAccount webpage
+        - schema:
+            type: string
+          in: query
+          name: entitlement
+          required: false
+          description: Used to return a list of packages that match a single or multiple entitlements.
 
   /api/v1/package/{packageId}:
     get:
@@ -2322,6 +2337,7 @@ paths:
                         Style: null
                         Amount: 59.99
                         DisplayOrder: 0
+                        Entitlements: ["paid"]
                         Currency: GBP
                         AmountFormatted: £59.99
                         HasFreeTrial: false
@@ -2368,6 +2384,9 @@ paths:
                       DisplayOrder:
                         type: number
                         description: The order in which the subscription plan has been set to show.
+                      Entitlement:
+                        type: array
+                        description: A string array that contains all the associated entitlements for a given package.
                       Currency:
                         type: string
                         pattern: "^[A-Z]{3}$"
@@ -2470,6 +2489,7 @@ paths:
                     Style: null
                     Amount: 9.99
                     DisplayOrder: 0
+                    Entitlements: ["paid"]
                     Currency: GBP
                     AmountFormatted: £9.99
                     HasFreeTrial: false
@@ -3640,7 +3660,7 @@ components:
               Interval: 1month
               Duration: 12months
               TrialDuration: 1week
-        Entitlements: ["paid","basic"]
+        Entitlements: ["paid", "basic"]
     AccountResponseGetBasicExample:
       value:
         EmailAddress: customer@email.com
@@ -3664,7 +3684,7 @@ components:
             Required: false
             Value: null
         Subscriptions: []
-        Entitlements: ["paid","basic"]
+        Entitlements: ["paid", "basic"]
     AccountResponseGetCardDetailsExample:
       value:
         EmailAddress: customer@email.com
@@ -3678,7 +3698,7 @@ components:
             Expires: "2024-07-21T17:32:28Z"
         CustomFields: []
         Subscriptions: []
-        Entitlements: ["paid","basic"]
+        Entitlements: ["paid", "basic"]
     AccountPatchFirstNameExample:
       value:
         FirstName: Lorem
