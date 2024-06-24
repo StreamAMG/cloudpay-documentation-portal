@@ -40,6 +40,11 @@
       "uri": "docs/Guides/Checkout-Redirect.md"
     },
     {
+      "type": "item",
+      "title": "Web Components",
+      "uri": "docs/Guides/Web-Components.md"
+    },
+    {
       "type": "divider",
       "title": "CloudPay API"
     },
