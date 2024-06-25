@@ -56,7 +56,7 @@ To enable billing details update flow, **is-billing-update** property must be pr
 ></streamamg-checkout-payment>
 ```
 
-Full list of properties which can be passed to the Payment Web Component:
+Complete list of properties which can be passed to the Payment Web Component:
 
 1. **return-url** - URL to which the user should be redirected after the payment
 2. **successful-payment-redirect-url** - URL to which the user should be redirected in case of a successful payment. It can also be passed as a query **successRedirectUrl** parameter in the URL.
@@ -100,7 +100,7 @@ For this web component to work, a subscription plan ID and site URL must be prov
 ></streamamg-checkout-payment-summary>
 ```
 
-Full list of properties which can be passed to the Payment Summary Web Component:
+Complete list of properties which can be passed to the Payment Summary Web Component:
 
 1. **hide-support-message** - hides the support message appearing at the bottom of the component.
 2. **support-email** - email to be shown below the support message at the bottom of the component. It can also be passed as a **supportEmail** query parameter in the URL.
@@ -118,3 +118,48 @@ Full list of properties which can be passed to the Payment Summary Web Component
 Example of the web component:
 
 <img src="../../assets/images/payment-summary-web-component-example.png" alt="Payment Summary Web Component Example" width="900" style="align:center"/>
+
+## Usage Example
+
+Code example of embedding both web components into the HTML page:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      type="module"
+      src="https://components.streamamg.com/checkout/v1/esm/streamamg-checkout.js"
+      data-stencil
+    ></script>
+
+    <style>
+      .wrapper {
+        display: flex;
+        height: 100vh;
+
+        @media (max-width: 850px) {
+          flex-direction: column;
+        }
+      }
+
+      streamamg-checkout-payment,
+      streamamg-checkout-payment-summary {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <streamamg-checkout-payment-summary
+        rounded-border="false"
+      ></streamamg-checkout-payment-summary>
+      <streamamg-checkout-payment
+        rounded-border="false"
+      ></streamamg-checkout-payment>
+    </div>
+  </body>
+</html>
+```
