@@ -78,7 +78,9 @@ Complete list of properties which can be passed to the Payment Web Component:
 
 Example of the web component:
 
-<img src="../../assets/images/web-component-example.png" alt="Web Component Example" width="900" style="align:center"/>
+<div style="display:flex;justify-content:center">
+  <img src="../../assets/images/web-component-example.png" alt="Web Component Example" width="500" style="align:center"/>
+</div>
 
 ## Payment Summary Web Component
 
@@ -117,7 +119,9 @@ Complete list of properties which can be passed to the Payment Summary Web Compo
 
 Example of the web component:
 
-<img src="../../assets/images/payment-summary-web-component-example.png" alt="Payment Summary Web Component Example" width="900" style="align:center"/>
+<div style="display:flex;justify-content:center">
+  <img src="../../assets/images/payment-summary-web-component-example.png" alt="Payment Summary Web Component Example" width="500" style="align:center"/>
+</div>
 
 ## Usage Example
 
