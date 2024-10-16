@@ -57,7 +57,7 @@ CloudPay will verify the receipts sent from the App with Google.
 ##### Notification service
 Google offers a guaranteed real-time developer notification (RTDN) service which forwards updates to CloudPay allowing it to react immediately to subscription state changes, avoiding the need to poll the Google Play Developer API.  RTDN leverages the use of [Google Cloud Pub/Sub](https://cloud.google.com/pubsub/docs/overview) which is a fully managed real-time messaging service that you can use to send and receive messages between independent applications. Google Play uses Cloud Pub/Sub to publish push notifications on topics to which you subscribe.  Once setup you should add the CloudPay endpoint which will consume these notifications.
 
-```https://{client-cloudpay-instance}.streamamg.com/notification/v1/android```
+```https://{client-cloudpay-instance}.streamamg.com/notification/v1/google```
 
 ##### StreamAMG Requirements:
 
