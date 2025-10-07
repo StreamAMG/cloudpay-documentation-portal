@@ -327,16 +327,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/languageParam'
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/LoginRequest'
-            examples:
-              Example 1:
-                value:
-                  emailaddress: someone@streamamg.com
-                  password: somesecurepassword
       responses:
         '200':
           description: |-
