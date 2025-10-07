@@ -331,8 +331,12 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/LoginRequest'
+              $ref: '#/components/schemas/LoginRequest'
+            examples:
+              Example 1:
+                value:
+                  emailaddress: someone@streamamg.com
+                  password: somesecurepassword
       responses:
         '200':
           description: |-
