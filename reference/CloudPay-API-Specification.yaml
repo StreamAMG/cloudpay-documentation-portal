@@ -327,13 +327,11 @@ paths:
       parameters:
         - $ref: "#/components/parameters/languageParam"
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: "#/components/schemas/StringLoginRequest"
-                - $ref: "#/components/schemas/LoginRequest"
+              $ref: '#/components/schemas/LoginRequest'
       responses:
         "200":
           description: |-
