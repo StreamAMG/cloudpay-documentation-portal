@@ -12,3 +12,7 @@ To help with client integration a number of example patterns can be found on the
 >
 > Head over to the [FAQ](./FAQ.md) page to see some example usecases using the API, if you have been here before and then jump straight to the [API Reference](../reference/CloudPay-API-Specification.yaml) 
 
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.
+

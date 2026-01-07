@@ -155,4 +155,9 @@ All IAP integrations made via one of the four supported providers must push the 
 
 On successful validation, a user will be granted an entitlement that is used to access premium content either for a recurring or non-recurring basis.
 
-Further updates to a user's subscription status will be handled by CloudPay once the integrator has added the relevant CloudPay endpoint and provided the access token to StreamAMG.  This will be in the form of re-validating receipts based on expiry dates/time and provider notification services.
+Further updates to a user's subscription status will be handled by CloudPay once the integrator has added the relevant CloudPay endpoint and provided the access token to StreamAMG.  This will be in the form of re-validating receipts based on expiry dates/time and provider notification 
+services.
+
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.

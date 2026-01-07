@@ -31,3 +31,8 @@ Example:
 - validate that user's card details are updated.
   
   Create an API call to [Account User's Summary](https://streamamg.stoplight.io/docs/cloudpay/b3A6MTc0MTc5NTc-retrieve-the-user-s-summary) endpoint.
+
+  
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.

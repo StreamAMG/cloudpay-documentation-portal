@@ -1,5 +1,9 @@
 # FAQ
 
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.
+
 ### How do I use the API to generate a token I can use to access media
 
 The first action a client should take when trying to access entitled/restricted content is to create a session.
@@ -30,3 +34,7 @@ The next step is to create a kSession for the entry you would like to view, this
 ```
 
 You should again store the ksession you have generated and use this to access the selected media item.
+
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.

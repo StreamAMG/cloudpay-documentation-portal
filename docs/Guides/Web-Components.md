@@ -167,3 +167,6 @@ Code example of embedding both web components into the HTML page:
   </body>
 </html>
 ```
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.

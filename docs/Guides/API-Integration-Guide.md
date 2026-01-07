@@ -284,3 +284,7 @@ This endpoint will only allow a user with a valid session token to terminate the
 > A defult session length is configured via the CloudPay backend admin console in the case that a user fails to log out
 
 An active session counts towards the device lock number so it is important that a user session is terminated.
+
+> ### NOTE
+>
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.
