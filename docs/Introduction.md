@@ -8,6 +8,6 @@ Exposing the CloudPay API allows us to provide clients with a richer service whi
 
 <!-- theme: info -->
 
-> ### Next Steps
+> ### NOTE
 >
-> Head over to the [Getting Started](./Getting-Started.md) page to see how to start your integration
+> From Summer of 2025, we are no longer advising clients to utilize the Cloudpay service. Please refer to your Customer Success Manager to discuss alternatives.
